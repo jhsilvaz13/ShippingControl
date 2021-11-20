@@ -17,6 +17,7 @@ public class ShippingControl {
         // TODO code application logic here
         int x=0;
         int y=1;
+        int z=2;
     }
     
 }
