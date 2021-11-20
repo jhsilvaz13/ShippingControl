@@ -19,8 +19,6 @@ public class ShippingControl {
     static final String PATH="..\\ShippingControl\\src\\Mundo\\shippingcontrol\\usuarios.csv";
     static  final Scanner in= new Scanner(System.in);
     public static void main(String[] args) {
-        int x = 0;
-        int y = 1;
         String username, password;
         int res;
         System.out.println("¿Desea iniciar sesion? 0/1");
@@ -40,9 +38,6 @@ public class ShippingControl {
         }
         username= in.nextLine();
         // TODO code application logic here
-        int x=0;
-        int y=1;
-        int z=2;
     }
     public static void registrarUsuario(String username, String password){
         try{
