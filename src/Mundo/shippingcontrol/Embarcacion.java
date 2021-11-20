@@ -10,12 +10,12 @@ package Mundo.shippingcontrol;
  */
 public class Embarcacion {
     //PARAMETROS
-    private int IMO;
+    private String IMO;
     private String nombreEmbarcacion;
     private String bandera;
     private String tipoDeEmbarcacion;
     
-    public Embarcacion(int IMO, String nombreEmbarcacion, String bandera, String tipoDeEmbarcacion){
+    public Embarcacion(String IMO, String nombreEmbarcacion, String bandera, String tipoDeEmbarcacion){
         this.IMO=IMO;
         this.nombreEmbarcacion=nombreEmbarcacion;
         this.bandera=bandera;

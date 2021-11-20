@@ -11,7 +11,6 @@ public class ShippingControl {
     static final String PATH = "..\\ShippingControl\\src\\Mundo\\shippingcontrol\\usuarios.csv";
     static final Scanner in = new Scanner(System.in);
 
-
     public static void main(String[] args) {
         
         String res;
