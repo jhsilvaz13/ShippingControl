@@ -19,7 +19,6 @@ public class ShippingControl {
     static final String PATH="..\\ShippingControl\\src\\Mundo\\shippingcontrol\\usuarios.csv";
     static  final Scanner in= new Scanner(System.in);
     public static void main(String[] args) {
-<<<<<<< HEAD
         int x = 0;
         int y = 1;
         String username, password;
@@ -40,12 +39,10 @@ public class ShippingControl {
             registrarUsuario(username, password);
         }
         username= in.nextLine();
-=======
         // TODO code application logic here
         int x=0;
         int y=1;
         int z=2;
->>>>>>> 59e10d9069563456956233a1ca5fb5601e3a9c5e
     }
     public static void registrarUsuario(String username, String password){
         try{
@@ -64,7 +61,7 @@ public class ShippingControl {
             while ((linea = br.readLine()) != null) {//cada linea del archivo csv
                 String[] valores = linea.split(",");//arreglo de las columnas de cada linea
                 if (valores[0].equals(username) && valores[1].equals(password)) {
-                    System.out.println("Yessss");
+                    System.out.println("Inicio de sesion exitoso");
                 }
             }
         } catch (Exception e) {
