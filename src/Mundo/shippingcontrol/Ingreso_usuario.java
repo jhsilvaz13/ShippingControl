@@ -40,6 +40,7 @@ public class Ingreso_usuario extends ShippingControl {
         }
         if (find_user == true){
             System.out.println("Inicio de sesion exitoso");
+            Usuario usuario=new Usuario(username);
         }else{
             System.out.println("Nombre o contraseña incorrectos, por favor intente de nuevo.");
             System.out.print("Nombre de usuario: ");
