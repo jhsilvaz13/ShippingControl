@@ -14,8 +14,12 @@ public class Embarcacion {
     private String nombreEmbarcacion;
     private String bandera;
     private String tipoDeEmbarcacion;
+    private int contenedoresMax;
+    private int contenedoresAct;
+    private boolean disponibilidad;
     
-    public Embarcacion(String IMO, String nombreEmbarcacion, String bandera, String tipoDeEmbarcacion){
+    public Embarcacion(String IMO, String nombreEmbarcacion, String bandera,
+            String tipoDeEmbarcacion, ){
         this.IMO=IMO;
         this.nombreEmbarcacion=nombreEmbarcacion;
         this.bandera=bandera;
