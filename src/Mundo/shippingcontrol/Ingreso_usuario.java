@@ -1,12 +1,12 @@
 package Mundo.shippingcontrol;
 
-import static Mundo.shippingcontrol.MenuPrincipal.in;
+import static Mundo.shippingcontrol.Embarcacion.in;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.PrintWriter;
 
-public class Ingreso_usuario extends MenuPrincipal {
+public class Ingreso_usuario{
 
     static final String PATH = "..\\ShippingControl\\src\\Mundo\\shippingcontrol\\usuarios.csv";
 
