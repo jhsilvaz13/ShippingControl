@@ -1,5 +1,7 @@
-package Mundo.shippingcontrol;
+package Interfaz;
 
+import Mundo.shippingcontrol.Embarcacion;
+import Mundo.shippingcontrol.Ingreso_usuario;
 import java.io.*;
 import java.util.Scanner;
 
@@ -20,7 +22,7 @@ public class MenuPrincipal {
             try {
                 if (Integer.parseInt(res) == 1) {
                     loop = Ingreso_usuario.Ingreso();
-                    if (loop == false){
+                    if (loop == false) {
                         loop = Ingreso_usuario.Ingreso();
                     }
                 } else if (Integer.parseInt(res) == 2) {
@@ -38,11 +40,33 @@ public class MenuPrincipal {
         String res;
         res = in.nextLine();
         try {
-            if (Integer.parseInt(res) == 1){
-                
+            if (Integer.parseInt(res) == 1) {
+                boolean loopBarcos = false;
+                while (loopBarcos != true) {
+                    System.out.println("1.) Registrar entrada de embarcación.");
+                    System.out.println("2.) Registrar salida de embarcación.");
+                    res = in.nextLine();
+                    try{
+                        if (Integer.parseInt(res) == 1) {
+                            String [] datosem = new String[6];
+                            datosem = RegistroEmbarcaciones.datosEmbarcación();
+                            Embarcacion.LlegadaEmbarcacion(datosem);
+                        } else if (Integer.parseInt(res) == 2) {
+
+                        } else {
+                            System.out.println("Por favor, ingrese solo el numero de la opcion que desea.");
+                        }
+                    } catch (Exception e) {
+                        System.out.println("Por favor, ingrese solo el numero de la opcion que desea.");
+                    }
+                }
             }
-        }
-        catch (Exception e){
+            else if (Integer.parseInt(res)==2){
+                
+            }else{
+                System.out.println("Por favor, ingrese solo el numero de la opcion que desea.");
+            }
+        } catch (Exception e) {
             System.out.println("Por favor, ingrese solo el numero de la opcion que desea.");
         }
     }

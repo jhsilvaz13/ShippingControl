@@ -3,8 +3,14 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package Mundo.shippingcontrol;
+<<<<<<< HEAD
 import Mundo.estructuras.listas.*;
+=======
+
+
+>>>>>>> f6efe959d1b9c7ef6d79681d0d42e7b5660a2a02
 import java.util.Scanner;
+import static Interfaz.MenuPrincipal.in;
 
 /**
  *
@@ -17,6 +23,7 @@ public class Usuario {
     public Usuario(String nombreUsuario){
         this.nombreUsuario=nombreUsuario;
     }
+<<<<<<< HEAD
     public void interfazInicial(){
         boolean repeatLoop=false;
         String res;
@@ -62,4 +69,6 @@ public class Usuario {
         datos[3]=in.next();
         return  datos;
      }
+=======
+>>>>>>> f6efe959d1b9c7ef6d79681d0d42e7b5660a2a02
 }
