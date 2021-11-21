@@ -3,7 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package Mundo.shippingcontrol;
-
+import Mundo.estructuras.listas.*;
 import java.util.Scanner;
 
 /**
@@ -20,7 +20,7 @@ public class Usuario {
     public void interfazInicial(){
         boolean repeatLoop=false;
         String res;
-          while(repeatLoop != true){            
+        while(repeatLoop != true){            
             System.out.println("1.) Registrar entrada de embarcación.");
             System.out.println("2.) Registrar salida de embarcación.");
             res = in.nextLine();
@@ -42,7 +42,7 @@ public class Usuario {
         String [] datos=datosEmbarcación();
         Embarcacion entrante=new Embarcacion(datos[0],datos[1],datos[2],datos[3]);
     }
-     public void registrarSalidaDeEmbarcación(){
+     public void registroSalidaDeEmbarcación(){
          
      }
      
@@ -59,7 +59,7 @@ public class Usuario {
         System.out.print("Bandera: ");
         datos[2]=in.next();
         System.out.print("Tipo de Embarcación");
-        datos[0]=in.next();
+        datos[3]=in.next();
         return  datos;
      }
 }

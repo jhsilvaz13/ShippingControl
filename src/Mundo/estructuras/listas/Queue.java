@@ -9,5 +9,25 @@ package Mundo.estructuras.listas;
  * @author jhonz
  */
 public class Queue<T> extends LinkedList<T>{
-    
+    public Queue(){
+        super();
+    }
+    //Encola un elemento(al final de lista enlazada)
+    public void Enqueue(Node<T> node){
+        pushBack(node);
+    }
+    //Desencola un elemento(al inicio de lista enlazada)
+    public Node<T> Dequeue() {
+        Node <T> dequeueNode=getBeginNode();
+        popFront();
+        return dequeueNode;
+    }
+
+    @Override
+    public void pushFront(Node<T> newNode) {
+    }
+
+    @Override
+    public void popBack() {
+    }
 }

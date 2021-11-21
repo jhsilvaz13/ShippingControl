@@ -27,9 +27,4 @@ public class Stack<T> extends LinkedList<T>{
     @Override
     public void pushBack(Node<T> newNode) {
     }
-
-    @Override
-    public void print(){
-        super.print(); //To change body of generated methods, choose Tools | Templates.
-    }
 }
