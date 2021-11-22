@@ -4,31 +4,71 @@
  */
 package Interfaz;
 
-import java.io.*;
-import java.util.Scanner;
+import Mundo.shippingcontrol.Embarcacion;
 
-public class RegistroEmbarcaciones {
-    static final Scanner in = new Scanner(System.in);
-    
-    public static String[] datosEmbarcación(){
-        String [] datos=new String [6];
-        System.out.println(String.format("%10s", "---Bienvenido al Sistema de Regitro de Embarcaciones Entrantes---"
-                + "\nPor favor los siguientes datos de la embarcación"));
-        System.out.print("IMO: ");
-        datos[0]=in.next();
-        System.out.print("Nombre de la embarcación: ");
-        datos[1]=in.next();
-        System.out.print("Bandera: ");
-        datos[2]=in.next();
-        System.out.print("Tipo de Embarcación: ");
-        datos[3]=in.next();
-        System.out.print("Capacidad: ");
-        datos[4]=in.next();
-        System.out.print("Número de Contenedores Actual: ");
-        datos[5]=in.next();
-        System.out.print("Disponibilidad: ");
-        datos[6]=in.next();
-        
+public class RegistroEmbarcaciones extends MenuPrincipal {
+
+    public static void interfazRegistroEmbaraciones() {
+        boolean loop = false;
+        while (loop != true) {
+            System.out.println("1.) Registrar entrada de embarcación.");
+            System.out.println("2.) Registrar salida de embarcación.");
+            System.out.println("3.) Mostrar embarcaciones actuales");
+            System.out.println("4.) Ultima embarcacion en salir.");
+            System.out.println("5.) Regresar al menu pricipal");
+            String res;
+            res = in.next();
+            try {
+                if (Integer.parseInt(res) == 1) {
+                    puerto.registrarLlegadaEmbarcacion(datosEmbarcación());
+                    in.nextLine();
+                } else if (Integer.parseInt(res) == 2) {
+                    System.out.print("Se ha desembarcado la embarcación con IMO: ");
+                    System.out.println(puerto.registrarSalidadDeEmbarcacion().data.getIMO());
+                } else if (Integer.parseInt(res) == 3) {
+                    System.out.println("Mostrar datos embarcaciones");
+                } else if (Integer.parseInt(res) == 4) {
+                    try {
+                        System.out.println("La ultima embarcacion que abandono el puerto fue: "
+                                + puerto.retornarUltimaEmbarcacionSalida().data.getIMO());
+                    } catch (Exception e) {
+                        System.out.println("No se encontro la ultima embarcacion que abandono el puerto");
+                    }
+
+                } else if (Integer.parseInt(res) == 5) {
+                    loop = true;
+                    Ingreso_usuario.menuPrincipal();
+                } else {
+                    System.out.println("Por favor, ingrese solo el numero de la opcion que desea.");
+                }
+            } catch (Exception e) {
+                System.out.println("Por favor, ingrese solo el numero de la opcion que desea." + e.getMessage());
+            }
+        }
+    }
+
+    public static String[] datosEmbarcación() {
+        String[] datos = new String[7];
+        try {
+            System.out.println(String.format("%10s", "---Bienvenido al Sistema de Regitro de Embarcaciones Entrantes---"
+                    + "\nPor favor ingrese los siguientes datos de la embarcación"));
+            System.out.print("IMO: ");
+            datos[0] = in.next();
+            System.out.print("Nombre de la embarcación: ");
+            datos[1] = in.next();
+            System.out.print("Bandera: ");
+            datos[2] = in.next();
+            System.out.print("Tipo de Embarcación: ");
+            datos[3] = in.next();
+            System.out.print("Capacidad: ");
+            datos[4] = in.next();
+            System.out.print("Número de Contenedores Actual: ");
+            datos[5] = in.next();
+            System.out.print("Disponibilidad: ");
+            datos[6] = in.next();
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+        }
         return datos;
     }
 }

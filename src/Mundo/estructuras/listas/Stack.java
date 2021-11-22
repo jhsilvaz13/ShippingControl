@@ -18,6 +18,12 @@ public class Stack<T> extends LinkedList<T>{
        popFront();
     }
     
+    public Node<T> peek(){
+        Node<T> node=getBeginNode();
+        pop();
+        return node;
+    }
+    
     //No se puede eliminar al inicio de una pila
     @Override
     public void popBack() {
