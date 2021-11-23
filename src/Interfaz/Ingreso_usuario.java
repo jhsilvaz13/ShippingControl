@@ -7,9 +7,9 @@ import java.io.FileWriter;
 import java.io.PrintWriter;
 import Mundo.shippingcontrol.*;
 
-public class Ingreso_usuario extends  MenuPrincipal{
-    
-    public static void interfazRegistroInicio(){
+public class Ingreso_usuario extends MenuPrincipal {
+
+    public static void interfazRegistroInicio() {
         System.out.println("¿Desea iniciar sesion o registrarse?");
         boolean loop = false;
         while (loop != true) {
@@ -19,24 +19,24 @@ public class Ingreso_usuario extends  MenuPrincipal{
             res = in.nextLine();
             try {
                 if (Integer.parseInt(res) == 1) {
-                    loop =Ingreso();
+                    loop = Ingreso();
                     if (loop == false) {
                         loop = Ingreso_usuario.Ingreso();
                     }
                 } else if (Integer.parseInt(res) == 2) {
-                        Registro();
+                    Registro();
                     System.out.println("Usuario creado exitosamente, en momentos sera devuelto a la pantalla principal para iniciar sesion.");
                 } else {
                     System.out.println("Por favor, ingrese solo el numero de la opcion que desea.");
                 }
             } catch (Exception e) {
-                System.out.println("Por favor, ingrese solo el numero de la opcion que desea."+e.getMessage());
+                System.out.println("Por favor, ingrese solo el numero de la opcion que desea." + e.getMessage());
             }
         }
         menuPrincipal();
-        
+
     }
-    
+
     public static void menuPrincipal() {
         boolean loop = false;
         while (loop != true) {
@@ -46,10 +46,10 @@ public class Ingreso_usuario extends  MenuPrincipal{
             res = in.next();
             try {
                 if (Integer.parseInt(res) == 1) {
-                    loop=true;
+                    loop = true;
                     RegistroEmbarcaciones.interfazRegistroEmbaraciones();
                 } else if (Integer.parseInt(res) == 2) {
-                    loop=true;
+                    loop = true;
                     System.out.println("Mostrar Interfaz Usuarios");
                 } else {
                     System.out.println("Por favor, ingrese solo el numero de la opcion que desea.");
@@ -59,6 +59,7 @@ public class Ingreso_usuario extends  MenuPrincipal{
             }
         }
     }
+
     public static void Registro() {
         boolean loop;
         String username, password;
@@ -92,7 +93,7 @@ public class Ingreso_usuario extends  MenuPrincipal{
                 String[] valores = linea.split(",");//arreglo de las columnas de cada linea
                 if (valores[0].equals(username) && valores[1].equals(password)) {
                     find_user = true;
-                    
+
                 }
             }
         } catch (Exception e) {
@@ -100,8 +101,8 @@ public class Ingreso_usuario extends  MenuPrincipal{
         }
         if (find_user == true) {
             System.out.println("Inicio de sesion exitoso");
-            puerto=new Puerto("PUERTO",0,0,0,0,0);
-            //Test.RegitrarNEmbarcaciones(100000000l);
+            puerto = new Puerto("PUERTO", 0, 0, 0, 0, 0);
+            //Test.RegitrarNEmbarcaciones(100000l);
             puerto.cargarEmbarcacionesCSV();
             loop = true;
             return loop;

@@ -24,7 +24,7 @@ public class Puerto {
     private int barcosAct;
 
     private Queue<Embarcacion> colaEmbarcaciones = new Queue<Embarcacion>();
-    private Stack<Embarcacion> pilaSalida=new Stack<Embarcacion>();
+    private Stack<Embarcacion> pilaSalida = new Stack<Embarcacion>();
 
     public Puerto(String nombrePuerto, int tarifa, int contenedoresMax,
             int barcosMax, int barcosAct, int contenedoresAct) {
@@ -35,8 +35,11 @@ public class Puerto {
         this.contenedoresAct = contenedoresAct;
         this.barcosAct = barcosAct;
     }
-    /** Carga los datos que se encuenyran en los archivos CSV en objetos en ejecución
-        y actualiza la cola correspondiente a los barcos**/
+
+    /**
+     * Carga los datos que se encuenyran en los archivos CSV en objetos en
+     * ejecución y actualiza la cola correspondiente a los barcos*
+     */
     public void cargarEmbarcacionesCSV() {
         String linea;
         try {
@@ -45,7 +48,7 @@ public class Puerto {
             while ((linea = br.readLine()) != null) {//cada linea del archivo csv
                 String[] datos = linea.split(",");//arreglo de las columnas de cada linea
                 Embarcacion embarcacion;
-                if (datos[6] == "Disponible") {
+                if (datos[6].equals("Disponible")) {
                     embarcacion = new Embarcacion(datos[0], datos[2], datos[3], datos[4],
                             Integer.parseInt(datos[5]), Integer.parseInt(datos[5]), true);
                 } else {
@@ -58,11 +61,23 @@ public class Puerto {
             System.err.println("cargarEmb");
         }
     }
+    
+    public Queue<Embarcacion> GetEmbarcaciones(){
+        boolean empty;
+        empty = colaEmbarcaciones.IsEmpty();
+        if (empty == true){
+            return null;
+        }
+        else{
+            return colaEmbarcaciones;
+        }
+    }
+
     //Registra la llegada de una nueva embarcación, encola
     public void registrarLlegadaEmbarcacion(String[] datos) {
         System.currentTimeMillis();
         Embarcacion embarcacion;
-        if (datos[6] == "Disponible") {
+        if (datos[6].equals("Disponible")) {
             embarcacion = new Embarcacion(datos[0], datos[2], datos[3], datos[4],
                     Integer.parseInt(datos[5]), Integer.parseInt(datos[5]), true);
         } else {
@@ -72,23 +87,32 @@ public class Puerto {
         colaEmbarcaciones.Enqueue(new Node<Embarcacion>(embarcacion));
         realizarRegistros();
     }
+
     //Registra el desembarque y salida de una embarcacion, desencola
-    public Node<Embarcacion> registrarSalidadDeEmbarcacion(){
-        Node<Embarcacion> embarcaciónDesencolada=colaEmbarcaciones.Dequeue();
+    public Node<Embarcacion> registrarSalidadDeEmbarcacion() {
+        Node<Embarcacion> embarcaciónDesencolada = colaEmbarcaciones.Dequeue();
         pilaSalida.push(embarcaciónDesencolada);
         realizarRegistros();
         return embarcaciónDesencolada;
     }
-    
+
     // Retorna la ultima embarcacion que dejo el puerto
-    public Node<Embarcacion> retornarUltimaEmbarcacionSalida(){
-        Node<Embarcacion> salida=pilaSalida.peek();
+    public Node<Embarcacion> retornarUltimaEmbarcacionSalida() {
+        Node<Embarcacion> salida = pilaSalida.peek();
         return salida;
     }
+
     private void realizarRegistros() {
+        long start = System.currentTimeMillis();
+        System.out.println(start);
         Embarcacion.registrosCSVEmbarcaciones(colaEmbarcaciones);
+        long finish = System.currentTimeMillis();
+        long resta = Math.round(((finish - start) * 100.0) / 100.0);
+        System.out.println(finish);
+        System.out.println("Sale bien:" + resta);
     }
-    public Queue<Embarcacion> getEmbarcacionesCola(){
+
+    public Queue<Embarcacion> getEmbarcacionesCola() {
         return colaEmbarcaciones;
     }
 }

@@ -5,6 +5,7 @@
 package Interfaz;
 
 import Mundo.shippingcontrol.Embarcacion;
+import Mundo.estructuras.listas.*;
 
 public class RegistroEmbarcaciones extends MenuPrincipal {
 
@@ -27,6 +28,7 @@ public class RegistroEmbarcaciones extends MenuPrincipal {
                     System.out.println(puerto.registrarSalidadDeEmbarcacion().data.getIMO());
                 } else if (Integer.parseInt(res) == 3) {
                     System.out.println("Mostrar datos embarcaciones");
+                    PrintEmbarcaciones();
                 } else if (Integer.parseInt(res) == 4) {
                     try {
                         System.out.println("La ultima embarcacion que abandono el puerto fue: "
@@ -70,5 +72,23 @@ public class RegistroEmbarcaciones extends MenuPrincipal {
             System.err.println(e.getMessage());
         }
         return datos;
+    }
+
+    public static void PrintEmbarcaciones() {
+        LinkedList<Embarcacion> PrintE = puerto.GetEmbarcaciones();
+        Node<Embarcacion> Iterador = PrintE.getBeginNode();
+        if (PrintE == null) {
+            System.out.println("No hay embarcaciones registradas.");
+        } else {
+            System.out.printf("%-20s%-20s%-20s%-20s%-20s%-25s%-20s\n","IMO","Nombre","Bandera","Tipo",
+                    "Capacidad", "Contenedores Actuales","Disponibilidad");
+            while (Iterador != null) {
+                
+                System.out.printf("%-20s%-20s%-20s%-20s%-20s%-25s%-20s\n",Iterador.data.getIMO(),Iterador.data.getNombreEmbarcacion(),
+                        Iterador.data.getBandera(),Iterador.data.getTipoDeEmbarcacion(),Iterador.data.getCapacidad(),
+                        Iterador.data.getContenedoresAct(),Iterador.data.getDisponibilidad());
+                Iterador = Iterador.nextNode;
+            }
+        }
     }
 }

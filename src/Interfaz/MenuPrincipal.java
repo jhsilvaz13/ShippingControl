@@ -11,6 +11,7 @@ public class MenuPrincipal {
 
     public static void main(String[] args) {
         System.out.println("Bienvenido(a) a Shipping Control");
+        int x = 2;
         Ingreso_usuario.interfazRegistroInicio();
     }
 }
