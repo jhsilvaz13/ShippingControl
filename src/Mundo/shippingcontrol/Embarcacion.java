@@ -37,14 +37,14 @@ public class Embarcacion {
     }
 
 
-
+    
     public static void registrosCSVEmbarcaciones(Queue<Embarcacion> cola) {
         LinkedList<Embarcacion> listaEmbarcaciones = cola;
         Node<Embarcacion> iter = listaEmbarcaciones.getBeginNode();
         try {   
                 new FileWriter(PATH, false).close();
             } catch (Exception e) {
-                System.out.println(e.getMessage()+"HERE");
+                System.out.println(e.getMessage());
             }
         while (iter!= null) {
             try {

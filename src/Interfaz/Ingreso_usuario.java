@@ -7,7 +7,7 @@ import java.io.FileWriter;
 import java.io.PrintWriter;
 import Mundo.shippingcontrol.*;
 
-public class Ingreso_usuario extends MenuPrincipal {
+public class Ingreso_usuario extends main {
 
     public static void interfazRegistroInicio() {
         System.out.println("¿Desea iniciar sesion o registrarse?");

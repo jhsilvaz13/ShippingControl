@@ -7,7 +7,7 @@ package Interfaz;
 import Mundo.shippingcontrol.Embarcacion;
 import Mundo.estructuras.listas.*;
 
-public class RegistroEmbarcaciones extends MenuPrincipal {
+public class RegistroEmbarcaciones extends main {
 
     public static void interfazRegistroEmbaraciones() {
         boolean loop = false;
@@ -83,7 +83,6 @@ public class RegistroEmbarcaciones extends MenuPrincipal {
             System.out.printf("%-20s%-20s%-20s%-20s%-20s%-25s%-20s\n","IMO","Nombre","Bandera","Tipo",
                     "Capacidad", "Contenedores Actuales","Disponibilidad");
             while (Iterador != null) {
-                
                 System.out.printf("%-20s%-20s%-20s%-20s%-20s%-25s%-20s\n",Iterador.data.getIMO(),Iterador.data.getNombreEmbarcacion(),
                         Iterador.data.getBandera(),Iterador.data.getTipoDeEmbarcacion(),Iterador.data.getCapacidad(),
                         Iterador.data.getContenedoresAct(),Iterador.data.getDisponibilidad());

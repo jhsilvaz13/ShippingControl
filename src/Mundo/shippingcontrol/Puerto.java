@@ -103,13 +103,7 @@ public class Puerto {
     }
 
     private void realizarRegistros() {
-        long start = System.currentTimeMillis();
-        System.out.println(start);
         Embarcacion.registrosCSVEmbarcaciones(colaEmbarcaciones);
-        long finish = System.currentTimeMillis();
-        long resta = Math.round(((finish - start) * 100.0) / 100.0);
-        System.out.println(finish);
-        System.out.println("Sale bien:" + resta);
     }
 
     public Queue<Embarcacion> getEmbarcacionesCola() {
