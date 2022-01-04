@@ -1,6 +1,5 @@
 package Interfaz;
 
-import Mundo.estructuras.Test;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.FileWriter;

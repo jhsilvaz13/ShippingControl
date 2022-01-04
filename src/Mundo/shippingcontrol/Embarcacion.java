@@ -19,14 +19,14 @@ public class Embarcacion {
     private String IMO;
     private String nombreEmbarcacion;
     private String bandera;
-    private String tipoDeEmbarcacion;
+    private int tipoDeEmbarcacion;
     private int capacidad;
     private int contenedoresAct;
     private boolean disponibilidad;
     private Stack<String> container;
 
     public Embarcacion(String IMO, String nombreEmbarcacion, String bandera,
-            String tipoDeEmbarcacion, int capacidad, int contenedoresAct, boolean disponibilidad) {
+            int tipoDeEmbarcacion, int capacidad, int contenedoresAct, boolean disponibilidad) {
         this.IMO = IMO;
         this.nombreEmbarcacion = nombreEmbarcacion;
         this.bandera = bandera;
@@ -73,7 +73,7 @@ public class Embarcacion {
         return bandera;
     }
 
-    public String getTipoDeEmbarcacion() {
+    public int getTipoDeEmbarcacion() {
         return tipoDeEmbarcacion;
     }
 

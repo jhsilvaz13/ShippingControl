@@ -1,0 +1,6 @@
+/build/
+/nbproject/
+build.xml
+desktop.ini
+manifest.mf
+/dist/

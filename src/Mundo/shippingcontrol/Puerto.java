@@ -49,10 +49,10 @@ public class Puerto {
                 String[] datos = linea.split(",");//arreglo de las columnas de cada linea
                 Embarcacion embarcacion;
                 if (datos[6].equals("Disponible")) {
-                    embarcacion = new Embarcacion(datos[0], datos[2], datos[3], datos[4],
-                            Integer.parseInt(datos[5]), Integer.parseInt(datos[5]), true);
+                    embarcacion = new Embarcacion(datos[0], datos[1], datos[2], Integer.parseInt(datos[3]),
+                            Integer.parseInt(datos[4]), Integer.parseInt(datos[5]), true);
                 } else {
-                    embarcacion = new Embarcacion(datos[0], datos[1], datos[2], datos[3], Integer.parseInt(datos[4]),
+                    embarcacion = new Embarcacion(datos[0], datos[1], datos[2], Integer.parseInt(datos[3]), Integer.parseInt(datos[4]),
                             Integer.parseInt(datos[5]), false);
                 }
                 colaEmbarcaciones.Enqueue(new Node<Embarcacion>(embarcacion));
@@ -61,10 +61,10 @@ public class Puerto {
             System.err.println("cargarEmb");
         }
     }
-    
+   
     public Queue<Embarcacion> GetEmbarcaciones(){
         boolean empty;
-        empty = colaEmbarcaciones.IsEmpty();
+        empty = colaEmbarcaciones.isEmpty();
         if (empty == true){
             return null;
         }
@@ -78,10 +78,10 @@ public class Puerto {
         System.currentTimeMillis();
         Embarcacion embarcacion;
         if (datos[6].equals("Disponible")) {
-            embarcacion = new Embarcacion(datos[0], datos[2], datos[3], datos[4],
-                    Integer.parseInt(datos[5]), Integer.parseInt(datos[5]), true);
+            embarcacion = new Embarcacion(datos[0], datos[1], datos[2], Integer.parseInt(datos[3]),
+                    Integer.parseInt(datos[4]), Integer.parseInt(datos[5]), true);
         } else {
-            embarcacion = new Embarcacion(datos[0], datos[1], datos[2], datos[3], Integer.parseInt(datos[4]),
+            embarcacion = new Embarcacion(datos[0], datos[1], datos[2], Integer.parseInt(datos[3]), Integer.parseInt(datos[4]),
                     Integer.parseInt(datos[5]), false);
         }
         colaEmbarcaciones.Enqueue(new Node<Embarcacion>(embarcacion));
