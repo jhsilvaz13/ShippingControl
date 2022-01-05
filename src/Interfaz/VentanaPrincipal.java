@@ -16,6 +16,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private InicioSesion jPanelInicio = new InicioSesion(this);
 
     private RegistroUsuario jPanelRegistro=new RegistroUsuario(this);
+    
+    private MarcoPrincipal jPanelMarco=new MarcoPrincipal(this);
 
     /**
      * Creates new form VentanaPrincipal
@@ -51,7 +53,15 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         pack();
         getContentPane().repaint();
     }
-
+    public void addMarcoPrincipal(){
+        getContentPane().removeAll();
+        java.awt.GridBagConstraints gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        getContentPane().add(jPanelMarco, gridBagConstraints);
+        pack();
+        getContentPane().repaint();
+    }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {

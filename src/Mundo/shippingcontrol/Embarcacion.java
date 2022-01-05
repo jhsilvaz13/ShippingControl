@@ -20,10 +20,10 @@ public class Embarcacion {
     private String nombreEmbarcacion;
     private String bandera;
     private int tipoDeEmbarcacion;
-    private int capacidad;
+    private int capacidad;//numero de contenedores
     private int contenedoresAct;
     private boolean disponibilidad;
-    private Stack<String> container;
+    private Stack<String> container;//pila de contenedores
 
     public Embarcacion(String IMO, String nombreEmbarcacion, String bandera,
             int tipoDeEmbarcacion, int capacidad, int contenedoresAct, boolean disponibilidad) {

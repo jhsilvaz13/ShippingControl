@@ -136,7 +136,7 @@ public class InicioSesion extends javax.swing.JPanel {
         jPanelInicioSesion.add(jToggleButtonVerContraseña, gridBagConstraints);
 
         jButtonIniciarSesion.setBackground(new java.awt.Color(0, 51, 204));
-        jButtonIniciarSesion.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jButtonIniciarSesion.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
         jButtonIniciarSesion.setForeground(new java.awt.Color(255, 255, 255));
         jButtonIniciarSesion.setText("Iniciar sesión");
         jButtonIniciarSesion.setToolTipText("");
@@ -145,6 +145,11 @@ public class InicioSesion extends javax.swing.JPanel {
         jButtonIniciarSesion.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButtonIniciarSesion.setFocusPainted(false);
         jButtonIniciarSesion.setPreferredSize(new java.awt.Dimension(400, 40));
+        jButtonIniciarSesion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonIniciarSesionActionPerformed(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 14;
@@ -294,7 +299,7 @@ public class InicioSesion extends javax.swing.JPanel {
 
     private void jTextFieldNombreDeUsuarioFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldNombreDeUsuarioFocusGained
         // TODO add your handling code here:
-        jTextFieldNombreDeUsuario.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(255, 0, 0)));
+        jTextFieldNombreDeUsuario.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 51, 204)));
     }//GEN-LAST:event_jTextFieldNombreDeUsuarioFocusGained
 
     private void jTextFieldNombreDeUsuarioFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldNombreDeUsuarioFocusLost
@@ -313,7 +318,7 @@ public class InicioSesion extends javax.swing.JPanel {
 
     private void jPasswordFieldConFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jPasswordFieldConFocusGained
         // TODO add your handling code here:
-        jPasswordFieldCon.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(255, 0, 0)));
+        jPasswordFieldCon.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 51, 204)));
 
     }//GEN-LAST:event_jPasswordFieldConFocusGained
 
@@ -329,13 +334,18 @@ public class InicioSesion extends javax.swing.JPanel {
 
     private void jButtonIrARegistroMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonIrARegistroMouseEntered
         // TODO add your handling code here:
-        jButtonIrARegistro.setForeground(Color.red);
+        jButtonIrARegistro.setForeground(new java.awt.Color(0, 51, 204));
     }//GEN-LAST:event_jButtonIrARegistroMouseEntered
 
     private void jButtonIrARegistroMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonIrARegistroMouseExited
         // TODO add your handling code here:
         jButtonIrARegistro.setForeground(Color.BLACK);
     }//GEN-LAST:event_jButtonIrARegistroMouseExited
+
+    private void jButtonIniciarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonIniciarSesionActionPerformed
+        // TODO add your handling code here:
+        principal.addMarcoPrincipal();
+    }//GEN-LAST:event_jButtonIniciarSesionActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
