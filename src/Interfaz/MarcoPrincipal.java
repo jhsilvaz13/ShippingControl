@@ -17,6 +17,8 @@ public class MarcoPrincipal extends javax.swing.JPanel {
     private CerrarSesionAux cerrar=new CerrarSesionAux();
     
     private RegistroEmbarcacion registroEmb=new RegistroEmbarcacion();
+    
+    private  TablaBodegas bodegas=new TablaBodegas();
     /**
      * Creates new form MarcoPrincipal
      */
@@ -46,6 +48,7 @@ public class MarcoPrincipal extends javax.swing.JPanel {
         jTabbedPaneContenedor.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         jTabbedPaneContenedor.setName(""); // NOI18N
         jTabbedPaneContenedor.add("Prueba",registroEmb);
+        jTabbedPaneContenedor.add("Bodegas",bodegas);
         jTabbedPaneContenedor.add("Cerrar Sesión",cerrar);
         jTabbedPaneContenedor.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
