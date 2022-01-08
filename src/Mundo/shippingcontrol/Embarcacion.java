@@ -5,18 +5,19 @@
 package Mundo.shippingcontrol;
 
 import Mundo.estructuras.listas.*;
+import Mundo.estructuras.trees.*;
 import java.io.*;
 
 /**
  *
  * @author jhonz
  */
-public class Embarcacion {
+public class Embarcacion implements Comparable<Embarcacion>{
 
     static final String PATH = "..\\ShippingControl\\data\\embarcaciones.csv";
 
     //PARAMETROS
-    private String IMO;
+    private int IMO;
     private String nombreEmbarcacion;
     private String bandera;
     private int tipoDeEmbarcacion;
@@ -25,7 +26,7 @@ public class Embarcacion {
     private boolean disponibilidad;
     private Stack<String> container;//pila de contenedores
 
-    public Embarcacion(String IMO, String nombreEmbarcacion, String bandera,
+    public Embarcacion(int IMO, String nombreEmbarcacion, String bandera,
             int tipoDeEmbarcacion, int capacidad, int contenedoresAct, boolean disponibilidad) {
         this.IMO = IMO;
         this.nombreEmbarcacion = nombreEmbarcacion;
@@ -61,7 +62,7 @@ public class Embarcacion {
         }
     }
 
-    public String getIMO() {
+    public int getIMO() {
         return IMO;
     }
 
@@ -93,4 +94,42 @@ public class Embarcacion {
         }
     }
 
+    @Override
+    public int compareTo(Embarcacion o) {
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if(this.IMO>o.IMO){
+            return 1;
+        }else if(this.IMO<o.IMO){
+            return -1;
+        }
+        return 0;
+    }
+    public static void main(String[] args) {
+        AVLtree<Embarcacion> arbol=new AVLtree<Embarcacion>();
+        Embarcacion x=new Embarcacion(5,"Test","Test",3,3,3,false);
+        Embarcacion y=new Embarcacion(7,"Encontrado","Encontrado",3,3,3,false);
+        Embarcacion z=new Embarcacion(1,"Test","Test",3,3,3,false);
+        Embarcacion w=new Embarcacion(2,"Test","Test",3,3,3,false);
+        
+        Embarcacion aux=new Embarcacion(8,"as","as",3,3,3,true);
+
+        arbol.insert(x);
+        arbol.insert(y);
+        arbol.insert(z);
+        arbol.insert(w);
+        System.out.println(arbol.contains(aux).data.bandera);
+        
+        printInorden(arbol.root);
+    }
+    
+     //Impresion inorden
+
+    
+     public static void printInorden(AVLNode<Embarcacion> node){
+        if(node!=null){
+            printInorden(node.left);
+            System.out.print(node.data.IMO+" ");
+            printInorden(node.right);
+        }
+    }
 }

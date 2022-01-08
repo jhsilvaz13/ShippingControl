@@ -7,10 +7,17 @@ package Mundo.estructuras.listas;;
 public class Node<T> {
     public T data;
     public Node<T> nextNode;
-    public Node<T> beforeNode;
+    public  Node<T> beforeNode;
     public Node(T data){
         this.data=data;
         this.nextNode=null;
         this.beforeNode=null;
+    }
+    public void setData(T data){
+        this.data=data;
+    }
+    
+    public T getData(){
+        return data;
     }
 }
