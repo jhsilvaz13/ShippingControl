@@ -245,6 +245,6 @@ public class RegistroEmbarcacion extends javax.swing.JPanel{
     private javax.swing.JTextField nombre;
     private javax.swing.JTextField tipo;
     // End of variables declaration 
-    private int xd=0;
+    private int xd=3;
 }
 
