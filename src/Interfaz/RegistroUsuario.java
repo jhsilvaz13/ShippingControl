@@ -5,6 +5,7 @@
 package Interfaz;
 
 import java.awt.Color;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -339,7 +340,16 @@ public class RegistroUsuario extends javax.swing.JPanel {
 
     private void jButtonRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegistrarActionPerformed
         // TODO add your handling code here:
-        principal.addMarcoPrincipal();
+        if(jTextFieldNombreDeUsuario.getText().length()!=0 && String.valueOf(jPasswordFieldCon.getPassword()).length()!=0){
+            if (!Ingreso_usuario.Ingreso(jTextFieldNombreDeUsuario.getText(), String.valueOf(jPasswordFieldCon.getPassword()))) {
+                Ingreso_usuario.Registro(jTextFieldNombreDeUsuario.getText(), String.valueOf(jPasswordFieldCon.getPassword()));
+                principal.addMarcoPrincipal();
+            }else{
+                JOptionPane.showMessageDialog(null, "El usuario ya se encuentra registrado", "Atención", JOptionPane.INFORMATION_MESSAGE);
+            }
+        }else{
+           JOptionPane.showMessageDialog(null, "No se permiten espacios en blanco", "Atención", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_jButtonRegistrarActionPerformed
 
 

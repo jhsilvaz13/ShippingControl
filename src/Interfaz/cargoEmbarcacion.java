@@ -27,78 +27,96 @@ public class cargoEmbarcacion extends javax.swing.JPanel {
     private void initComponents() {
         java.awt.GridBagConstraints gridBagConstraints;
 
+        jButtonRegistrar = new javax.swing.JButton();
         jPanelForm = new javax.swing.JPanel();
-        jTextFieldFecha = new javax.swing.JTextField();
+        jTextFieldID = new javax.swing.JTextField();
         jLabelID = new javax.swing.JLabel();
         jLabelID1 = new javax.swing.JLabel();
         jLabelID2 = new javax.swing.JLabel();
         jLabelID3 = new javax.swing.JLabel();
-        jTextFieldFecha1 = new javax.swing.JTextField();
-        jTextFieldFecha2 = new javax.swing.JTextField();
+        jTextFieldActual = new javax.swing.JTextField();
+        jTextFieldTotal = new javax.swing.JTextField();
         jTextFieldFecha3 = new javax.swing.JTextField();
         jLabelRegistroBodega = new javax.swing.JLabel();
-        jButtonGuardar = new javax.swing.JButton();
-        jButtonEditar = new javax.swing.JButton();
         jLabelEs = new javax.swing.JLabel();
+        jPanelBotones = new javax.swing.JPanel();
+        jButtonEditar = new javax.swing.JButton();
+        jButtonGuardar = new javax.swing.JButton();
+
+        jButtonRegistrar.setBackground(new java.awt.Color(0, 51, 204));
+        jButtonRegistrar.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
+        jButtonRegistrar.setForeground(new java.awt.Color(255, 255, 255));
+        jButtonRegistrar.setText("Registrarse");
+        jButtonRegistrar.setToolTipText("");
+        jButtonRegistrar.setBorder(null);
+        jButtonRegistrar.setBorderPainted(false);
+        jButtonRegistrar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jButtonRegistrar.setFocusPainted(false);
+        jButtonRegistrar.setPreferredSize(new java.awt.Dimension(400, 40));
+        jButtonRegistrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonRegistrarActionPerformed(evt);
+            }
+        });
 
         setBackground(new java.awt.Color(255, 255, 255));
         setLayout(new java.awt.GridBagLayout());
 
-        jPanelForm.setBackground(new java.awt.Color(0, 51, 204));
+        jPanelForm.setBackground(new java.awt.Color(255, 255, 255));
         jPanelForm.setPreferredSize(new java.awt.Dimension(1200, 600));
 
-        jTextFieldFecha.setBackground(new java.awt.Color(255, 255, 255));
-        jTextFieldFecha.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
-        jTextFieldFecha.setForeground(new java.awt.Color(97, 97, 97));
-        jTextFieldFecha.setAutoscrolls(false);
-        jTextFieldFecha.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        jTextFieldFecha.setDisabledTextColor(new java.awt.Color(102, 102, 102));
-        jTextFieldFecha.setMinimumSize(new java.awt.Dimension(800, 18));
-        jTextFieldFecha.setName(""); // NOI18N
+        jTextFieldID.setBackground(new java.awt.Color(255, 255, 255));
+        jTextFieldID.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
+        jTextFieldID.setForeground(new java.awt.Color(97, 97, 97));
+        jTextFieldID.setAutoscrolls(false);
+        jTextFieldID.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jTextFieldID.setDisabledTextColor(new java.awt.Color(102, 102, 102));
+        jTextFieldID.setMinimumSize(new java.awt.Dimension(800, 18));
+        jTextFieldID.setName(""); // NOI18N
 
-        jLabelID.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
-        jLabelID.setForeground(new java.awt.Color(255, 255, 255));
-        jLabelID.setText("ID bodega:");
+        jLabelID.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        jLabelID.setForeground(new java.awt.Color(0, 0, 0));
+        jLabelID.setText("Capacidad Total:");
         jLabelID.setToolTipText("");
 
-        jLabelID1.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
-        jLabelID1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabelID1.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        jLabelID1.setForeground(new java.awt.Color(0, 0, 0));
         jLabelID1.setText("ID bodega:");
         jLabelID1.setToolTipText("");
 
-        jLabelID2.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
-        jLabelID2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabelID2.setText("ID bodega:");
+        jLabelID2.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        jLabelID2.setForeground(new java.awt.Color(0, 0, 0));
+        jLabelID2.setText("Otra cosa:");
         jLabelID2.setToolTipText("");
 
-        jLabelID3.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
-        jLabelID3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabelID3.setText("ID bodega:");
+        jLabelID3.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        jLabelID3.setForeground(new java.awt.Color(0, 0, 0));
+        jLabelID3.setText("Capacidad actual: ");
         jLabelID3.setToolTipText("");
 
-        jTextFieldFecha1.setBackground(new java.awt.Color(255, 255, 255));
-        jTextFieldFecha1.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
-        jTextFieldFecha1.setForeground(new java.awt.Color(97, 97, 97));
-        jTextFieldFecha1.setAutoscrolls(false);
-        jTextFieldFecha1.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        jTextFieldFecha1.setDisabledTextColor(new java.awt.Color(102, 102, 102));
-        jTextFieldFecha1.setMinimumSize(new java.awt.Dimension(800, 18));
-        jTextFieldFecha1.setName(""); // NOI18N
+        jTextFieldActual.setBackground(new java.awt.Color(255, 255, 255));
+        jTextFieldActual.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
+        jTextFieldActual.setForeground(new java.awt.Color(97, 97, 97));
+        jTextFieldActual.setAutoscrolls(false);
+        jTextFieldActual.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jTextFieldActual.setDisabledTextColor(new java.awt.Color(102, 102, 102));
+        jTextFieldActual.setMinimumSize(new java.awt.Dimension(800, 18));
+        jTextFieldActual.setName(""); // NOI18N
 
-        jTextFieldFecha2.setBackground(new java.awt.Color(255, 255, 255));
-        jTextFieldFecha2.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
-        jTextFieldFecha2.setForeground(new java.awt.Color(97, 97, 97));
-        jTextFieldFecha2.setAutoscrolls(false);
-        jTextFieldFecha2.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        jTextFieldFecha2.setDisabledTextColor(new java.awt.Color(102, 102, 102));
-        jTextFieldFecha2.setMinimumSize(new java.awt.Dimension(800, 18));
-        jTextFieldFecha2.setName(""); // NOI18N
+        jTextFieldTotal.setBackground(new java.awt.Color(255, 255, 255));
+        jTextFieldTotal.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
+        jTextFieldTotal.setForeground(new java.awt.Color(97, 97, 97));
+        jTextFieldTotal.setAutoscrolls(false);
+        jTextFieldTotal.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jTextFieldTotal.setDisabledTextColor(new java.awt.Color(102, 102, 102));
+        jTextFieldTotal.setMinimumSize(new java.awt.Dimension(800, 18));
+        jTextFieldTotal.setName(""); // NOI18N
 
         jTextFieldFecha3.setBackground(new java.awt.Color(255, 255, 255));
         jTextFieldFecha3.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
         jTextFieldFecha3.setForeground(new java.awt.Color(97, 97, 97));
         jTextFieldFecha3.setAutoscrolls(false);
-        jTextFieldFecha3.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        jTextFieldFecha3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jTextFieldFecha3.setDisabledTextColor(new java.awt.Color(102, 102, 102));
         jTextFieldFecha3.setMinimumSize(new java.awt.Dimension(800, 18));
         jTextFieldFecha3.setName(""); // NOI18N
@@ -109,7 +127,7 @@ public class cargoEmbarcacion extends javax.swing.JPanel {
             jPanelFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelFormLayout.createSequentialGroup()
                 .addGap(79, 79, 79)
-                .addGroup(jPanelFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanelFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanelFormLayout.createSequentialGroup()
                         .addComponent(jLabelID2, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -117,15 +135,15 @@ public class cargoEmbarcacion extends javax.swing.JPanel {
                     .addGroup(jPanelFormLayout.createSequentialGroup()
                         .addComponent(jLabelID1, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextFieldFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 860, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jTextFieldID, javax.swing.GroupLayout.PREFERRED_SIZE, 860, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanelFormLayout.createSequentialGroup()
-                        .addComponent(jLabelID3, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextFieldFecha1, javax.swing.GroupLayout.PREFERRED_SIZE, 860, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jLabelID3)
+                        .addGap(18, 18, 18)
+                        .addComponent(jTextFieldActual, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanelFormLayout.createSequentialGroup()
                         .addComponent(jLabelID, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextFieldFecha2, javax.swing.GroupLayout.PREFERRED_SIZE, 860, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jTextFieldTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 860, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(97, Short.MAX_VALUE))
         );
         jPanelFormLayout.setVerticalGroup(
@@ -133,16 +151,16 @@ public class cargoEmbarcacion extends javax.swing.JPanel {
             .addGroup(jPanelFormLayout.createSequentialGroup()
                 .addGap(95, 95, 95)
                 .addGroup(jPanelFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jTextFieldFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextFieldID, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabelID1))
                 .addGap(35, 35, 35)
                 .addGroup(jPanelFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabelID)
-                    .addComponent(jTextFieldFecha2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextFieldTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(31, 31, 31)
                 .addGroup(jPanelFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelID3)
-                    .addComponent(jTextFieldFecha1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextFieldActual, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(33, 33, 33)
                 .addGroup(jPanelFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelID2)
@@ -156,36 +174,29 @@ public class cargoEmbarcacion extends javax.swing.JPanel {
         gridBagConstraints.gridwidth = 4;
         add(jPanelForm, gridBagConstraints);
 
-        jLabelRegistroBodega.setFont(new java.awt.Font("SansSerif", 1, 24)); // NOI18N
+        jLabelRegistroBodega.setFont(new java.awt.Font("SansSerif", 1, 54)); // NOI18N
         jLabelRegistroBodega.setForeground(new java.awt.Color(0, 0, 0));
-        jLabelRegistroBodega.setText("REGISTRAR BODEGA");
+        jLabelRegistroBodega.setText("Bodega");
         jLabelRegistroBodega.setToolTipText("");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 3;
         gridBagConstraints.gridwidth = 4;
-        gridBagConstraints.ipady = 60;
+        gridBagConstraints.ipady = 20;
         add(jLabelRegistroBodega, gridBagConstraints);
 
-        jButtonGuardar.setBackground(new java.awt.Color(51, 102, 255));
-        jButtonGuardar.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
-        jButtonGuardar.setForeground(new java.awt.Color(255, 255, 255));
-        jButtonGuardar.setText("Guardar");
-        jButtonGuardar.setToolTipText("");
-        jButtonGuardar.setBorder(null);
-        jButtonGuardar.setBorderPainted(false);
-        jButtonGuardar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jButtonGuardar.setFocusPainted(false);
-        jButtonGuardar.setPreferredSize(new java.awt.Dimension(200, 40));
+        jLabelEs.setFocusable(false);
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 16;
-        gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.VERTICAL;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
-        add(jButtonGuardar, gridBagConstraints);
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 15;
+        gridBagConstraints.gridwidth = 4;
+        gridBagConstraints.ipady = 20;
+        add(jLabelEs, gridBagConstraints);
 
-        jButtonEditar.setBackground(new java.awt.Color(51, 102, 255));
+        jPanelBotones.setBackground(new java.awt.Color(255, 255, 255));
+        jPanelBotones.setPreferredSize(new java.awt.Dimension(1200, 60));
+
+        jButtonEditar.setBackground(new java.awt.Color(0, 51, 204));
         jButtonEditar.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
         jButtonEditar.setForeground(new java.awt.Color(255, 255, 255));
         jButtonEditar.setText("Editar");
@@ -194,39 +205,67 @@ public class cargoEmbarcacion extends javax.swing.JPanel {
         jButtonEditar.setBorderPainted(false);
         jButtonEditar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButtonEditar.setFocusPainted(false);
-        jButtonEditar.setPreferredSize(new java.awt.Dimension(200, 40));
+        jButtonEditar.setPreferredSize(new java.awt.Dimension(100, 40));
+
+        jButtonGuardar.setBackground(new java.awt.Color(0, 51, 204));
+        jButtonGuardar.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
+        jButtonGuardar.setForeground(new java.awt.Color(255, 255, 255));
+        jButtonGuardar.setText("Guardar");
+        jButtonGuardar.setToolTipText("");
+        jButtonGuardar.setBorder(null);
+        jButtonGuardar.setBorderPainted(false);
+        jButtonGuardar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jButtonGuardar.setFocusPainted(false);
+        jButtonGuardar.setPreferredSize(new java.awt.Dimension(100, 40));
+
+        javax.swing.GroupLayout jPanelBotonesLayout = new javax.swing.GroupLayout(jPanelBotones);
+        jPanelBotones.setLayout(jPanelBotonesLayout);
+        jPanelBotonesLayout.setHorizontalGroup(
+            jPanelBotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelBotonesLayout.createSequentialGroup()
+                .addGap(500, 500, 500)
+                .addComponent(jButtonEditar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(49, 49, 49)
+                .addComponent(jButtonGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(451, Short.MAX_VALUE))
+        );
+        jPanelBotonesLayout.setVerticalGroup(
+            jPanelBotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelBotonesLayout.createSequentialGroup()
+                .addContainerGap(14, Short.MAX_VALUE)
+                .addGroup(jPanelBotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonEditar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
+        );
+
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 16;
-        gridBagConstraints.gridwidth = 4;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.VERTICAL;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_END;
-        add(jButtonEditar, gridBagConstraints);
-
-        jLabelEs.setText("jLabel1");
-        jLabelEs.setFocusable(false);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 15;
-        gridBagConstraints.gridwidth = 4;
-        gridBagConstraints.ipady = 20;
-        add(jLabelEs, gridBagConstraints);
+        add(jPanelBotones, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButtonRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRegistrarActionPerformed
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_jButtonRegistrarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonEditar;
     private javax.swing.JButton jButtonGuardar;
+    private javax.swing.JButton jButtonRegistrar;
     private javax.swing.JLabel jLabelEs;
     private javax.swing.JLabel jLabelID;
     private javax.swing.JLabel jLabelID1;
     private javax.swing.JLabel jLabelID2;
     private javax.swing.JLabel jLabelID3;
     private javax.swing.JLabel jLabelRegistroBodega;
+    private javax.swing.JPanel jPanelBotones;
     private javax.swing.JPanel jPanelForm;
-    private javax.swing.JTextField jTextFieldFecha;
-    private javax.swing.JTextField jTextFieldFecha1;
-    private javax.swing.JTextField jTextFieldFecha2;
+    private javax.swing.JTextField jTextFieldActual;
     private javax.swing.JTextField jTextFieldFecha3;
+    private javax.swing.JTextField jTextFieldID;
+    private javax.swing.JTextField jTextFieldTotal;
     // End of variables declaration//GEN-END:variables
 }

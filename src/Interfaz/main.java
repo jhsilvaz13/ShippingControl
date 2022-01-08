@@ -11,6 +11,5 @@ public class main {
 
     public static void main(String[] args) {
         System.out.println("Bienvenido(a) a Shipping Control");
-        Ingreso_usuario.interfazRegistroInicio();
     }
 }

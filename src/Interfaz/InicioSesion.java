@@ -6,20 +6,21 @@ package Interfaz;
 
 import java.awt.Color;
 import javax.swing.JFrame;
-
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author jhonz
  */
 public class InicioSesion extends javax.swing.JPanel {
-    
+
     private VentanaPrincipal principal;
+
     /**
      * Creates new form InicioSesion
      */
     public InicioSesion(VentanaPrincipal principal) {
-        this.principal=principal;
+        this.principal = principal;
         initComponents();
     }
 
@@ -309,9 +310,9 @@ public class InicioSesion extends javax.swing.JPanel {
 
     private void jToggleButtonVerContraseñaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButtonVerContraseñaActionPerformed
         // TODO add your handling code here:
-        if(jToggleButtonVerContraseña.isSelected()){
-            jPasswordFieldCon.setEchoChar((char)0);
-        }else{
+        if (jToggleButtonVerContraseña.isSelected()) {
+            jPasswordFieldCon.setEchoChar((char) 0);
+        } else {
             jPasswordFieldCon.setEchoChar('*');
         }
     }//GEN-LAST:event_jToggleButtonVerContraseñaActionPerformed
@@ -329,6 +330,7 @@ public class InicioSesion extends javax.swing.JPanel {
 
     private void jButtonIrARegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonIrARegistroActionPerformed
         // TODO add your handling code here:
+        clearJText(this);
         principal.addPanelRegistro();
     }//GEN-LAST:event_jButtonIrARegistroActionPerformed
 
@@ -344,9 +346,26 @@ public class InicioSesion extends javax.swing.JPanel {
 
     private void jButtonIniciarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonIniciarSesionActionPerformed
         // TODO add your handling code here:
-        principal.addMarcoPrincipal();
+        if (Ingreso_usuario.Ingreso(jTextFieldNombreDeUsuario.getText(), String.valueOf(jPasswordFieldCon.getPassword()))) {
+            clearJText(this);
+            principal.addMarcoPrincipal();
+        } else {
+            JOptionPane.showMessageDialog(null, "El usuario no ha sido encontrado, revise las credenciales", "Atención", JOptionPane.INFORMATION_MESSAGE);
+        }
     }//GEN-LAST:event_jButtonIniciarSesionActionPerformed
 
+    private void clearJText(java.awt.Component component) {
+        if (component instanceof javax.swing.JTextField) {
+            javax.swing.JTextField text = (javax.swing.JTextField) component;
+            text.setText("");
+        } else {
+            if (component instanceof java.awt.Container) {
+                for (java.awt.Component c : ((java.awt.Container) component).getComponents()) {
+                    clearJText(c);
+                }
+            }
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonIniciarSesion;

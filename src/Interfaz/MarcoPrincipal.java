@@ -5,8 +5,7 @@
 package Interfaz;
 
 import java.awt.Color;
-
-
+    
 /**
  *
  * @author jhonz
@@ -14,6 +13,10 @@ import java.awt.Color;
 public class MarcoPrincipal extends javax.swing.JPanel {
     
     private VentanaPrincipal principal;
+    
+    private CerrarSesionAux cerrar=new CerrarSesionAux();
+    
+    private RegistroEmbarcacion registroEmb=new RegistroEmbarcacion();
     /**
      * Creates new form MarcoPrincipal
      */
@@ -42,12 +45,26 @@ public class MarcoPrincipal extends javax.swing.JPanel {
         jTabbedPaneContenedor.setForeground(new java.awt.Color(0, 0, 0));
         jTabbedPaneContenedor.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         jTabbedPaneContenedor.setName(""); // NOI18N
+        jTabbedPaneContenedor.add("Prueba",registroEmb);
+        jTabbedPaneContenedor.add("Cerrar Sesión",cerrar);
+        jTabbedPaneContenedor.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTabbedPaneContenedorMouseClicked(evt);
+            }
+        });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.PAGE_START;
         add(jTabbedPaneContenedor, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jTabbedPaneContenedorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTabbedPaneContenedorMouseClicked
+        // TODO add your handling code here:
+        if(jTabbedPaneContenedor.getSelectedIndex()==1){
+            principal.addPanelInicio();
+        }
+    }//GEN-LAST:event_jTabbedPaneContenedorMouseClicked
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTabbedPane jTabbedPaneContenedor;

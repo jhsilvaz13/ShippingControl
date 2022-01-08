@@ -6,35 +6,7 @@ import java.io.FileWriter;
 import java.io.PrintWriter;
 import Mundo.shippingcontrol.*;
 
-public class Ingreso_usuario extends main {
-
-    public static void interfazRegistroInicio() {
-        System.out.println("¿Desea iniciar sesion o registrarse?");
-        boolean loop = false;
-        while (loop != true) {
-            System.out.println("1.) Iniciar sesion.");
-            System.out.println("2.) Registrarse.");
-            String res;
-            res = in.nextLine();
-            try {
-                if (Integer.parseInt(res) == 1) {
-                    loop = Ingreso();
-                    if (loop == false) {
-                        loop = Ingreso_usuario.Ingreso();
-                    }
-                } else if (Integer.parseInt(res) == 2) {
-                    Registro();
-                    System.out.println("Usuario creado exitosamente, en momentos sera devuelto a la pantalla principal para iniciar sesion.");
-                } else {
-                    System.out.println("Por favor, ingrese solo el numero de la opcion que desea.");
-                }
-            } catch (Exception e) {
-                System.out.println("Por favor, ingrese solo el numero de la opcion que desea." + e.getMessage());
-            }
-        }
-        menuPrincipal();
-
-    }
+public abstract class Ingreso_usuario extends main {
 
     public static void menuPrincipal() {
         boolean loop = false;
@@ -59,13 +31,10 @@ public class Ingreso_usuario extends main {
         }
     }
 
-    public static void Registro() {
-        boolean loop;
+    public static void Registro(String nombreUsuario, String contraseña) {
         String username, password;
-        System.out.print("Cree un nombre de usuario: ");
-        username = in.next();
-        System.out.print("Contraseña: ");
-        password = in.next();
+        username =nombreUsuario;
+        password =contraseña;
         try {
             FileWriter writeFile = new FileWriter(PATH, true);
             PrintWriter registrar = new PrintWriter(writeFile);
@@ -74,18 +43,16 @@ public class Ingreso_usuario extends main {
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
-        in.nextLine();
     }
 
-    public static boolean Ingreso() {
+    public static boolean Ingreso(String nombreUsuario, String contraseña) {
         boolean loop;
         String username, password;
-        System.out.print("Nombre de usuario: ");
-        username = in.next();
-        System.out.print("Contraseña: ");
-        password = in.next();
+        username =nombreUsuario;
+        password =contraseña;
         String linea;
         boolean find_user = false;
+        System.out.println(nombreUsuario+"/"+contraseña);
         try {
             BufferedReader br = new BufferedReader(new FileReader(PATH));
             while ((linea = br.readLine()) != null) {//cada linea del archivo csv
@@ -99,16 +66,27 @@ public class Ingreso_usuario extends main {
             System.out.println(e.getMessage());
         }
         if (find_user == true) {
-            System.out.println("Inicio de sesion exitoso");
             puerto = new Puerto("PUERTO", 0, 0, 0, 0, 0);
             //Test.RegitrarNEmbarcaciones(100000l);
             puerto.cargarEmbarcacionesCSV();
             loop = true;
             return loop;
         } else {
-            System.out.println("Nombre o contraseña incorrectos, por favor intente de nuevo.");
             loop = false;
             return loop;
         }
     }
+    
+    public static void clear(javax.swing.JPanel panel){
+         for(int i = 0; panel.getComponents().length > i; i++){
+            if(panel.getComponents()[i] instanceof javax.swing.JTextField){
+                ((javax.swing.JTextField)panel.getComponents()[i]).setText("");
+            }
+            else if(panel.getComponents()[i] instanceof javax.swing.JPasswordField){
+                ((javax.swing.JPasswordField)panel.getComponents()[i]).setText("");
+            }
+        }
+    }
+    
 }
+
