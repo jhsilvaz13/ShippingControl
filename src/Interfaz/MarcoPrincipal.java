@@ -18,6 +18,8 @@ public class MarcoPrincipal extends javax.swing.JPanel {
     
     private RegistroEmbarcacion registroEmb=new RegistroEmbarcacion();
     
+    private MenuEmbarcaciones embarcaciones=new MenuEmbarcaciones();
+    
     private  TablaBodegas bodegas=new TablaBodegas();
     /**
      * Creates new form MarcoPrincipal
@@ -47,6 +49,7 @@ public class MarcoPrincipal extends javax.swing.JPanel {
         jTabbedPaneContenedor.setForeground(new java.awt.Color(0, 0, 0));
         jTabbedPaneContenedor.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         jTabbedPaneContenedor.setName(""); // NOI18N
+        jTabbedPaneContenedor.add("Embarcacaciones",embarcaciones);
         jTabbedPaneContenedor.add("Prueba",registroEmb);
         jTabbedPaneContenedor.add("Bodegas",bodegas);
         jTabbedPaneContenedor.add("Cerrar Sesión",cerrar);
@@ -64,7 +67,7 @@ public class MarcoPrincipal extends javax.swing.JPanel {
 
     private void jTabbedPaneContenedorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTabbedPaneContenedorMouseClicked
         // TODO add your handling code here:
-        if(jTabbedPaneContenedor.getSelectedIndex()==1){
+        if(jTabbedPaneContenedor.getSelectedIndex()==3){
             principal.addPanelInicio();
         }
     }//GEN-LAST:event_jTabbedPaneContenedorMouseClicked
