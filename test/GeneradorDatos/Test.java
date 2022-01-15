@@ -23,15 +23,16 @@ public class Test {
             for (long i = 0; i < n; i++) {
                 FileWriter writeFile = new FileWriter(PATH, true);
                 PrintWriter registrar = new PrintWriter(writeFile);
-                registrar.println(String.valueOf(random.nextInt(9999999)) + "," + "Test" + "," + "Test" + "," + String.valueOf(random.nextInt(99)) + "," + String.valueOf(random.nextInt(99999)) + ","
+                registrar.println(String.valueOf(String.format("%07d", i)) + "," + "Test" + "," + "Test" + "," + String.valueOf(random.nextInt(7)) + "," + String.valueOf(random.nextInt(99999)) + ","
                         + String.valueOf(random.nextInt(999999)) + "," + String.valueOf(random.nextInt(2)));
                 registrar.close();
             }
         } catch (Exception e) {
+            
         }
     }
 
     public static void main(String[] args) {
-        RegitrarEmbarcaciones(10000000L);
+        RegitrarEmbarcaciones(10000L);
     }
 }
