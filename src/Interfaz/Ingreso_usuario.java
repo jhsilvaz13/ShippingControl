@@ -6,39 +6,18 @@ import java.io.FileWriter;
 import java.io.PrintWriter;
 import Mundo.shippingcontrol.*;
 
-public abstract class Ingreso_usuario extends main {
+public abstract class Ingreso_usuario {
+    
+    private static String username;
+    private static String password;
+    static final String PATH = "..\\ShippingControl\\data\\usuarios.csv";
 
-    public static void menuPrincipal() {
-        boolean loop = false;
-        while (loop != true) {
-            System.out.println("1.) Menú Embarcaciones.");
-            System.out.println("2.) Menú Usuarios.");
-            String res;
-            res = in.next();
-            try {
-                if (Integer.parseInt(res) == 1) {
-                    loop = true;
-                    RegistroEmbarcaciones.interfazRegistroEmbaraciones();
-                } else if (Integer.parseInt(res) == 2) {
-                    loop = true;
-                    System.out.println("Mostrar Interfaz Usuarios");
-                } else {
-                    System.out.println("Por favor, ingrese solo el numero de la opcion que desea.");
-                }
-            } catch (Exception e) {
-                System.out.println("Por favor, ingrese solo el numero de la opcion que desea.");
-            }
-        }
-    }
 
-    public static void Registro(String nombreUsuario, String contraseña) {
-        String username, password;
-        username =nombreUsuario;
-        password =contraseña;
+    public static void Registro( String puerto, String bodegas) {
         try {
             FileWriter writeFile = new FileWriter(PATH, true);
             PrintWriter registrar = new PrintWriter(writeFile);
-            registrar.println(username + "," + password);
+            registrar.println(Ingreso_usuario.username + "," + Ingreso_usuario.password+","+puerto+","+bodegas);
             registrar.close();
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -66,9 +45,6 @@ public abstract class Ingreso_usuario extends main {
             System.out.println(e.getMessage());
         }
         if (find_user == true) {
-            puerto = new Puerto("PUERTO", 0, 0, 0, 0, 0);
-            //Test.RegitrarNEmbarcaciones(100000l);
-            puerto.cargarEmbarcacionesCSV();
             loop = true;
             return loop;
         } else {
@@ -88,5 +64,23 @@ public abstract class Ingreso_usuario extends main {
         }
     }
     
+    public static void setCredenciales(String username, String password){
+        Ingreso_usuario.username=username;
+        Ingreso_usuario.password=password;
+    }
+    
+    public static String[] getCredencialesPuerto(){
+        String linea;
+            try {
+            BufferedReader br = new BufferedReader(new FileReader(PATH));
+            while ((linea = br.readLine()) != null) {//cada linea del archivo csv
+                String[] valores = linea.split(",");//arreglo de las columnas de cada linea
+                    return valores;
+            }
+        } catch (Exception e) {
+            return null;
+        }
+            return null;
+    }
 }
 

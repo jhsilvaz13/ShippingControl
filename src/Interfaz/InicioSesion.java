@@ -23,7 +23,10 @@ public class InicioSesion extends javax.swing.JPanel {
         this.principal = principal;
         initComponents();
     }
-
+    
+    public int dar1(){
+        return 2;
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -59,7 +62,7 @@ public class InicioSesion extends javax.swing.JPanel {
         jPanelInicioSesion.setPreferredSize(new java.awt.Dimension(600, 800));
         jPanelInicioSesion.setLayout(new java.awt.GridBagLayout());
 
-        jLabelInicio.setFont(new java.awt.Font("SansSerif", 1, 24)); // NOI18N
+        jLabelInicio.setFont(new java.awt.Font("Trebuchet MS", 1, 24)); // NOI18N
         jLabelInicio.setForeground(new java.awt.Color(0, 0, 0));
         jLabelInicio.setText("INICIO DE SESIÓN");
         jLabelInicio.setToolTipText("");
@@ -70,7 +73,7 @@ public class InicioSesion extends javax.swing.JPanel {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         jPanelInicioSesion.add(jLabelInicio, gridBagConstraints);
 
-        jLabelContraseña.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        jLabelContraseña.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
         jLabelContraseña.setForeground(new java.awt.Color(0, 0, 0));
         jLabelContraseña.setText("Contraseña");
         jLabelContraseña.setToolTipText("");
@@ -93,7 +96,7 @@ public class InicioSesion extends javax.swing.JPanel {
         jPanelInicioSesion.add(jLabelUs, gridBagConstraints);
 
         jTextFieldNombreDeUsuario.setBackground(new java.awt.Color(255, 255, 255));
-        jTextFieldNombreDeUsuario.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        jTextFieldNombreDeUsuario.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
         jTextFieldNombreDeUsuario.setForeground(new java.awt.Color(97, 97, 97));
         jTextFieldNombreDeUsuario.setAutoscrolls(false);
         jTextFieldNombreDeUsuario.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
@@ -137,7 +140,7 @@ public class InicioSesion extends javax.swing.JPanel {
         jPanelInicioSesion.add(jToggleButtonVerContraseña, gridBagConstraints);
 
         jButtonIniciarSesion.setBackground(new java.awt.Color(0, 51, 204));
-        jButtonIniciarSesion.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
+        jButtonIniciarSesion.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
         jButtonIniciarSesion.setForeground(new java.awt.Color(255, 255, 255));
         jButtonIniciarSesion.setText("Iniciar sesión");
         jButtonIniciarSesion.setToolTipText("");
@@ -158,7 +161,7 @@ public class InicioSesion extends javax.swing.JPanel {
         gridBagConstraints.fill = java.awt.GridBagConstraints.VERTICAL;
         jPanelInicioSesion.add(jButtonIniciarSesion, gridBagConstraints);
 
-        jLabelUs1.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        jLabelUs1.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
         jLabelUs1.setForeground(new java.awt.Color(0, 0, 0));
         jLabelUs1.setText("Nombre de usuario");
         jLabelUs1.setToolTipText("");
@@ -170,6 +173,7 @@ public class InicioSesion extends javax.swing.JPanel {
         jPanelInicioSesion.add(jLabelUs1, gridBagConstraints);
 
         jPasswordFieldCon.setBackground(new java.awt.Color(255, 255, 255));
+        jPasswordFieldCon.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
         jPasswordFieldCon.setToolTipText("");
         jPasswordFieldCon.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
         jPasswordFieldCon.setPreferredSize(new java.awt.Dimension(500, 35));
@@ -207,7 +211,7 @@ public class InicioSesion extends javax.swing.JPanel {
         jPanelIrAReg.setBackground(new java.awt.Color(255, 255, 255));
         jPanelIrAReg.setLayout(new java.awt.GridBagLayout());
 
-        jLabelCr.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        jLabelCr.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
         jLabelCr.setForeground(new java.awt.Color(0, 0, 0));
         jLabelCr.setText("¿No tienes cuenta?");
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -215,7 +219,7 @@ public class InicioSesion extends javax.swing.JPanel {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         jPanelIrAReg.add(jLabelCr, gridBagConstraints);
 
-        jButtonIrARegistro.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        jButtonIrARegistro.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
         jButtonIrARegistro.setForeground(new java.awt.Color(0, 0, 0));
         jButtonIrARegistro.setText("Crear");
         jButtonIrARegistro.setBorder(null);
@@ -330,7 +334,6 @@ public class InicioSesion extends javax.swing.JPanel {
 
     private void jButtonIrARegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonIrARegistroActionPerformed
         // TODO add your handling code here:
-        clearJText(this);
         principal.addPanelRegistro();
     }//GEN-LAST:event_jButtonIrARegistroActionPerformed
 
@@ -347,25 +350,13 @@ public class InicioSesion extends javax.swing.JPanel {
     private void jButtonIniciarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonIniciarSesionActionPerformed
         // TODO add your handling code here:
         if (Ingreso_usuario.Ingreso(jTextFieldNombreDeUsuario.getText(), String.valueOf(jPasswordFieldCon.getPassword()))) {
-            clearJText(this);
-            principal.addMarcoPrincipal();
+            Ingreso_usuario.setCredenciales(jTextFieldNombreDeUsuario.getText(), String.valueOf(jPasswordFieldCon.getPassword()));
+            principal.addMarcoPrincipal(false);
         } else {
             JOptionPane.showMessageDialog(null, "El usuario no ha sido encontrado, revise las credenciales", "Atención", JOptionPane.INFORMATION_MESSAGE);
         }
     }//GEN-LAST:event_jButtonIniciarSesionActionPerformed
 
-    private void clearJText(java.awt.Component component) {
-        if (component instanceof javax.swing.JTextField) {
-            javax.swing.JTextField text = (javax.swing.JTextField) component;
-            text.setText("");
-        } else {
-            if (component instanceof java.awt.Container) {
-                for (java.awt.Component c : ((java.awt.Container) component).getComponents()) {
-                    clearJText(c);
-                }
-            }
-        }
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonIniciarSesion;

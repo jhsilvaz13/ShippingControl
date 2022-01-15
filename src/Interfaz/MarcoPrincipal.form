@@ -38,7 +38,7 @@
         <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jTabbedPaneContenedorMouseClicked"/>
       </Events>
       <AuxValues>
-        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="jTabbedPaneContenedor.add(&quot;Embarcacaciones&quot;,embarcaciones);&#xa;jTabbedPaneContenedor.add(&quot;Prueba&quot;,registroEmb);&#xa;jTabbedPaneContenedor.add(&quot;Bodegas&quot;,bodegas);&#xa;jTabbedPaneContenedor.add(&quot;Cerrar Sesi&#xf3;n&quot;,cerrar);"/>
+        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="jTabbedPaneContenedor.add(&quot;Puerto&quot;,new InfoPuerto(this));&#xa;jTabbedPaneContenedor.add(&quot;Embarcaciones&quot;,new MenuEmbarcaciones(this));&#xa;jTabbedPaneContenedor.add(&quot;Bodegas&quot;,new TablaBodegas(this));&#xa;jTabbedPaneContenedor.add(&quot;Cerrar Sesi&#xf3;n&quot;,cerrar);&#xa;habilitar(primerIngreso);"/>
       </AuxValues>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">

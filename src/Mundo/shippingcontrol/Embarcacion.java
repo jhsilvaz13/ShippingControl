@@ -52,7 +52,7 @@ public class Embarcacion implements Comparable<Embarcacion>{
                 FileWriter writeFile = new FileWriter(PATH, true);
                 PrintWriter registrar = new PrintWriter(writeFile);
                 registrar.println(iter.data.getIMO() + "," + iter.data.getNombreEmbarcacion() + "," + iter.data.getBandera()
-                        + "," + iter.data.getNombreEmbarcacion() + "," + String.valueOf(iter.data.getCapacidad()) + ","
+                        + "," + iter.data.getTipoDeEmbarcacion() + "," + String.valueOf(iter.data.getCapacidad()) + ","
                         + String.valueOf(iter.data.getContenedoresAct()) + "," + iter.data.getDisponibilidad());
                 registrar.close();
                 iter = iter.nextNode;
@@ -86,11 +86,11 @@ public class Embarcacion implements Comparable<Embarcacion>{
         return contenedoresAct;
     }
 
-    public String getDisponibilidad() {
+    public int getDisponibilidad() {
         if (disponibilidad) {
-            return "Disponible";
+            return 1;
         } else {
-            return "No disponible";
+            return 0;
         }
     }
 
@@ -111,25 +111,64 @@ public class Embarcacion implements Comparable<Embarcacion>{
         Embarcacion z=new Embarcacion(1,"Test","Test",3,3,3,false);
         Embarcacion w=new Embarcacion(2,"Test","Test",3,3,3,false);
         
-        Embarcacion aux=new Embarcacion(8,"as","as",3,3,3,true);
+        Embarcacion aux=new Embarcacion(7,"as","as",3,3,3,true);
 
         arbol.insert(x);
         arbol.insert(y);
         arbol.insert(z);
         arbol.insert(w);
-        System.out.println(arbol.contains(aux).data.bandera);
-        
-        printInorden(arbol.root);
+        Embarcacion enc=arbol.contains(aux).data;
+        System.out.println(enc.bandera);
+    }
+    public void  setActuales(int actual){
+       this.contenedoresAct=actual;
+    }
+    public void setDisponibilidad(boolean disp){
+        this.disponibilidad=disp;
     }
     
-     //Impresion inorden
-
-    
-     public static void printInorden(AVLNode<Embarcacion> node){
-        if(node!=null){
-            printInorden(node.left);
-            System.out.print(node.data.IMO+" ");
-            printInorden(node.right);
+    public static Object FiltrarIMO(int IMO, Puerto puerto) {
+        AVLtree<Embarcacion> arbolIMO = new AVLtree<Embarcacion>();
+        Object rowData[] = new Object[7];
+        try {
+            LinkedList<Embarcacion> PrintE = puerto.GetEmbarcaciones();
+            if (PrintE == null) {
+                return rowData;
+            } else {
+                Node<Embarcacion> Iterador = PrintE.getBeginNode();
+                while (Iterador != null) {
+                    if (Iterador.data.getDisponibilidad() == 1) {
+                        Embarcacion a = new Embarcacion(Iterador.data.getIMO(), Iterador.data.getNombreEmbarcacion(), Iterador.data.getBandera(),
+                                Iterador.data.getTipoDeEmbarcacion(), Iterador.data.getCapacidad(), Iterador.data.contenedoresAct,true);
+                        arbolIMO.insert(a);
+                        Iterador = Iterador.nextNode;
+                    } else {
+                        Embarcacion a = new Embarcacion(Iterador.data.getIMO(), Iterador.data.getNombreEmbarcacion(), Iterador.data.getBandera(),
+                                Iterador.data.getTipoDeEmbarcacion(), Iterador.data.getCapacidad(), Iterador.data.contenedoresAct,false);
+                        arbolIMO.insert(a);
+                        Iterador = Iterador.nextNode;
+                    }
+                }
+                Embarcacion busqueda = new Embarcacion(IMO, "a", "a", 0, 0, 0, true);
+                try {
+                    rowData[0] = arbolIMO.contains(busqueda).data.IMO;
+                    rowData[1] = arbolIMO.contains(busqueda).data.nombreEmbarcacion;
+                    rowData[2] = arbolIMO.contains(busqueda).data.bandera;
+                    rowData[3] = arbolIMO.contains(busqueda).data.tipoDeEmbarcacion;
+                    rowData[4] = arbolIMO.contains(busqueda).data.capacidad;
+                    rowData[5] = arbolIMO.contains(busqueda).data.contenedoresAct;
+                    if (arbolIMO.contains(busqueda).data.disponibilidad == true) {
+                        rowData[6] = "Disponible";
+                    } else {
+                        rowData[6] = "No Disponible";
+                    }
+                    return rowData;
+                } catch (Exception e) {
+                    return rowData;
+                }
+            }
+        } catch (Exception e) {
+            return rowData;
         }
     }
 }

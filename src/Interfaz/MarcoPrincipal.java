@@ -4,6 +4,8 @@
  */
 package Interfaz;
 
+import Mundo.shippingcontrol.Embarcacion;
+import Mundo.shippingcontrol.Puerto;
 import java.awt.Color;
     
 /**
@@ -15,21 +17,28 @@ public class MarcoPrincipal extends javax.swing.JPanel {
     private VentanaPrincipal principal;
     
     private CerrarSesionAux cerrar=new CerrarSesionAux();
+        
+    private boolean primerIngreso;
     
-    private RegistroEmbarcacion registroEmb=new RegistroEmbarcacion();
-    
-    private MenuEmbarcaciones embarcaciones=new MenuEmbarcaciones();
-    
-    private  TablaBodegas bodegas=new TablaBodegas();
+    private Puerto puerto;
     /**
      * Creates new form MarcoPrincipal
      */
 
-    public MarcoPrincipal(VentanaPrincipal principal) {
+    public MarcoPrincipal(VentanaPrincipal principal, boolean primerIngreso) {
         this.principal=principal;
+        this.primerIngreso=primerIngreso;
+        puerto=new Puerto("Puerto",0);
+        puerto.cargarEmbarcacionesCSV();
         initComponents();
     }
-
+    
+    public Puerto getPuerto(){
+        return puerto;
+    }
+    public void addPanel(int tab,javax.swing.JPanel panel){
+       jTabbedPaneContenedor.setComponentAt(tab,panel);
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -49,10 +58,11 @@ public class MarcoPrincipal extends javax.swing.JPanel {
         jTabbedPaneContenedor.setForeground(new java.awt.Color(0, 0, 0));
         jTabbedPaneContenedor.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         jTabbedPaneContenedor.setName(""); // NOI18N
-        jTabbedPaneContenedor.add("Embarcacaciones",embarcaciones);
-        jTabbedPaneContenedor.add("Prueba",registroEmb);
-        jTabbedPaneContenedor.add("Bodegas",bodegas);
+        jTabbedPaneContenedor.add("Puerto",new InfoPuerto(this));
+        jTabbedPaneContenedor.add("Embarcaciones",new MenuEmbarcaciones(this));
+        jTabbedPaneContenedor.add("Bodegas",new TablaBodegas(this));
         jTabbedPaneContenedor.add("Cerrar Sesión",cerrar);
+        habilitar(primerIngreso);
         jTabbedPaneContenedor.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTabbedPaneContenedorMouseClicked(evt);
@@ -68,10 +78,20 @@ public class MarcoPrincipal extends javax.swing.JPanel {
     private void jTabbedPaneContenedorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTabbedPaneContenedorMouseClicked
         // TODO add your handling code here:
         if(jTabbedPaneContenedor.getSelectedIndex()==3){
-            principal.addPanelInicio();
+            Embarcacion.registrosCSVEmbarcaciones(getPuerto().GetEmbarcaciones());
+            principal.addPanelInicio(true);
         }
     }//GEN-LAST:event_jTabbedPaneContenedorMouseClicked
+    public void habilitar(boolean flag){
+        if(flag)
+            jTabbedPaneContenedor.setEnabled(false);
+        else
+            jTabbedPaneContenedor.setEnabled(true);
+    }
     
+    public boolean getPrimerIngreso(){
+        return primerIngreso;
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTabbedPane jTabbedPaneContenedor;
     // End of variables declaration//GEN-END:variables

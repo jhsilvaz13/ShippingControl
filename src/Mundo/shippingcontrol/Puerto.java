@@ -17,30 +17,20 @@ public class Puerto {
 
     private static final String PATH = "..\\ShippingControl\\data\\embarcaciones.csv";
     private String nombrePuerto;
-    private int tarifa;
-    private int contenedoresMax;
-    private int barcosMax;
-    private int contenedoresAct;
-    private int barcosAct;
-
+    private int bodegasMax;
     private Queue<Embarcacion> colaEmbarcaciones = new Queue<Embarcacion>();
     private Stack<Embarcacion> pilaSalida = new Stack<Embarcacion>();
 
-    public Puerto(String nombrePuerto, int tarifa, int contenedoresMax,
-            int barcosMax, int barcosAct, int contenedoresAct) {
+    public Puerto(String nombrePuerto,int bodegasMax) {
         this.nombrePuerto = nombrePuerto;
-        this.tarifa = tarifa;
-        this.contenedoresMax = contenedoresMax;
-        this.barcosMax = barcosMax;
-        this.contenedoresAct = contenedoresAct;
-        this.barcosAct = barcosAct;
+        this.bodegasMax = bodegasMax;
     }
 
     /**
      * Carga los datos que se encuenyran en los archivos CSV en objetos en
      * ejecución y actualiza la cola correspondiente a los barcos*
      */
-    public void cargarEmbarcacionesCSV() {
+    public void cargarEmbarcacionesCSV(){
         String linea;
         try {
             FileWriter writeFile = new FileWriter(PATH, true);
@@ -48,7 +38,7 @@ public class Puerto {
             while ((linea = br.readLine()) != null) {//cada linea del archivo csv
                 String[] datos = linea.split(",");//arreglo de las columnas de cada linea
                 Embarcacion embarcacion;
-                if (datos[6].equals("Disponible")) {
+                if (datos[6].equals("1")) {
                     embarcacion = new Embarcacion(Integer.parseInt(datos[0]), datos[1], datos[2], Integer.parseInt(datos[3]),
                             Integer.parseInt(datos[4]), Integer.parseInt(datos[5]), true);
                 } else {
@@ -58,7 +48,7 @@ public class Puerto {
                 colaEmbarcaciones.Enqueue(new Node<Embarcacion>(embarcacion));
             }
         } catch (Exception e) {
-            System.err.println("cargarEmb");
+            System.err.println("cargarEmb"+e.getMessage());
         }
     }
    
@@ -74,10 +64,10 @@ public class Puerto {
     }
 
     //Registra la llegada de una nueva embarcación, encola
-    public void registrarLlegadaEmbarcacion(String[] datos) {
+    /*public void registrarLlegadaEmbarcacion(String[] datos) {
         System.currentTimeMillis();
         Embarcacion embarcacion;
-        if (datos[6].equals("Disponible")) {
+        if (datos[6].equals("1")) {
             embarcacion = new Embarcacion(Integer.parseInt(datos[0]), datos[1], datos[2], Integer.parseInt(datos[3]),
                     Integer.parseInt(datos[4]), Integer.parseInt(datos[5]), true);
         } else {
@@ -86,7 +76,7 @@ public class Puerto {
         }
         colaEmbarcaciones.Enqueue(new Node<Embarcacion>(embarcacion));
         realizarRegistros();
-    }
+    }*/
 
     //Registra el desembarque y salida de una embarcacion, desencola
     public Node<Embarcacion> registrarSalidadDeEmbarcacion() {

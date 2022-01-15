@@ -56,7 +56,7 @@ public class RegistroUsuario extends javax.swing.JPanel {
         jPanelRegistro.setPreferredSize(new java.awt.Dimension(600, 800));
         jPanelRegistro.setLayout(new java.awt.GridBagLayout());
 
-        jLabelRegistro.setFont(new java.awt.Font("SansSerif", 1, 24)); // NOI18N
+        jLabelRegistro.setFont(new java.awt.Font("Trebuchet MS", 1, 24)); // NOI18N
         jLabelRegistro.setForeground(new java.awt.Color(0, 0, 0));
         jLabelRegistro.setText("REGISTRAR USUARIO");
         jLabelRegistro.setToolTipText("");
@@ -67,7 +67,7 @@ public class RegistroUsuario extends javax.swing.JPanel {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         jPanelRegistro.add(jLabelRegistro, gridBagConstraints);
 
-        jLabelContraseña.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        jLabelContraseña.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
         jLabelContraseña.setForeground(new java.awt.Color(0, 0, 0));
         jLabelContraseña.setText("Contraseña");
         jLabelContraseña.setToolTipText("");
@@ -90,7 +90,7 @@ public class RegistroUsuario extends javax.swing.JPanel {
         jPanelRegistro.add(jLabelUs, gridBagConstraints);
 
         jTextFieldNombreDeUsuario.setBackground(new java.awt.Color(255, 255, 255));
-        jTextFieldNombreDeUsuario.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        jTextFieldNombreDeUsuario.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
         jTextFieldNombreDeUsuario.setForeground(new java.awt.Color(97, 97, 97));
         jTextFieldNombreDeUsuario.setAutoscrolls(false);
         jTextFieldNombreDeUsuario.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
@@ -133,7 +133,7 @@ public class RegistroUsuario extends javax.swing.JPanel {
         jPanelRegistro.add(jToggleButtonVerContraseña, gridBagConstraints);
 
         jButtonRegistrar.setBackground(new java.awt.Color(0, 51, 204));
-        jButtonRegistrar.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
+        jButtonRegistrar.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
         jButtonRegistrar.setForeground(new java.awt.Color(255, 255, 255));
         jButtonRegistrar.setText("Registrarse");
         jButtonRegistrar.setToolTipText("");
@@ -154,7 +154,7 @@ public class RegistroUsuario extends javax.swing.JPanel {
         gridBagConstraints.fill = java.awt.GridBagConstraints.VERTICAL;
         jPanelRegistro.add(jButtonRegistrar, gridBagConstraints);
 
-        jLabelUs1.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        jLabelUs1.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
         jLabelUs1.setForeground(new java.awt.Color(0, 0, 0));
         jLabelUs1.setText("Nombre de usuario");
         jLabelUs1.setToolTipText("");
@@ -166,6 +166,7 @@ public class RegistroUsuario extends javax.swing.JPanel {
         jPanelRegistro.add(jLabelUs1, gridBagConstraints);
 
         jPasswordFieldCon.setBackground(new java.awt.Color(255, 255, 255));
+        jPasswordFieldCon.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
         jPasswordFieldCon.setToolTipText("");
         jPasswordFieldCon.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(0, 0, 0)));
         jPasswordFieldCon.setPreferredSize(new java.awt.Dimension(500, 35));
@@ -203,7 +204,7 @@ public class RegistroUsuario extends javax.swing.JPanel {
         jPanelIrAReg.setBackground(new java.awt.Color(255, 255, 255));
         jPanelIrAReg.setLayout(new java.awt.GridBagLayout());
 
-        jLabelPr.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        jLabelPr.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
         jLabelPr.setForeground(new java.awt.Color(0, 0, 0));
         jLabelPr.setText("¿Ya tienes una cuenta?");
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -211,7 +212,7 @@ public class RegistroUsuario extends javax.swing.JPanel {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         jPanelIrAReg.add(jLabelPr, gridBagConstraints);
 
-        jButtonIrAPanelSesion.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        jButtonIrAPanelSesion.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
         jButtonIrAPanelSesion.setForeground(new java.awt.Color(0, 0, 0));
         jButtonIrAPanelSesion.setText("Inicia Sesión");
         jButtonIrAPanelSesion.setBorder(null);
@@ -325,7 +326,7 @@ public class RegistroUsuario extends javax.swing.JPanel {
 
     private void jButtonIrAPanelSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonIrAPanelSesionActionPerformed
         // TODO add your handling code here:
-        principal.addPanelInicio();
+        principal.addPanelInicio(true);
     }//GEN-LAST:event_jButtonIrAPanelSesionActionPerformed
 
     private void jButtonIrAPanelSesionMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonIrAPanelSesionMouseEntered
@@ -342,8 +343,15 @@ public class RegistroUsuario extends javax.swing.JPanel {
         // TODO add your handling code here:
         if(jTextFieldNombreDeUsuario.getText().length()!=0 && String.valueOf(jPasswordFieldCon.getPassword()).length()!=0){
             if (!Ingreso_usuario.Ingreso(jTextFieldNombreDeUsuario.getText(), String.valueOf(jPasswordFieldCon.getPassword()))) {
-                Ingreso_usuario.Registro(jTextFieldNombreDeUsuario.getText(), String.valueOf(jPasswordFieldCon.getPassword()));
-                principal.addMarcoPrincipal();
+                if(Ingreso_usuario.getCredencialesPuerto()==null){
+                    Ingreso_usuario.setCredenciales(jTextFieldNombreDeUsuario.getText(),String.valueOf(jPasswordFieldCon.getPassword()));
+                    principal.addMarcoPrincipal(true);
+                }else{
+                    Ingreso_usuario.setCredenciales(jTextFieldNombreDeUsuario.getText(),String.valueOf(jPasswordFieldCon.getPassword()));
+                    Ingreso_usuario.Registro(Ingreso_usuario.getCredencialesPuerto()[2],Ingreso_usuario.getCredencialesPuerto()[3]);
+                    principal.addMarcoPrincipal(false);
+                }
+                
             }else{
                 JOptionPane.showMessageDialog(null, "El usuario ya se encuentra registrado", "Atención", JOptionPane.INFORMATION_MESSAGE);
             }
