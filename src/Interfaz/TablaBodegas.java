@@ -4,8 +4,13 @@
  */
 package Interfaz;
 
+import Mundo.estructuras.listas.LinkedList;
+import Mundo.estructuras.listas.Node;
+import Mundo.shippingcontrol.Bodega;
 import java.awt.*;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 /**
  *
  * @author EQUIPO
@@ -21,6 +26,8 @@ public class TablaBodegas extends javax.swing.JPanel {
     public TablaBodegas(MarcoPrincipal principal) {
         this.principal=principal;
         initComponents();
+        FillBodegasTable();
+
     }
 
     /**
@@ -52,6 +59,9 @@ public class TablaBodegas extends javax.swing.JPanel {
         jLabel3 = new javax.swing.JLabel();
         jLabelBodegaLlena = new javax.swing.JLabel();
         jLabelBodegaDisp = new javax.swing.JLabel();
+        jLabelBodegaTotal12 = new javax.swing.JLabel();
+        jLabelBodegaTotal = new javax.swing.JLabel();
+        jCheckBoxZona = new javax.swing.JCheckBox();
 
         setMaximumSize(new java.awt.Dimension(2147483647, 2147483647));
         setMinimumSize(new java.awt.Dimension(242, 446));
@@ -195,6 +205,14 @@ public class TablaBodegas extends javax.swing.JPanel {
         jLabelBodegaDisp.setForeground(new java.awt.Color(0, 0, 0));
         jLabelBodegaDisp.setText("?");
 
+        jLabelBodegaTotal12.setFont(new java.awt.Font("Trebuchet MS", 1, 24)); // NOI18N
+        jLabelBodegaTotal12.setForeground(new java.awt.Color(0, 0, 0));
+        jLabelBodegaTotal12.setText("Bodegas totales");
+
+        jLabelBodegaTotal.setFont(new java.awt.Font("Trebuchet MS", 1, 24)); // NOI18N
+        jLabelBodegaTotal.setForeground(new java.awt.Color(0, 0, 0));
+        jLabelBodegaTotal.setText("?");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -209,22 +227,38 @@ public class TablaBodegas extends javax.swing.JPanel {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabelBodegaDisp)))
+                        .addComponent(jLabelBodegaDisp))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabelBodegaTotal12)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabelBodegaTotal)))
                 .addContainerGap(320, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(42, 42, 42)
+                .addContainerGap(34, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabelBodegaTotal12)
+                    .addComponent(jLabelBodegaTotal))
+                .addGap(26, 26, 26)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(jLabelBodegaLlena))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
+                .addGap(27, 27, 27)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(jLabelBodegaDisp))
-                .addGap(68, 68, 68))
+                .addGap(27, 27, 27))
         );
+
+        jCheckBoxZona.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
+        jCheckBoxZona.setText("Zona");
+        jCheckBoxZona.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBoxZonaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -236,33 +270,35 @@ public class TablaBodegas extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane3)
+                            .addComponent(jLabel1)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel1)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                             .addGroup(layout.createSequentialGroup()
-                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                    .addGroup(layout.createSequentialGroup()
-                                                        .addComponent(jLabelIconoBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                        .addComponent(jPanelLupa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                        .addGap(291, 291, 291))
-                                                    .addGroup(layout.createSequentialGroup()
-                                                        .addComponent(jCheckBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                        .addComponent(jCheckBox2)
-                                                        .addGap(54, 54, 54)))
-                                                .addComponent(jCheckBox3))
-                                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 505, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                .addComponent(jLabelIconoBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(jPanelLupa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(291, 291, 291))
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(jCheckBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addComponent(jCheckBox2)
+                                                .addGap(54, 54, 54)))
+                                        .addComponent(jCheckBox3))
+                                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 505, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
                                         .addGap(18, 18, 18)
-                                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(0, 504, Short.MAX_VALUE)))
+                                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(45, 45, 45)
+                                        .addComponent(jCheckBoxZona)))))
                         .addContainerGap())
                     .addGroup(layout.createSequentialGroup()
                         .addGap(6, 6, 6)
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 133, Short.MAX_VALUE)
                         .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(92, 92, 92))))
         );
@@ -283,7 +319,9 @@ public class TablaBodegas extends javax.swing.JPanel {
                             .addComponent(jPanelLupa, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jCheckBox3)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jCheckBox3)
+                        .addComponent(jCheckBoxZona))
                     .addComponent(jCheckBox1)
                     .addComponent(jCheckBox2))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -300,6 +338,41 @@ public class TablaBodegas extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    
+     public void FillBodegasTable() {
+        DefaultTableModel model = (DefaultTableModel) jTable2.getModel();
+        model.setRowCount(0);
+        int counterDis = 0;
+        int counter = 0;
+        try {
+            LinkedList<Bodega> PrintE = principal.getPuerto().GetBodegas();
+            //Puerto.colaEmbarcaciones.Enqueue(new Node(new Embarcacion(256806457,"Test","Yest",5,366445556,-753786924, false)));
+            Object rowData[] = new Object[4];
+            if (PrintE == null) {
+                JOptionPane.showMessageDialog(null, "No hay Bodegas registradas");
+            } else {
+                Node<Bodega> Iterador = PrintE.getBeginNode();
+                while (Iterador != null) {
+                    rowData[0] = Iterador.data.getID();
+                    rowData[1] = Iterador.data.getCapacidad();
+                    rowData[2] = Iterador.data.getActual();
+                    rowData[3] = Iterador.data.getZona();
+                    model.addRow(rowData);
+                    if (Iterador.data.getCapacidad()- Iterador.data.getActual() != 0) {
+                        counterDis++;
+                    }
+                    counter++;
+                    Iterador = Iterador.nextNode;
+                }
+            }
+            jLabelBodegaTotal.setText(String.valueOf(counter));
+            jLabelBodegaDisp.setText(String.valueOf(counterDis));
+            jLabelBodegaLlena.setText(String.valueOf(counter - counterDis));
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+    } 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
@@ -313,6 +386,8 @@ public class TablaBodegas extends javax.swing.JPanel {
         if (jCheckBox1.isSelected()){
             jCheckBox2.setSelected(false);
             jCheckBox3.setSelected(false);
+            jCheckBoxZona.setSelected(false);
+
         }
     }//GEN-LAST:event_jCheckBox1ActionPerformed
 
@@ -320,19 +395,31 @@ public class TablaBodegas extends javax.swing.JPanel {
         if (jCheckBox3.isSelected()){
             jCheckBox2.setSelected(false);
             jCheckBox1.setSelected(false);
+            jCheckBoxZona.setSelected(false);
+
         }
     }//GEN-LAST:event_jCheckBox3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-
+        FillBodegasTable();
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jCheckBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox2ActionPerformed
         if (jCheckBox2.isSelected()){
             jCheckBox1.setSelected(false);
             jCheckBox3.setSelected(false);
+            jCheckBoxZona.setSelected(false);
         }
     }//GEN-LAST:event_jCheckBox2ActionPerformed
+
+    private void jCheckBoxZonaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxZonaActionPerformed
+        // TODO add your handling code here:
+        if (jCheckBoxZona.isSelected()){
+            jCheckBox1.setSelected(false);
+            jCheckBox2.setSelected(false);
+            jCheckBox3.setSelected(false);
+        }
+    }//GEN-LAST:event_jCheckBoxZonaActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -341,11 +428,14 @@ public class TablaBodegas extends javax.swing.JPanel {
     private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JCheckBox jCheckBox2;
     private javax.swing.JCheckBox jCheckBox3;
+    private javax.swing.JCheckBox jCheckBoxZona;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabelBodegaDisp;
     private javax.swing.JLabel jLabelBodegaLlena;
+    private javax.swing.JLabel jLabelBodegaTotal;
+    private javax.swing.JLabel jLabelBodegaTotal12;
     private javax.swing.JLabel jLabelIconoBuscar;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanelLupa;

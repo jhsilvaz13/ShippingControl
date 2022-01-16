@@ -134,6 +134,7 @@ public class Embarcacion implements Comparable<Embarcacion>{
             if (PrintE == null) {
                 return rowData;
             } else {
+                
                 Node<Embarcacion> Iterador = PrintE.getBeginNode();
                 while (Iterador != null) {
                     if (Iterador.data.getDisponibilidad() == 1) {
@@ -148,15 +149,18 @@ public class Embarcacion implements Comparable<Embarcacion>{
                         Iterador = Iterador.nextNode;
                     }
                 }
+                
                 Embarcacion busqueda = new Embarcacion(IMO, "a", "a", 0, 0, 0, true);
                 try {
+                    
                     rowData[0] = arbolIMO.contains(busqueda).data.IMO;
+                    
                     rowData[1] = arbolIMO.contains(busqueda).data.nombreEmbarcacion;
                     rowData[2] = arbolIMO.contains(busqueda).data.bandera;
                     rowData[3] = arbolIMO.contains(busqueda).data.tipoDeEmbarcacion;
                     rowData[4] = arbolIMO.contains(busqueda).data.capacidad;
                     rowData[5] = arbolIMO.contains(busqueda).data.contenedoresAct;
-                    if (arbolIMO.contains(busqueda).data.disponibilidad == true) {
+                    if(arbolIMO.contains(busqueda).data.disponibilidad == true) {
                         rowData[6] = "Disponible";
                     } else {
                         rowData[6] = "No Disponible";
