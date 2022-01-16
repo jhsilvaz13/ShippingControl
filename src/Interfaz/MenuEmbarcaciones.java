@@ -121,6 +121,11 @@ public class MenuEmbarcaciones extends javax.swing.JPanel {
 
         jButton4.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
         jButton4.setText("Descargar Embarcación");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         jButton3.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
         jButton3.setText("Editar Embarcación");
@@ -407,12 +412,13 @@ public class MenuEmbarcaciones extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabelError)
-                    .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabelError)
+                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jCheckBox1)
@@ -439,7 +445,6 @@ public class MenuEmbarcaciones extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
-        jButton1.getAccessibleContext().setAccessibleName("Buscar");
         jButton1.getAccessibleContext().setAccessibleDescription("");
     }// </editor-fold>//GEN-END:initComponents
 
@@ -655,6 +660,23 @@ public class MenuEmbarcaciones extends javax.swing.JPanel {
         jLabelError.setVisible(false);
 
     }//GEN-LAST:event_jButton6MouseExited
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+        int ID=0;
+        try {
+            ID = Integer.valueOf(JOptionPane.showInputDialog(null, "Ingrese el ID de la bodega: "));
+            if (ID < principal.getPuerto().GetBodegas().getBeginNode().data.getID() || ID > principal.getPuerto().GetBodegas().getLastNode().data.getID()) {
+                JOptionPane.showMessageDialog(null, "La bodega con el ID " + ID + " no ha sido encontrada", "Atención", JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                principal.getPuerto().registrarSalidadDeEmbarcacion(ID);
+            }
+        } catch (Exception e) {
+            System.out.println("Error en descargue"+e.getMessage());
+            JOptionPane.showMessageDialog(null, "La bodega con el ID " + ID + " no ha sido adssadencontrada", "Atención", JOptionPane.INFORMATION_MESSAGE);
+        }   
+        FillEmbarcacionesTable();
+    }//GEN-LAST:event_jButton4ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

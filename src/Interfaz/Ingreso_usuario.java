@@ -13,11 +13,11 @@ public abstract class Ingreso_usuario {
     static final String PATH = "..\\ShippingControl\\data\\usuarios.csv";
 
 
-    public static void Registro( String puerto, String bodegas) {
+    public static void Registro( String puerto, String bodegas, String capacidad) {
         try {
             FileWriter writeFile = new FileWriter(PATH, true);
             PrintWriter registrar = new PrintWriter(writeFile);
-            registrar.println(Ingreso_usuario.username + "," + Ingreso_usuario.password+","+puerto+","+bodegas);
+            registrar.println(Ingreso_usuario.username + "," + Ingreso_usuario.password+","+puerto+","+bodegas+","+capacidad);
             registrar.close();
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -31,7 +31,6 @@ public abstract class Ingreso_usuario {
         password =contraseña;
         String linea;
         boolean find_user = false;
-        System.out.println(nombreUsuario+"/"+contraseña);
         try {
             BufferedReader br = new BufferedReader(new FileReader(PATH));
             while ((linea = br.readLine()) != null) {//cada linea del archivo csv

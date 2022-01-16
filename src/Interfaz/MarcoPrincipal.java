@@ -4,6 +4,7 @@
  */
 package Interfaz;
 
+import Mundo.shippingcontrol.Bodega;
 import Mundo.shippingcontrol.Embarcacion;
 import Mundo.shippingcontrol.Puerto;
 import java.awt.Color;
@@ -28,8 +29,9 @@ public class MarcoPrincipal extends javax.swing.JPanel {
     public MarcoPrincipal(VentanaPrincipal principal, boolean primerIngreso) {
         this.principal=principal;
         this.primerIngreso=primerIngreso;
-        puerto=new Puerto("Puerto",0);
+        puerto=new Puerto("Puerto",0,0);
         puerto.cargarEmbarcacionesCSV();
+        puerto.cargarBodegasCSV();
         initComponents();
     }
     
@@ -79,7 +81,8 @@ public class MarcoPrincipal extends javax.swing.JPanel {
         // TODO add your handling code here:
         if(jTabbedPaneContenedor.getSelectedIndex()==3){
             Embarcacion.registrosCSVEmbarcaciones(getPuerto().GetEmbarcaciones());
-            principal.addPanelInicio(true);
+            Bodega.registrosCSVBodegas(getPuerto().GetBodegas());
+            principal.addPanelInicio();
         }
     }//GEN-LAST:event_jTabbedPaneContenedorMouseClicked
     public void habilitar(boolean flag){

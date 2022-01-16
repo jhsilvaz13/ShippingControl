@@ -326,7 +326,7 @@ public class RegistroUsuario extends javax.swing.JPanel {
 
     private void jButtonIrAPanelSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonIrAPanelSesionActionPerformed
         // TODO add your handling code here:
-        principal.addPanelInicio(true);
+        principal.addPanelInicio();
     }//GEN-LAST:event_jButtonIrAPanelSesionActionPerformed
 
     private void jButtonIrAPanelSesionMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonIrAPanelSesionMouseEntered
@@ -348,7 +348,7 @@ public class RegistroUsuario extends javax.swing.JPanel {
                     principal.addMarcoPrincipal(true);
                 }else{
                     Ingreso_usuario.setCredenciales(jTextFieldNombreDeUsuario.getText(),String.valueOf(jPasswordFieldCon.getPassword()));
-                    Ingreso_usuario.Registro(Ingreso_usuario.getCredencialesPuerto()[2],Ingreso_usuario.getCredencialesPuerto()[3]);
+                    Ingreso_usuario.Registro(Ingreso_usuario.getCredencialesPuerto()[2],Ingreso_usuario.getCredencialesPuerto()[3],Ingreso_usuario.getCredencialesPuerto()[4]);
                     principal.addMarcoPrincipal(false);
                 }
                 

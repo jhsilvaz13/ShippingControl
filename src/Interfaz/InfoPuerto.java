@@ -4,6 +4,9 @@
  */
 package Interfaz;
 
+import java.io.FileWriter;
+import java.io.PrintWriter;
+import java.util.Random;
 import javax.swing.JOptionPane;
 
 /**
@@ -15,6 +18,8 @@ public class InfoPuerto extends javax.swing.JPanel {
     private MarcoPrincipal principal;
     
     private String username, password;
+    
+        private static String PATH = "..\\ShippingControl\\data\\bodegas.csv";
 
     /**
      * Creates new form InfoPuerto
@@ -41,6 +46,8 @@ public class InfoPuerto extends javax.swing.JPanel {
         nombre = new java.awt.TextField();
         nBodegas = new java.awt.TextField();
         jButtonGuardar = new javax.swing.JButton();
+        LabelcBodegas = new javax.swing.JLabel();
+        cBodegas = new java.awt.TextField();
 
         setMaximumSize(null);
         setPreferredSize(new java.awt.Dimension(1200, 800));
@@ -52,7 +59,8 @@ public class InfoPuerto extends javax.swing.JPanel {
         LabelNombre.setText("Nombre del puerto:");
 
         LabelnBodegas.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
-        LabelnBodegas.setText("Capacidad de bodegas del puerto: ");
+        LabelnBodegas.setText("Número de bodegas del puerto: ");
+        LabelnBodegas.setToolTipText("");
 
         nombre.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
         nombre.setPreferredSize(new java.awt.Dimension(93, 35));
@@ -85,18 +93,34 @@ public class InfoPuerto extends javax.swing.JPanel {
                 jButtonGuardarActionPerformed(evt);
             }
         });
+
+        LabelcBodegas.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
+        LabelcBodegas.setText("Capacidad de bodegas del puerto: ");
+
+        cBodegas.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
+        cBodegas.setPreferredSize(new java.awt.Dimension(100, 35));
+        cBodegas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cBodegasActionPerformed(evt);
+            }
+        });
         if(principal.getPrimerIngreso()){
             nombre.setEditable(true);
             nBodegas.setEditable(true);
+            cBodegas.setEnabled(true);
             nombre.setBackground(new java.awt.Color(206, 218, 255));
             nBodegas.setBackground(new java.awt.Color(206, 218, 255));
+            cBodegas.setBackground(new java.awt.Color(206, 218, 255));
         }else{
             nombre.setEditable(false);
             nombre.setText(Ingreso_usuario.getCredencialesPuerto()[2]);
             nBodegas.setEditable(false);
             nBodegas.setText(Ingreso_usuario.getCredencialesPuerto()[3]);
+            cBodegas.setEditable(false);
+            cBodegas.setText(Ingreso_usuario.getCredencialesPuerto()[4]);
             nombre.setBackground(new java.awt.Color(255, 255, 255));
             nBodegas.setBackground(new java.awt.Color(255, 255, 255));
+            cBodegas.setBackground(new java.awt.Color(255,255,255));
             jButtonGuardar.setEnabled(false);
         }
 
@@ -117,7 +141,11 @@ public class InfoPuerto extends javax.swing.JPanel {
                                 .addComponent(LabelNombre)
                                 .addGap(42, 42, 42)
                                 .addComponent(nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 763, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(InfoPuerto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(InfoPuerto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(LabelcBodegas)
+                                .addGap(26, 26, 26)
+                                .addComponent(cBodegas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(538, 538, 538)
                         .addComponent(jButtonGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -136,7 +164,13 @@ public class InfoPuerto extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(LabelnBodegas, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(nBodegas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(462, 462, 462)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(1, 1, 1)
+                        .addComponent(cBodegas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(LabelcBodegas, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(408, 408, 408)
                 .addComponent(jButtonGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(46, 46, 46))
         );
@@ -153,24 +187,57 @@ public class InfoPuerto extends javax.swing.JPanel {
     private void jButtonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGuardarActionPerformed
         // TODO add your handling code here:
         if (nombre.getText().length() != 0 && nBodegas.getText().length() != 0) {
-            Ingreso_usuario.Registro(nombre.getText(),nBodegas.getText());
+            Ingreso_usuario.Registro(nombre.getText(),nBodegas.getText(),cBodegas.getText());
             principal.habilitar(false);
             nombre.setEditable(false);
             nBodegas.setEditable(false);
+            cBodegas.setEditable(false);
             nombre.setBackground(new java.awt.Color(255, 255, 255));
             nBodegas.setBackground(new java.awt.Color(255, 255, 255));
+            cBodegas.setBackground(new java.awt.Color(255, 255, 255));
             jButtonGuardar.setEnabled(false);
+            RegistrarBodegasCSV(Integer.valueOf(nBodegas.getText()), Integer.valueOf(cBodegas.getText()));
+            principal.getPuerto().cargarBodegasCSV();
         } else {
             JOptionPane.showMessageDialog(null, "No se permiten espacios en blanco", "Atención", JOptionPane.ERROR_MESSAGE);
         }
 
     }//GEN-LAST:event_jButtonGuardarActionPerformed
+    public static void RegistrarBodegasCSV(int n, int capacidad) {
+        Random random = new Random();
+        String zonas = "ABCDE";
+        //char letter = zonas.charAt(random.nextInt(zonas.length()));
+        try {
+            new FileWriter(PATH, false).close();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        try {
+            for (long i = 0; i < n; i++) {
+                FileWriter writeFile = new FileWriter(PATH, true);
+                PrintWriter registrar = new PrintWriter(writeFile);
+                registrar.println(String.valueOf(String.format("%03d", i)) + ","
+                        + String.valueOf(capacidad) + ","
+                        + "0" + ","
+                        + zonas.charAt(random.nextInt(zonas.length())));
+                registrar.close();
+            }
+        } catch (Exception e) {
+
+        }
+    }
+    
+    private void cBodegasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cBodegasActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cBodegasActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private java.awt.Label InfoPuerto;
     private javax.swing.JLabel LabelNombre;
+    private javax.swing.JLabel LabelcBodegas;
     private javax.swing.JLabel LabelnBodegas;
+    private java.awt.TextField cBodegas;
     private javax.swing.JButton jButtonGuardar;
     private java.awt.TextField nBodegas;
     private java.awt.TextField nombre;

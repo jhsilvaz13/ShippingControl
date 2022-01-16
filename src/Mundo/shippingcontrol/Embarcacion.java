@@ -51,7 +51,7 @@ public class Embarcacion implements Comparable<Embarcacion>{
             try {
                 FileWriter writeFile = new FileWriter(PATH, true);
                 PrintWriter registrar = new PrintWriter(writeFile);
-                registrar.println(iter.data.getIMO() + "," + iter.data.getNombreEmbarcacion() + "," + iter.data.getBandera()
+                registrar.println(String.format("%07d", iter.data.getIMO()) + "," + iter.data.getNombreEmbarcacion() + "," + iter.data.getBandera()
                         + "," + iter.data.getTipoDeEmbarcacion() + "," + String.valueOf(iter.data.getCapacidad()) + ","
                         + String.valueOf(iter.data.getContenedoresAct()) + "," + iter.data.getDisponibilidad());
                 registrar.close();
@@ -96,7 +96,6 @@ public class Embarcacion implements Comparable<Embarcacion>{
 
     @Override
     public int compareTo(Embarcacion o) {
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
         if(this.IMO>o.IMO){
             return 1;
         }else if(this.IMO<o.IMO){

@@ -8,6 +8,7 @@ import Mundo.estructuras.listas.*;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.FileWriter;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -16,20 +17,19 @@ import java.io.FileWriter;
 public class Puerto {
 
     private static final String PATH = "..\\ShippingControl\\data\\embarcaciones.csv";
+    private static final String PATH0 = "..\\ShippingControl\\data\\bodegas.csv";
     private String nombrePuerto;
     private int bodegasMax;
+    private int capacidaBods;
     private Queue<Embarcacion> colaEmbarcaciones = new Queue<Embarcacion>();
     private Stack<Embarcacion> pilaSalida = new Stack<Embarcacion>();
-
-    public Puerto(String nombrePuerto,int bodegasMax) {
+    private LinkedList<Bodega> listaBodegas=new LinkedList<Bodega>();
+    public Puerto(String nombrePuerto,int bodegasMax, int capacidadBods) {
         this.nombrePuerto = nombrePuerto;
         this.bodegasMax = bodegasMax;
+        this.capacidaBods=capacidadBods;
     }
 
-    /**
-     * Carga los datos que se encuenyran en los archivos CSV en objetos en
-     * ejecución y actualiza la cola correspondiente a los barcos*
-     */
     public void cargarEmbarcacionesCSV(){
         String linea;
         try {
@@ -51,15 +51,38 @@ public class Puerto {
             System.err.println("cargarEmb"+e.getMessage());
         }
     }
+    
+    public void cargarBodegasCSV(){
+        String linea;
+        try {
+            FileWriter writeFile = new FileWriter(PATH0, true);
+            BufferedReader br = new BufferedReader(new FileReader(PATH0));
+            while ((linea = br.readLine()) != null) {//cada linea del archivo csv
+                String[] datos = linea.split(",");//arreglo de las columnas de cada linea
+                Bodega bodega;
+                    bodega = new Bodega(Integer.parseInt(datos[0]), Integer.parseInt(datos[1]),Integer.parseInt(datos[2]),datos[3].charAt(0));
+                listaBodegas.pushBack(new Node<Bodega>(bodega));
+            }
+        }catch (Exception e) {
+            System.err.println("cargar bodegas"+e.getMessage());
+        }
+    }
    
     public Queue<Embarcacion> GetEmbarcaciones(){
-        boolean empty;
-        empty = colaEmbarcaciones.isEmpty();
-        if (empty == true){
+        if (colaEmbarcaciones.isEmpty()){
             return null;
         }
         else{
             return colaEmbarcaciones;
+        }
+    }
+    
+    public LinkedList<Bodega> GetBodegas(){
+        if (listaBodegas.isEmpty()){
+            return null;
+        }
+        else{
+            return listaBodegas;
         }
     }
 
@@ -79,11 +102,21 @@ public class Puerto {
     }*/
 
     //Registra el desembarque y salida de una embarcacion, desencola
-    public Node<Embarcacion> registrarSalidadDeEmbarcacion() {
-        Node<Embarcacion> embarcaciónDesencolada = colaEmbarcaciones.Dequeue();
-        pilaSalida.push(embarcaciónDesencolada);
-        realizarRegistros();
-        return embarcaciónDesencolada;
+    public void registrarSalidadDeEmbarcacion(int IDbodega) {
+        Node<Bodega> iter = listaBodegas.getBeginNode();
+        while (iter!=null) {
+            if(iter.data.getID()==IDbodega){
+                if(iter.data.getActual()+colaEmbarcaciones.getLastNode().data.getContenedoresAct()>iter.data.getCapacidad()){
+                    JOptionPane.showMessageDialog(null, "La bodega se encuentra llena, intente descargar en otra bodega", "Atención", JOptionPane.INFORMATION_MESSAGE);
+                }else{
+                    Node<Embarcacion> embarcaciónDesencolada = colaEmbarcaciones.Dequeue();
+                    pilaSalida.push(embarcaciónDesencolada);
+                    iter.data.setActuales(iter.data.getActual()+embarcaciónDesencolada.data.getContenedoresAct());
+                    break;
+                }
+            }
+            iter=iter.nextNode;
+        }
     }
 
     // Retorna la ultima embarcacion que dejo el puerto
@@ -92,11 +125,9 @@ public class Puerto {
         return salida;
     }
 
-    private void realizarRegistros() {
-        Embarcacion.registrosCSVEmbarcaciones(colaEmbarcaciones);
-    }
 
-    public Queue<Embarcacion> getEmbarcacionesCola() {
+    /*public Queue<Embarcacion> getEmbarcacionesCola() {
         return colaEmbarcaciones;
-    }
+    }*/
+   
 }
