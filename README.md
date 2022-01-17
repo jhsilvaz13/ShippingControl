@@ -1,4 +1,4 @@
-# Muu Seguro :passenger_ship:
+# Shipping Control :passenger_ship:
 <p align ="center"> 
 <img src="https://github.com/jhsilvaz13/ShippingControl/blob/master/src/Interfaz/images/LogoShippingControl.png">
 </p>
