@@ -123,7 +123,7 @@ public class InicioSesion extends javax.swing.JPanel {
         jToggleButtonVerContraseña.setToolTipText("");
         jToggleButtonVerContraseña.setBorder(null);
         jToggleButtonVerContraseña.setContentAreaFilled(false);
-        jToggleButtonVerContraseña.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jToggleButtonVerContraseña.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jToggleButtonVerContraseña.setFocusPainted(false);
         jToggleButtonVerContraseña.setPreferredSize(new java.awt.Dimension(45, 32));
         img= new javax.swing.ImageIcon("..\\ShippingControl\\src\\Interfaz\\images\\noVer.png").getImage();
@@ -225,7 +225,7 @@ public class InicioSesion extends javax.swing.JPanel {
         jButtonIrARegistro.setBorder(null);
         jButtonIrARegistro.setBorderPainted(false);
         jButtonIrARegistro.setContentAreaFilled(false);
-        jButtonIrARegistro.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButtonIrARegistro.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButtonIrARegistro.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 jButtonIrARegistroMouseEntered(evt);

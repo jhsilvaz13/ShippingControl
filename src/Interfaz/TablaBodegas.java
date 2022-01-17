@@ -10,7 +10,11 @@ import Mundo.shippingcontrol.Bodega;
 import java.awt.*;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+import javax.swing.table.TableRowSorter;
+
 /**
  *
  * @author EQUIPO
@@ -20,11 +24,12 @@ public class TablaBodegas extends javax.swing.JPanel {
     private MarcoPrincipal principal;
     int Bodegas_llenas = 0;
     int Bodegas_disponibles = 0;
+
     /**
      * Creates new form InicioSesion
      */
     public TablaBodegas(MarcoPrincipal principal) {
-        this.principal=principal;
+        this.principal = principal;
         initComponents();
         FillBodegasTable();
 
@@ -33,7 +38,6 @@ public class TablaBodegas extends javax.swing.JPanel {
     /**
      * Creates new form TablaBodegas
      */
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -48,7 +52,6 @@ public class TablaBodegas extends javax.swing.JPanel {
         jPanelLupa = new javax.swing.JPanel();
         jButton2 = new javax.swing.JButton();
         jCheckBox1 = new javax.swing.JCheckBox();
-        jCheckBox2 = new javax.swing.JCheckBox();
         jCheckBox3 = new javax.swing.JCheckBox();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable();
@@ -62,15 +65,22 @@ public class TablaBodegas extends javax.swing.JPanel {
         jLabelBodegaTotal12 = new javax.swing.JLabel();
         jLabelBodegaTotal = new javax.swing.JLabel();
         jCheckBoxZona = new javax.swing.JCheckBox();
+        jButton6 = new javax.swing.JButton();
+        jLabelError = new javax.swing.JLabel();
+        jLabelError1 = new javax.swing.JLabel();
 
+        setBackground(new java.awt.Color(255, 255, 255));
         setMaximumSize(new java.awt.Dimension(2147483647, 2147483647));
         setMinimumSize(new java.awt.Dimension(242, 446));
         setName(""); // NOI18N
         setPreferredSize(new java.awt.Dimension(1200, 800));
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setBackground(new java.awt.Color(255, 255, 255));
         jLabel1.setFont(new java.awt.Font("Trebuchet MS", 1, 60)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("Bodegas");
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, 70));
 
         jTextField1.setFont(new java.awt.Font("Trebuchet MS", 0, 15)); // NOI18N
         jTextField1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(153, 153, 153), 1, true));
@@ -80,6 +90,7 @@ public class TablaBodegas extends javax.swing.JPanel {
                 jTextField1MouseClicked(evt);
             }
         });
+        add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 90, 360, 28));
 
         jPanelLupa.setBackground(new java.awt.Color(255, 255, 255));
         jPanelLupa.setForeground(new java.awt.Color(255, 255, 255));
@@ -95,6 +106,8 @@ public class TablaBodegas extends javax.swing.JPanel {
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
+        add(jPanelLupa, new org.netbeans.lib.awtextra.AbsoluteConstraints(64, 103, -1, 28));
+
         jButton2.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
         jButton2.setText("Buscar");
         jButton2.setPreferredSize(new java.awt.Dimension(90, 27));
@@ -103,6 +116,7 @@ public class TablaBodegas extends javax.swing.JPanel {
                 jButton2ActionPerformed(evt);
             }
         });
+        add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 90, 100, 30));
 
         jCheckBox1.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
         jCheckBox1.setText("ID");
@@ -111,14 +125,7 @@ public class TablaBodegas extends javax.swing.JPanel {
                 jCheckBox1ActionPerformed(evt);
             }
         });
-
-        jCheckBox2.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
-        jCheckBox2.setText("Capacidad máxima");
-        jCheckBox2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCheckBox2ActionPerformed(evt);
-            }
-        });
+        add(jCheckBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, 50, 30));
 
         jCheckBox3.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
         jCheckBox3.setText("Contenedores actuales");
@@ -127,9 +134,17 @@ public class TablaBodegas extends javax.swing.JPanel {
                 jCheckBox3ActionPerformed(evt);
             }
         });
+        add(jCheckBox3, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 130, 225, 30));
 
+        jTable2.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
                 {null, null, null, null},
                 {null, null, null, null},
                 {null, null, null, null},
@@ -163,18 +178,23 @@ public class TablaBodegas extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
+        jTable2.setGridColor(new java.awt.Color(0, 0, 0));
+        jTable2.setRowHeight(20);
         jScrollPane3.setViewportView(jTable2);
 
+        add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 170, 1180, 340));
+
         jButton4.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
-        jButton4.setText("Actualizar bodega");
+        jButton4.setLabel("Actualizar tabla");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton4ActionPerformed(evt);
             }
         });
+        add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 520, 300, 50));
 
         java.awt.Image img= new javax.swing.ImageIcon("..\\ShippingControl\\src\\Interfaz\\images\\Buscar.png").getImage();
-        jLabelIconoBuscar.setIcon(new javax.swing.ImageIcon(img.getScaledInstance(40, 40, java.awt.Image.SCALE_SMOOTH)));
+        jLabelIconoBuscar.setIcon(new javax.swing.ImageIcon(img.getScaledInstance(30, 30, java.awt.Image.SCALE_SMOOTH)));
         jLabelIconoBuscar.setBackground(new java.awt.Color(255, 255, 255));
         jLabelIconoBuscar.setForeground(new java.awt.Color(255, 255, 255));
         jLabelIconoBuscar.setToolTipText("");
@@ -184,73 +204,44 @@ public class TablaBodegas extends javax.swing.JPanel {
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
         jPanelLupa.add(jLabelIconoBuscar, gridBagConstraints);
+        add(jLabelIconoBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 30, 30));
 
         jPanel1.setBackground(new java.awt.Color(160, 196, 242));
-        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 5));
+        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel1.setForeground(new java.awt.Color(0, 153, 255));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel2.setFont(new java.awt.Font("Trebuchet MS", 1, 24)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Trebuchet MS", 1, 26)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("Bodegas llenas:");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, -1, -1));
 
-        jLabel3.setFont(new java.awt.Font("Trebuchet MS", 1, 24)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Trebuchet MS", 1, 26)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("Bodegas con disponibilidad:");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 180, -1, -1));
 
-        jLabelBodegaLlena.setFont(new java.awt.Font("Trebuchet MS", 1, 24)); // NOI18N
+        jLabelBodegaLlena.setFont(new java.awt.Font("Trebuchet MS", 1, 26)); // NOI18N
         jLabelBodegaLlena.setForeground(new java.awt.Color(0, 0, 0));
         jLabelBodegaLlena.setText("?");
+        jPanel1.add(jLabelBodegaLlena, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 110, -1, -1));
 
-        jLabelBodegaDisp.setFont(new java.awt.Font("Trebuchet MS", 1, 24)); // NOI18N
+        jLabelBodegaDisp.setFont(new java.awt.Font("Trebuchet MS", 1, 26)); // NOI18N
         jLabelBodegaDisp.setForeground(new java.awt.Color(0, 0, 0));
         jLabelBodegaDisp.setText("?");
+        jPanel1.add(jLabelBodegaDisp, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 180, -1, -1));
 
-        jLabelBodegaTotal12.setFont(new java.awt.Font("Trebuchet MS", 1, 24)); // NOI18N
+        jLabelBodegaTotal12.setFont(new java.awt.Font("Trebuchet MS", 1, 26)); // NOI18N
         jLabelBodegaTotal12.setForeground(new java.awt.Color(0, 0, 0));
-        jLabelBodegaTotal12.setText("Bodegas totales");
+        jLabelBodegaTotal12.setText("Bodegas totales:");
+        jPanel1.add(jLabelBodegaTotal12, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, -1, -1));
 
-        jLabelBodegaTotal.setFont(new java.awt.Font("Trebuchet MS", 1, 24)); // NOI18N
+        jLabelBodegaTotal.setFont(new java.awt.Font("Trebuchet MS", 1, 26)); // NOI18N
         jLabelBodegaTotal.setForeground(new java.awt.Color(0, 0, 0));
         jLabelBodegaTotal.setText("?");
+        jPanel1.add(jLabelBodegaTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 40, -1, -1));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabelBodegaLlena))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabelBodegaDisp))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabelBodegaTotal12)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabelBodegaTotal)))
-                .addContainerGap(320, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(34, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabelBodegaTotal12)
-                    .addComponent(jLabelBodegaTotal))
-                .addGap(26, 26, 26)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabelBodegaLlena))
-                .addGap(27, 27, 27)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabelBodegaDisp))
-                .addGap(27, 27, 27))
-        );
+        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 520, 870, 270));
 
         jCheckBoxZona.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
         jCheckBoxZona.setText("Zona");
@@ -259,88 +250,47 @@ public class TablaBodegas extends javax.swing.JPanel {
                 jCheckBoxZonaActionPerformed(evt);
             }
         });
+        add(jCheckBoxZona, new org.netbeans.lib.awtextra.AbsoluteConstraints(305, 130, -1, 30));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane3)
-                            .addComponent(jLabel1)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(jLabelIconoBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(jPanelLupa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(291, 291, 291))
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(jCheckBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                .addComponent(jCheckBox2)
-                                                .addGap(54, 54, 54)))
-                                        .addComponent(jCheckBox3))
-                                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 505, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(18, 18, 18)
-                                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(45, 45, 45)
-                                        .addComponent(jCheckBoxZona)))))
-                        .addContainerGap())
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 133, Short.MAX_VALUE)
-                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(92, 92, 92))))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabelIconoBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jPanelLupa, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jCheckBox3)
-                        .addComponent(jCheckBoxZona))
-                    .addComponent(jCheckBox1)
-                    .addComponent(jCheckBox2))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(24, 24, 24)
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 364, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(15, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(94, 94, 94))))
-        );
+        jButton6.setBackground(new java.awt.Color(160, 196, 242));
+        jButton6.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
+        jButton6.setForeground(new java.awt.Color(0, 0, 0));
+        jButton6.setText("?");
+        jButton6.setBorder(null);
+        jButton6.setBorderPainted(false);
+        jButton6.setMaximumSize(new java.awt.Dimension(30, 30));
+        jButton6.setPreferredSize(new java.awt.Dimension(30, 30));
+        jButton6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jButton6MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jButton6MouseExited(evt);
+            }
+        });
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
+        add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 90, 30, 30));
+
+        jLabelError.setFont(new java.awt.Font("Trebuchet MS", 0, 16)); // NOI18N
+        jLabelError.setForeground(new java.awt.Color(0, 0, 0));
+        jLabelError.setText("Tras buscar por ID, si desea buscar por otro campo, actualice la tabla.");
+        jLabelError.setVisible(false);
+        add(jLabelError, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 90, -1, 30));
+
+        jLabelError1.setFont(new java.awt.Font("Trebuchet MS", 0, 16)); // NOI18N
+        jLabelError1.setForeground(new java.awt.Color(0, 0, 0));
+        jLabelError1.setText("Recuerde que para buscar por ID debe ingresar el número completo.");
+        jLabelError1.setVisible(false);
+        add(jLabelError1, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 60, -1, 30));
     }// </editor-fold>//GEN-END:initComponents
 
-    
-     public void FillBodegasTable() {
+    public void FillBodegasTable() {
         DefaultTableModel model = (DefaultTableModel) jTable2.getModel();
+        jTable2.setRowSorter(null);
         model.setRowCount(0);
         int counterDis = 0;
         int counter = 0;
@@ -358,7 +308,7 @@ public class TablaBodegas extends javax.swing.JPanel {
                     rowData[2] = Iterador.data.getActual();
                     rowData[3] = Iterador.data.getZona();
                     model.addRow(rowData);
-                    if (Iterador.data.getCapacidad()- Iterador.data.getActual() != 0) {
+                    if (Iterador.data.getCapacidad() - Iterador.data.getActual() != 0) {
                         counterDis++;
                     }
                     counter++;
@@ -372,19 +322,59 @@ public class TablaBodegas extends javax.swing.JPanel {
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
         }
-    } 
+    }
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
+        if (jCheckBox1.isSelected()) {
+            try {
+                int x;
+                x = Integer.parseInt(jTextField1.getText());
+                DefaultTableModel model = (DefaultTableModel) jTable2.getModel();
+                model.setRowCount(0);
+                Object[] a = new Object[4];
+                String b;
+                a = (Object[]) Bodega.FiltrarID(x, principal.getPuerto());
+                b = a.toString();
+                System.out.println(b);
+                model.addRow(a);
+
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Para filtrar por ID solo se reciben números.");
+            }
+        } else if (jCheckBox3.isSelected()) {
+            try {
+                int x;
+                x = Integer.parseInt(jTextField1.getText());
+                TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(((DefaultTableModel) jTable2.getModel()));
+                sorter.setRowFilter(RowFilter.regexFilter(jTextField1.getText(), 2));
+                jTable2.setRowSorter(sorter);
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Para filtrar por Contenedores Actuales solo se reciben números.");
+            }
+        } else if (jCheckBoxZona.isSelected()) {
+            String x;
+            x = jTextField1.getText();
+            if (x.contains("1") || x.contains("2") || x.contains("3") || x.contains("4") || x.contains("5") || x.contains("6")
+                    || x.contains("7") || x.contains("8") || x.contains("9") || x.contains("0")) {
+                JOptionPane.showMessageDialog(null, "Para filtrar por Zona no se reciben números.");
+            } else {
+                TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(((DefaultTableModel) jTable2.getModel()));
+                sorter.setRowFilter(RowFilter.regexFilter(jTextField1.getText(), 3));
+                jTable2.setRowSorter(sorter);
+            }
+        } else {
+
+            JOptionPane.showMessageDialog(null, "Antes de realizar una búsqueda, seleccione por que característica desea filtrar.");
+        }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jTextField1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextField1MouseClicked
-        
+
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1MouseClicked
 
     private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
-        if (jCheckBox1.isSelected()){
-            jCheckBox2.setSelected(false);
+        if (jCheckBox1.isSelected()) {
             jCheckBox3.setSelected(false);
             jCheckBoxZona.setSelected(false);
 
@@ -392,8 +382,7 @@ public class TablaBodegas extends javax.swing.JPanel {
     }//GEN-LAST:event_jCheckBox1ActionPerformed
 
     private void jCheckBox3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox3ActionPerformed
-        if (jCheckBox3.isSelected()){
-            jCheckBox2.setSelected(false);
+        if (jCheckBox3.isSelected()) {
             jCheckBox1.setSelected(false);
             jCheckBoxZona.setSelected(false);
 
@@ -404,29 +393,36 @@ public class TablaBodegas extends javax.swing.JPanel {
         FillBodegasTable();
     }//GEN-LAST:event_jButton4ActionPerformed
 
-    private void jCheckBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox2ActionPerformed
-        if (jCheckBox2.isSelected()){
-            jCheckBox1.setSelected(false);
-            jCheckBox3.setSelected(false);
-            jCheckBoxZona.setSelected(false);
-        }
-    }//GEN-LAST:event_jCheckBox2ActionPerformed
-
     private void jCheckBoxZonaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxZonaActionPerformed
         // TODO add your handling code here:
-        if (jCheckBoxZona.isSelected()){
+        if (jCheckBoxZona.isSelected()) {
             jCheckBox1.setSelected(false);
-            jCheckBox2.setSelected(false);
             jCheckBox3.setSelected(false);
         }
     }//GEN-LAST:event_jCheckBoxZonaActionPerformed
+
+    private void jButton6MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton6MouseEntered
+        // TODO add your handling code here:
+        jLabelError.setVisible(true);
+        jLabelError1.setVisible(true);
+    }//GEN-LAST:event_jButton6MouseEntered
+
+    private void jButton6MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton6MouseExited
+        // TODO add your handling code here:
+        jLabelError.setVisible(false);
+        jLabelError1.setVisible(false);
+    }//GEN-LAST:event_jButton6MouseExited
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton6ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton6;
     private javax.swing.JCheckBox jCheckBox1;
-    private javax.swing.JCheckBox jCheckBox2;
     private javax.swing.JCheckBox jCheckBox3;
     private javax.swing.JCheckBox jCheckBoxZona;
     private javax.swing.JLabel jLabel1;
@@ -436,6 +432,8 @@ public class TablaBodegas extends javax.swing.JPanel {
     private javax.swing.JLabel jLabelBodegaLlena;
     private javax.swing.JLabel jLabelBodegaTotal;
     private javax.swing.JLabel jLabelBodegaTotal12;
+    private javax.swing.JLabel jLabelError;
+    private javax.swing.JLabel jLabelError1;
     private javax.swing.JLabel jLabelIconoBuscar;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanelLupa;

@@ -29,7 +29,7 @@ public class MarcoPrincipal extends javax.swing.JPanel {
     public MarcoPrincipal(VentanaPrincipal principal, boolean primerIngreso) {
         this.principal=principal;
         this.primerIngreso=primerIngreso;
-        puerto=new Puerto("Puerto",0,0);
+        puerto=new Puerto("Puerto",0);
         puerto.cargarEmbarcacionesCSV();
         puerto.cargarBodegasCSV();
         initComponents();
@@ -58,7 +58,7 @@ public class MarcoPrincipal extends javax.swing.JPanel {
 
         jTabbedPaneContenedor.setBackground(new java.awt.Color(255, 255, 255));
         jTabbedPaneContenedor.setForeground(new java.awt.Color(0, 0, 0));
-        jTabbedPaneContenedor.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        jTabbedPaneContenedor.setFont(new java.awt.Font("Trebuchet MS", 1, 16)); // NOI18N
         jTabbedPaneContenedor.setName(""); // NOI18N
         jTabbedPaneContenedor.add("Puerto",new InfoPuerto(this));
         jTabbedPaneContenedor.add("Embarcaciones",new MenuEmbarcaciones(this));
@@ -73,6 +73,8 @@ public class MarcoPrincipal extends javax.swing.JPanel {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 120;
+        gridBagConstraints.gridheight = java.awt.GridBagConstraints.RELATIVE;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.PAGE_START;
         add(jTabbedPaneContenedor, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
@@ -82,7 +84,7 @@ public class MarcoPrincipal extends javax.swing.JPanel {
         if(jTabbedPaneContenedor.getSelectedIndex()==3){
             Embarcacion.registrosCSVEmbarcaciones(getPuerto().GetEmbarcaciones());
             Bodega.registrosCSVBodegas(getPuerto().GetBodegas());
-            principal.addPanelInicio();
+            principal.addPanelInicio(true);
         }
     }//GEN-LAST:event_jTabbedPaneContenedorMouseClicked
     public void habilitar(boolean flag){

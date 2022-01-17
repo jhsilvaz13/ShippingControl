@@ -51,7 +51,7 @@ public class Embarcacion implements Comparable<Embarcacion>{
             try {
                 FileWriter writeFile = new FileWriter(PATH, true);
                 PrintWriter registrar = new PrintWriter(writeFile);
-                registrar.println(String.format("%07d", iter.data.getIMO()) + "," + iter.data.getNombreEmbarcacion() + "," + iter.data.getBandera()
+                registrar.println(iter.data.getIMO() + "," + iter.data.getNombreEmbarcacion() + "," + iter.data.getBandera()
                         + "," + iter.data.getTipoDeEmbarcacion() + "," + String.valueOf(iter.data.getCapacidad()) + ","
                         + String.valueOf(iter.data.getContenedoresAct()) + "," + iter.data.getDisponibilidad());
                 registrar.close();
@@ -96,6 +96,7 @@ public class Embarcacion implements Comparable<Embarcacion>{
 
     @Override
     public int compareTo(Embarcacion o) {
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
         if(this.IMO>o.IMO){
             return 1;
         }else if(this.IMO<o.IMO){
@@ -103,22 +104,7 @@ public class Embarcacion implements Comparable<Embarcacion>{
         }
         return 0;
     }
-    public static void main(String[] args) {
-        AVLtree<Embarcacion> arbol=new AVLtree<Embarcacion>();
-        Embarcacion x=new Embarcacion(5,"Test","Test",3,3,3,false);
-        Embarcacion y=new Embarcacion(7,"Encontrado","Encontrado",3,3,3,false);
-        Embarcacion z=new Embarcacion(1,"Test","Test",3,3,3,false);
-        Embarcacion w=new Embarcacion(2,"Test","Test",3,3,3,false);
-        
-        Embarcacion aux=new Embarcacion(7,"as","as",3,3,3,true);
 
-        arbol.insert(x);
-        arbol.insert(y);
-        arbol.insert(z);
-        arbol.insert(w);
-        Embarcacion enc=arbol.contains(aux).data;
-        System.out.println(enc.bandera);
-    }
     public void  setActuales(int actual){
        this.contenedoresAct=actual;
     }
@@ -134,7 +120,6 @@ public class Embarcacion implements Comparable<Embarcacion>{
             if (PrintE == null) {
                 return rowData;
             } else {
-                
                 Node<Embarcacion> Iterador = PrintE.getBeginNode();
                 while (Iterador != null) {
                     if (Iterador.data.getDisponibilidad() == 1) {
@@ -149,18 +134,16 @@ public class Embarcacion implements Comparable<Embarcacion>{
                         Iterador = Iterador.nextNode;
                     }
                 }
-                
                 Embarcacion busqueda = new Embarcacion(IMO, "a", "a", 0, 0, 0, true);
+                
                 try {
-                    
                     rowData[0] = arbolIMO.contains(busqueda).data.IMO;
-                    
                     rowData[1] = arbolIMO.contains(busqueda).data.nombreEmbarcacion;
                     rowData[2] = arbolIMO.contains(busqueda).data.bandera;
                     rowData[3] = arbolIMO.contains(busqueda).data.tipoDeEmbarcacion;
                     rowData[4] = arbolIMO.contains(busqueda).data.capacidad;
                     rowData[5] = arbolIMO.contains(busqueda).data.contenedoresAct;
-                    if(arbolIMO.contains(busqueda).data.disponibilidad == true) {
+                    if (arbolIMO.contains(busqueda).data.disponibilidad == true) {
                         rowData[6] = "Disponible";
                     } else {
                         rowData[6] = "No Disponible";

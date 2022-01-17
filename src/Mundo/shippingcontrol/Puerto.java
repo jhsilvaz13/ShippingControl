@@ -20,16 +20,19 @@ public class Puerto {
     private static final String PATH0 = "..\\ShippingControl\\data\\bodegas.csv";
     private String nombrePuerto;
     private int bodegasMax;
-    private int capacidaBods;
     private Queue<Embarcacion> colaEmbarcaciones = new Queue<Embarcacion>();
     private Stack<Embarcacion> pilaSalida = new Stack<Embarcacion>();
     private LinkedList<Bodega> listaBodegas=new LinkedList<Bodega>();
-    public Puerto(String nombrePuerto,int bodegasMax, int capacidadBods) {
+
+    public Puerto(String nombrePuerto,int bodegasMax) {
         this.nombrePuerto = nombrePuerto;
         this.bodegasMax = bodegasMax;
-        this.capacidaBods=capacidadBods;
     }
 
+    /**
+     * Carga los datos que se encuenyran en los archivos CSV en objetos en
+     * ejecución y actualiza la cola correspondiente a los barcos*
+     */
     public void cargarEmbarcacionesCSV(){
         String linea;
         try {
@@ -69,11 +72,30 @@ public class Puerto {
     }
    
     public Queue<Embarcacion> GetEmbarcaciones(){
-        if (colaEmbarcaciones.isEmpty()){
+        boolean empty;
+        empty = colaEmbarcaciones.isEmpty();
+        if (empty == true){
             return null;
         }
         else{
             return colaEmbarcaciones;
+        }
+    }
+    
+    public void registrarSalidadDeEmbarcacion(int IDbodega) {
+        Node<Bodega> iter = listaBodegas.getBeginNode();
+        while (iter!=null) {
+            if(iter.data.getID()==IDbodega){
+                if(iter.data.getActual()+colaEmbarcaciones.getLastNode().data.getContenedoresAct()>iter.data.getCapacidad()){
+                    JOptionPane.showMessageDialog(null, "La bodega se encuentra llena, intente descargar en otra bodega", "Atención", JOptionPane.INFORMATION_MESSAGE);
+                }else{
+                    Node<Embarcacion> embarcaciónDesencolada = colaEmbarcaciones.Dequeue();
+                    pilaSalida.push(embarcaciónDesencolada);
+                    iter.data.setActuales(iter.data.getActual()+embarcaciónDesencolada.data.getContenedoresAct());
+                    break;
+                }
+            }
+            iter=iter.nextNode;
         }
     }
     
@@ -102,21 +124,11 @@ public class Puerto {
     }*/
 
     //Registra el desembarque y salida de una embarcacion, desencola
-    public void registrarSalidadDeEmbarcacion(int IDbodega) {
-        Node<Bodega> iter = listaBodegas.getBeginNode();
-        while (iter!=null) {
-            if(iter.data.getID()==IDbodega){
-                if(iter.data.getActual()+colaEmbarcaciones.getLastNode().data.getContenedoresAct()>iter.data.getCapacidad()){
-                    JOptionPane.showMessageDialog(null, "La bodega se encuentra llena, intente descargar en otra bodega", "Atención", JOptionPane.INFORMATION_MESSAGE);
-                }else{
-                    Node<Embarcacion> embarcaciónDesencolada = colaEmbarcaciones.Dequeue();
-                    pilaSalida.push(embarcaciónDesencolada);
-                    iter.data.setActuales(iter.data.getActual()+embarcaciónDesencolada.data.getContenedoresAct());
-                    break;
-                }
-            }
-            iter=iter.nextNode;
-        }
+    public Node<Embarcacion> registrarSalidadDeEmbarcacion() {
+        Node<Embarcacion> embarcaciónDesencolada = colaEmbarcaciones.Dequeue();
+        pilaSalida.push(embarcaciónDesencolada);
+        realizarRegistros();
+        return embarcaciónDesencolada;
     }
 
     // Retorna la ultima embarcacion que dejo el puerto
@@ -125,9 +137,11 @@ public class Puerto {
         return salida;
     }
 
+    private void realizarRegistros() {
+        Embarcacion.registrosCSVEmbarcaciones(colaEmbarcaciones);
+    }
 
-    /*public Queue<Embarcacion> getEmbarcacionesCola() {
+    public Queue<Embarcacion> getEmbarcacionesCola() {
         return colaEmbarcaciones;
-    }*/
-   
+    }
 }

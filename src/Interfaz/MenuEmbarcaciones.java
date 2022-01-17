@@ -14,7 +14,6 @@ import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
-import jdk.nashorn.internal.ir.ContinueNode;
 
 /**
  *
@@ -52,12 +51,12 @@ public class MenuEmbarcaciones extends javax.swing.JPanel {
      */
     public void FillEmbarcacionesTable() {
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        jTable1.setRowSorter(null);
         model.setRowCount(0);
         int counterDis = 0;
         int counter = 0;
         try {
             LinkedList<Embarcacion> PrintE = principal.getPuerto().GetEmbarcaciones();
-            //Puerto.colaEmbarcaciones.Enqueue(new Node(new Embarcacion(256806457,"Test","Yest",5,366445556,-753786924, false)));
             Object rowData[] = new Object[7];
             if (PrintE == null) {
                 JOptionPane.showMessageDialog(null, "No hay embarcaciones registradas");
@@ -118,6 +117,10 @@ public class MenuEmbarcaciones extends javax.swing.JPanel {
         jLabelError = new javax.swing.JLabel();
         jButton6 = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
+        jLabelError1 = new javax.swing.JLabel();
+
+        setBackground(new java.awt.Color(255, 255, 255));
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jButton4.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
         jButton4.setText("Descargar Embarcación");
@@ -126,6 +129,7 @@ public class MenuEmbarcaciones extends javax.swing.JPanel {
                 jButton4ActionPerformed(evt);
             }
         });
+        add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 660, 300, 55));
 
         jButton3.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
         jButton3.setText("Editar Embarcación");
@@ -134,6 +138,7 @@ public class MenuEmbarcaciones extends javax.swing.JPanel {
                 jButton3ActionPerformed(evt);
             }
         });
+        add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 590, 300, 55));
 
         jButton2.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
         jButton2.setText("Registrar Embarcación");
@@ -142,73 +147,44 @@ public class MenuEmbarcaciones extends javax.swing.JPanel {
                 jButton2ActionPerformed(evt);
             }
         });
+        add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 520, 300, 50));
 
         jPanel1.setBackground(new java.awt.Color(160, 196, 242));
-        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 5));
-        jPanel1.setForeground(new java.awt.Color(0, 153, 255));
+        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPanel1.setForeground(new java.awt.Color(0, 0, 0));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel2.setFont(new java.awt.Font("Trebuchet MS", 1, 24)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Trebuchet MS", 1, 26)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("Embarcaciones en el puerto: ");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, -1, 40));
 
-        jLabel3.setFont(new java.awt.Font("Trebuchet MS", 1, 24)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Trebuchet MS", 1, 26)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("Embarcaciones disponibles:");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, -1, 40));
 
-        jLabel4.setFont(new java.awt.Font("Trebuchet MS", 1, 24)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Trebuchet MS", 1, 26)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setText("Embarcaciones no disponibles: ");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 180, -1, 40));
 
-        jLabel6.setFont(new java.awt.Font("Trebuchet MS", 1, 24)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Trebuchet MS", 1, 26)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(0, 0, 0));
         jLabel6.setText("?");
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 40, -1, 40));
 
-        jLabel7.setFont(new java.awt.Font("Trebuchet MS", 1, 24)); // NOI18N
+        jLabel7.setFont(new java.awt.Font("Trebuchet MS", 1, 26)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(0, 0, 0));
         jLabel7.setText("?");
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 110, -1, 40));
 
-        jLabel8.setFont(new java.awt.Font("Trebuchet MS", 1, 24)); // NOI18N
+        jLabel8.setFont(new java.awt.Font("Trebuchet MS", 1, 26)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(0, 0, 0));
         jLabel8.setText("?");
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 180, -1, 40));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel6))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel7))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel8)))
-                .addContainerGap(320, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(42, 42, 42)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel6))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel7))
-                .addGap(46, 46, 46)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel8))
-                .addGap(40, 40, 40))
-        );
+        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 520, 870, 270));
 
         jTable1.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -246,7 +222,12 @@ public class MenuEmbarcaciones extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
+        jTable1.setGridColor(new java.awt.Color(0, 0, 0));
+        jTable1.setRowHeight(20);
+        jTable1.setShowGrid(true);
         jScrollPane1.setViewportView(jTable1);
+
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 170, 1180, 340));
 
         jCheckBox6.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
         jCheckBox6.setText("Contenedores actuales");
@@ -255,6 +236,7 @@ public class MenuEmbarcaciones extends javax.swing.JPanel {
                 jCheckBox6ActionPerformed(evt);
             }
         });
+        add(jCheckBox6, new org.netbeans.lib.awtextra.AbsoluteConstraints(495, 130, 220, 30));
 
         jCheckBox5.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
         jCheckBox5.setText("Capacidad");
@@ -263,6 +245,7 @@ public class MenuEmbarcaciones extends javax.swing.JPanel {
                 jCheckBox5ActionPerformed(evt);
             }
         });
+        add(jCheckBox5, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 130, 115, 30));
 
         jCheckBox4.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
         jCheckBox4.setText("Tipo");
@@ -271,6 +254,7 @@ public class MenuEmbarcaciones extends javax.swing.JPanel {
                 jCheckBox4ActionPerformed(evt);
             }
         });
+        add(jCheckBox4, new org.netbeans.lib.awtextra.AbsoluteConstraints(295, 130, 65, 30));
 
         jCheckBox3.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
         jCheckBox3.setText("Bandera");
@@ -279,6 +263,7 @@ public class MenuEmbarcaciones extends javax.swing.JPanel {
                 jCheckBox3ActionPerformed(evt);
             }
         });
+        add(jCheckBox3, new org.netbeans.lib.awtextra.AbsoluteConstraints(185, 130, 100, 30));
 
         jCheckBox2.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
         jCheckBox2.setText("Nombre");
@@ -287,6 +272,7 @@ public class MenuEmbarcaciones extends javax.swing.JPanel {
                 jCheckBox2ActionPerformed(evt);
             }
         });
+        add(jCheckBox2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 130, 95, 30));
 
         jCheckBox1.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
         jCheckBox1.setText("IMO");
@@ -300,21 +286,35 @@ public class MenuEmbarcaciones extends javax.swing.JPanel {
                 jCheckBox1PropertyChange(evt);
             }
         });
+        add(jCheckBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, 60, 30));
 
-        jTextField1.setFont(new java.awt.Font("Trebuchet MS", 0, 15)); // NOI18N
+        jTextField1.setFont(new java.awt.Font("Trebuchet MS", 0, 18)); // NOI18N
+        jTextField1.setForeground(new java.awt.Color(0, 0, 0));
         jTextField1.setToolTipText("Buscar");
+        jTextField1.setAlignmentX(5.0F);
+        jTextField1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jTextField1.setMargin(new java.awt.Insets(0, 50, 0, 0));
         jTextField1.setMinimumSize(new java.awt.Dimension(8, 19));
+        add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 90, 360, 28));
 
         jButton1.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
         jButton1.setText("Buscar");
+        jButton1.setBorder(null);
+        jButton1.setBorderPainted(false);
+        jButton1.setMaximumSize(new java.awt.Dimension(100, 30));
+        jButton1.setPreferredSize(new java.awt.Dimension(100, 30));
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
+        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 90, 100, 30));
+        jButton1.getAccessibleContext().setAccessibleDescription("");
 
         jLabel1.setFont(new java.awt.Font("Trebuchet MS", 1, 60)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("Embarcaciones");
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 430, 70));
 
         jCheckBox7.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
         jCheckBox7.setText("Disponibilidad");
@@ -323,6 +323,7 @@ public class MenuEmbarcaciones extends javax.swing.JPanel {
                 jCheckBox7ActionPerformed(evt);
             }
         });
+        add(jCheckBox7, new org.netbeans.lib.awtextra.AbsoluteConstraints(725, 130, -1, 30));
 
         jButton5.setFont(new java.awt.Font("Trebuchet MS", 1, 14)); // NOI18N
         jButton5.setText("Actualizar Tabla");
@@ -331,18 +332,22 @@ public class MenuEmbarcaciones extends javax.swing.JPanel {
                 jButton5ActionPerformed(evt);
             }
         });
+        add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 730, 300, 55));
 
         jLabelError.setFont(new java.awt.Font("Trebuchet MS", 0, 16)); // NOI18N
         jLabelError.setForeground(new java.awt.Color(0, 0, 0));
-        jLabelError.setText("Recuerde que para buscar por IMO debe ingresar el número completo.");
+        jLabelError.setText("Tras buscar por IMO, si desea buscar por otro campo, actualice la tabla.");
         jLabelError.setVisible(false);
+        add(jLabelError, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 90, -1, 30));
 
         jButton6.setBackground(new java.awt.Color(160, 196, 242));
         jButton6.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
         jButton6.setForeground(new java.awt.Color(0, 0, 0));
         jButton6.setText("?");
-        jButton6.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(160, 196, 242), 0, true));
-        jButton6.setPreferredSize(new java.awt.Dimension(27, 26));
+        jButton6.setBorder(null);
+        jButton6.setBorderPainted(false);
+        jButton6.setMaximumSize(new java.awt.Dimension(30, 30));
+        jButton6.setPreferredSize(new java.awt.Dimension(30, 30));
         jButton6.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 jButton6MouseEntered(evt);
@@ -351,101 +356,23 @@ public class MenuEmbarcaciones extends javax.swing.JPanel {
                 jButton6MouseExited(evt);
             }
         });
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
+        add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 90, 30, 30));
 
         java.awt.Image img= new javax.swing.ImageIcon("..\\ShippingControl\\src\\Interfaz\\images\\Buscar.png").getImage();
-        jLabel5.setIcon(new javax.swing.ImageIcon(img.getScaledInstance(40, 40, java.awt.Image.SCALE_SMOOTH)));
-        jLabel5.setPreferredSize(new java.awt.Dimension(40, 40));
+        jLabel5.setIcon(new javax.swing.ImageIcon(img.getScaledInstance(30, 30, java.awt.Image.SCALE_SMOOTH)));
+        jLabel5.setPreferredSize(new java.awt.Dimension(30, 30));
+        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 30, 30));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 431, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jCheckBox1)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(jCheckBox2)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(jCheckBox3)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(jCheckBox4)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(jCheckBox5)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(jCheckBox6)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(jCheckBox7))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(13, 13, 13)
-                                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jLabelError)))
-                                .addGap(0, 0, Short.MAX_VALUE)))
-                        .addContainerGap())
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 116, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(62, 62, 62))))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabelError)
-                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jCheckBox1)
-                    .addComponent(jCheckBox2)
-                    .addComponent(jCheckBox3)
-                    .addComponent(jCheckBox4)
-                    .addComponent(jCheckBox5)
-                    .addComponent(jCheckBox6)
-                    .addComponent(jCheckBox7))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 352, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 3, Short.MAX_VALUE)))
-                .addContainerGap())
-        );
-
-        jButton1.getAccessibleContext().setAccessibleDescription("");
+        jLabelError1.setFont(new java.awt.Font("Trebuchet MS", 0, 16)); // NOI18N
+        jLabelError1.setForeground(new java.awt.Color(0, 0, 0));
+        jLabelError1.setText("Recuerde que para buscar por IMO debe ingresar el número completo.");
+        jLabelError1.setVisible(false);
+        add(jLabelError1, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 60, -1, 30));
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -567,7 +494,6 @@ public class MenuEmbarcaciones extends javax.swing.JPanel {
                 String b;
                 a = (Object[]) Embarcacion.FiltrarIMO(x, principal.getPuerto());
                 b = a.toString();
-                System.out.println(b);
                 model.addRow(a);
 
             } catch (Exception e) {
@@ -577,7 +503,6 @@ public class MenuEmbarcaciones extends javax.swing.JPanel {
             TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(((DefaultTableModel) jTable1.getModel()));
             sorter.setRowFilter(RowFilter.regexFilter(jTextField1.getText(), 1));
             jTable1.setRowSorter(sorter);
-
         } else if (jCheckBox3.isSelected()) {
             String x;
             x = jTextField1.getText();
@@ -653,17 +578,24 @@ public class MenuEmbarcaciones extends javax.swing.JPanel {
     private void jButton6MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton6MouseEntered
         // TODO add your handling code here:
         jLabelError.setVisible(true);
+        jLabelError1.setVisible(true);
     }//GEN-LAST:event_jButton6MouseEntered
 
     private void jButton6MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton6MouseExited
         // TODO add your handling code here:
         jLabelError.setVisible(false);
+        jLabelError1.setVisible(false);
 
     }//GEN-LAST:event_jButton6MouseExited
 
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton6ActionPerformed
+
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
-        int ID=0;
+        // TODO add your handling code here:
+        int ID = 0;
         try {
             ID = Integer.valueOf(JOptionPane.showInputDialog(null, "Ingrese el ID de la bodega: "));
             if (ID < principal.getPuerto().GetBodegas().getBeginNode().data.getID() || ID > principal.getPuerto().GetBodegas().getLastNode().data.getID()) {
@@ -672,9 +604,9 @@ public class MenuEmbarcaciones extends javax.swing.JPanel {
                 principal.getPuerto().registrarSalidadDeEmbarcacion(ID);
             }
         } catch (Exception e) {
-            System.out.println("Error en descargue"+e.getMessage());
+            System.out.println("Error en descargue" + e.getMessage());
             JOptionPane.showMessageDialog(null, "La bodega con el ID " + ID + " no ha sido adssadencontrada", "Atención", JOptionPane.INFORMATION_MESSAGE);
-        }   
+        }
         FillEmbarcacionesTable();
     }//GEN-LAST:event_jButton4ActionPerformed
 
@@ -702,6 +634,7 @@ public class MenuEmbarcaciones extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabelError;
+    private javax.swing.JLabel jLabelError1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;

@@ -40,43 +40,91 @@ public class InfoPuerto extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        InfoPuerto = new java.awt.Label();
-        LabelNombre = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        LabelcBodegas = new javax.swing.JLabel();
         LabelnBodegas = new javax.swing.JLabel();
+        LabelNombre = new javax.swing.JLabel();
         nombre = new java.awt.TextField();
         nBodegas = new java.awt.TextField();
-        jButtonGuardar = new javax.swing.JButton();
-        LabelcBodegas = new javax.swing.JLabel();
         cBodegas = new java.awt.TextField();
+        jButtonGuardar = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
 
-        setMaximumSize(null);
+        setBackground(new java.awt.Color(255, 255, 255));
         setPreferredSize(new java.awt.Dimension(1200, 800));
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        InfoPuerto.setFont(new java.awt.Font("Trebuchet MS", 1, 60)); // NOI18N
-        InfoPuerto.setText("Información del puerto");
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        LabelNombre.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
-        LabelNombre.setText("Nombre del puerto:");
+        LabelcBodegas.setFont(new java.awt.Font("Trebuchet MS", 1, 24)); // NOI18N
+        LabelcBodegas.setForeground(new java.awt.Color(0, 0, 0));
+        LabelcBodegas.setText("Capacidad de bodegas del puerto: ");
+        jPanel1.add(LabelcBodegas, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 360, -1, 40));
 
-        LabelnBodegas.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
+        LabelnBodegas.setFont(new java.awt.Font("Trebuchet MS", 1, 24)); // NOI18N
+        LabelnBodegas.setForeground(new java.awt.Color(0, 0, 0));
         LabelnBodegas.setText("Número de bodegas del puerto: ");
         LabelnBodegas.setToolTipText("");
+        jPanel1.add(LabelnBodegas, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 210, -1, 40));
 
-        nombre.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
+        LabelNombre.setFont(new java.awt.Font("Trebuchet MS", 1, 24)); // NOI18N
+        LabelNombre.setForeground(new java.awt.Color(0, 0, 0));
+        LabelNombre.setText("Nombre del puerto:");
+        jPanel1.add(LabelNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 50, -1, 40));
+
+        nombre.setBackground(new java.awt.Color(204, 204, 204));
+        nombre.setFont(new java.awt.Font("Trebuchet MS", 0, 22)); // NOI18N
         nombre.setPreferredSize(new java.awt.Dimension(93, 35));
+        nombre.setSelectionStart(0);
         nombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 nombreActionPerformed(evt);
             }
         });
+        jPanel1.add(nombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 90, 500, 40));
 
-        nBodegas.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
+        nBodegas.setBackground(new java.awt.Color(204, 204, 204));
+        nBodegas.setFont(new java.awt.Font("Trebuchet MS", 0, 22)); // NOI18N
         nBodegas.setPreferredSize(new java.awt.Dimension(100, 35));
         nBodegas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 nBodegasActionPerformed(evt);
             }
         });
+        jPanel1.add(nBodegas, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 250, 500, 40));
+
+        cBodegas.setBackground(new java.awt.Color(204, 204, 204));
+        cBodegas.setFont(new java.awt.Font("Trebuchet MS", 0, 20)); // NOI18N
+        cBodegas.setPreferredSize(new java.awt.Dimension(100, 35));
+        cBodegas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cBodegasActionPerformed(evt);
+            }
+        });
+        if(principal.getPrimerIngreso()){
+            nombre.setEditable(true);
+            nBodegas.setEditable(true);
+            cBodegas.setEnabled(true);
+            nombre.setBackground(new java.awt.Color(255, 255, 255));
+            nBodegas.setBackground(new java.awt.Color(255, 255, 255));
+            cBodegas.setBackground(new java.awt.Color(255, 255, 255));
+        }else{
+            nombre.setEditable(false);
+            nombre.setText(Ingreso_usuario.getCredencialesPuerto()[2]);
+            nBodegas.setEditable(false);
+            nBodegas.setText(Ingreso_usuario.getCredencialesPuerto()[3]);
+            cBodegas.setEditable(false);
+            cBodegas.setText(Ingreso_usuario.getCredencialesPuerto()[4]);
+            nombre.setBackground(new java.awt.Color(204, 204, 204));
+            nBodegas.setBackground(new java.awt.Color(204, 204, 204));
+            cBodegas.setBackground(new java.awt.Color(204, 204, 204));
+            jButtonGuardar.setEnabled(false);
+        }
+        jPanel1.add(cBodegas, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 400, 500, 40));
 
         jButtonGuardar.setBackground(new java.awt.Color(0, 51, 204));
         jButtonGuardar.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
@@ -93,87 +141,28 @@ public class InfoPuerto extends javax.swing.JPanel {
                 jButtonGuardarActionPerformed(evt);
             }
         });
+        jPanel1.add(jButtonGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 570, 200, 80));
 
-        LabelcBodegas.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
-        LabelcBodegas.setText("Capacidad de bodegas del puerto: ");
+        add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 100, 600, 700));
 
-        cBodegas.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
-        cBodegas.setPreferredSize(new java.awt.Dimension(100, 35));
-        cBodegas.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cBodegasActionPerformed(evt);
-            }
-        });
-        if(principal.getPrimerIngreso()){
-            nombre.setEditable(true);
-            nBodegas.setEditable(true);
-            cBodegas.setEnabled(true);
-            nombre.setBackground(new java.awt.Color(206, 218, 255));
-            nBodegas.setBackground(new java.awt.Color(206, 218, 255));
-            cBodegas.setBackground(new java.awt.Color(206, 218, 255));
-        }else{
-            nombre.setEditable(false);
-            nombre.setText(Ingreso_usuario.getCredencialesPuerto()[2]);
-            nBodegas.setEditable(false);
-            nBodegas.setText(Ingreso_usuario.getCredencialesPuerto()[3]);
-            cBodegas.setEditable(false);
-            cBodegas.setText(Ingreso_usuario.getCredencialesPuerto()[4]);
-            nombre.setBackground(new java.awt.Color(255, 255, 255));
-            nBodegas.setBackground(new java.awt.Color(255, 255, 255));
-            cBodegas.setBackground(new java.awt.Color(255,255,255));
-            jButtonGuardar.setEnabled(false);
-        }
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(44, 44, 44)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(LabelnBodegas)
-                                .addGap(26, 26, 26)
-                                .addComponent(nBodegas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(LabelNombre)
-                                .addGap(42, 42, 42)
-                                .addComponent(nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 763, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(InfoPuerto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(LabelcBodegas)
-                                .addGap(26, 26, 26)
-                                .addComponent(cBodegas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(538, 538, 538)
-                        .addComponent(jButtonGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(188, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(57, 57, 57)
-                .addComponent(InfoPuerto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(32, 32, 32)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(LabelNombre)
-                    .addComponent(nombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(LabelnBodegas, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(nBodegas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(1, 1, 1)
-                        .addComponent(cBodegas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(LabelcBodegas, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(408, 408, 408)
-                .addComponent(jButtonGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(46, 46, 46))
-        );
+        jLabel9.setForeground(new java.awt.Color(10, 30, 49));
+        jLabel9.setText("jLabel9");
+        java.awt.Image fondo= new javax.swing.ImageIcon("..\\ShippingControl\\src\\Interfaz\\images\\Puertos2.jpg").getImage();
+        jLabel9.setIcon( new javax.swing.ImageIcon(fondo.getScaledInstance(596, 696, java.awt.Image.SCALE_SMOOTH)));
+        jPanel2.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(2, 2, 596, 696));
+
+        add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 100, 600, 700));
+
+        jLabel1.setFont(new java.awt.Font("Trebuchet MS", 1, 70)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("Información del Puerto");
+        jLabel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1200, 100));
     }// </editor-fold>//GEN-END:initComponents
 
     private void nBodegasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nBodegasActionPerformed
@@ -192,9 +181,9 @@ public class InfoPuerto extends javax.swing.JPanel {
             nombre.setEditable(false);
             nBodegas.setEditable(false);
             cBodegas.setEditable(false);
-            nombre.setBackground(new java.awt.Color(255, 255, 255));
-            nBodegas.setBackground(new java.awt.Color(255, 255, 255));
-            cBodegas.setBackground(new java.awt.Color(255, 255, 255));
+            nombre.setBackground(new java.awt.Color(204, 204, 204));
+            nBodegas.setBackground(new java.awt.Color(204, 204, 204));
+            cBodegas.setBackground(new java.awt.Color(204, 204, 204));
             jButtonGuardar.setEnabled(false);
             RegistrarBodegasCSV(Integer.valueOf(nBodegas.getText()), Integer.valueOf(cBodegas.getText()));
             principal.getPuerto().cargarBodegasCSV();
@@ -233,12 +222,15 @@ public class InfoPuerto extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private java.awt.Label InfoPuerto;
     private javax.swing.JLabel LabelNombre;
     private javax.swing.JLabel LabelcBodegas;
     private javax.swing.JLabel LabelnBodegas;
     private java.awt.TextField cBodegas;
     private javax.swing.JButton jButtonGuardar;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private java.awt.TextField nBodegas;
     private java.awt.TextField nombre;
     // End of variables declaration//GEN-END:variables

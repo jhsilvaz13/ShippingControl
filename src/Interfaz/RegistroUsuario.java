@@ -326,7 +326,7 @@ public class RegistroUsuario extends javax.swing.JPanel {
 
     private void jButtonIrAPanelSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonIrAPanelSesionActionPerformed
         // TODO add your handling code here:
-        principal.addPanelInicio();
+        principal.addPanelInicio(true);
     }//GEN-LAST:event_jButtonIrAPanelSesionActionPerformed
 
     private void jButtonIrAPanelSesionMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButtonIrAPanelSesionMouseEntered
