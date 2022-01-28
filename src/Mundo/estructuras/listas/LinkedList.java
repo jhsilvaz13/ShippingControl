@@ -35,6 +35,7 @@ public class LinkedList<T> {
         } else {
             Node<T> lastB = beginNode;
             while (lastB.nextNode.nextNode != null) {
+
                 lastB = lastB.nextNode;
             }
             lastB.nextNode = null;
@@ -54,10 +55,12 @@ public class LinkedList<T> {
 
     //Eliminar un elemento al inicio de la lista
     public void popFront() {
-        try {
+        if (isEmpty()) {
+            System.out.println("La lista esta vacia");
+        } else if (beginNode == lastNode) {
+            popBack();
+        } else {
             this.beginNode = this.beginNode.nextNode;
-        } catch (Exception exc) {
-            System.out.println("--La lista está vacia--");
         }
     }
 
@@ -76,7 +79,20 @@ public class LinkedList<T> {
         }
     }
 
-    //Añadir un nodo nuevo despues de de node
+    public void printC() {
+        if (this.beginNode != null) {
+            Node<T> iterator = beginNode;
+            while (iterator.nextNode != null) {
+                System.out.print(iterator.data + ",");
+                iterator = iterator.nextNode;
+            }
+            System.out.println(iterator.data);
+        } else {
+            System.out.println();
+        }
+    }
+
+    //Añadir un nodo nuevo despues de node
     public void addAfter(Node<T> node, T data) {
         Node<T> newNode = new Node<T>(data);
         if (isEmpty()) {
@@ -92,8 +108,64 @@ public class LinkedList<T> {
 
     }
 
+    //Elimina el nodo que contenga a K
+    public void delete(T k) {
+        if (!isEmpty()) {
+            Node<T> iterator = this.beginNode;
+            if (iterator.data.equals(k)) {
+                popFront();
+            } else if (this.lastNode.data.equals(k) ) {
+                popBack();
+            } else {
+                while (iterator.nextNode != null) {
+                    if (iterator.nextNode.data.equals(k)) {
+                        if (iterator.nextNode.nextNode == null) {
+                            popBack();
+                            break;
+                        } else {
+                            iterator.nextNode = iterator.nextNode.nextNode;
+                        }
+                    }
+                    iterator = iterator.nextNode;
+                }
+            }
+        }
+    }
+    //Busca si algun nodo contiene el elemento K
+    public boolean find(T k) {
+        if (!isEmpty()) {
+            Node<T> iterator = beginNode;
+            while (iterator != null) {
+                if (iterator.data.equals(k)) {
+                    return true;
+                }
+                iterator = iterator.nextNode;
+            }
+            return false;
+        } else {
+            return false;
+        }
+    }
+    
+    //Busca si algun nodo contiene el elemento K y lo retorna
+    public T search(T k) {
+        if (!isEmpty()) {
+            Node<T> iterator = beginNode;
+            while (iterator != null) {
+                if (iterator.data.equals(k)) {
+                    return iterator.data;
+                }
+                iterator = iterator.nextNode;
+            }
+            return null;
+        } else {
+            return null;
+        }
+    }
+    
+    
     public boolean isEmpty() {
-        if (beginNode == null && lastNode == null) {
+        if (beginNode == null) {
             return true;
         }
         return false;
@@ -145,4 +217,5 @@ public class LinkedList<T> {
     public Node<T> getLastNode() {
         return this.lastNode;
     }
+    
 }

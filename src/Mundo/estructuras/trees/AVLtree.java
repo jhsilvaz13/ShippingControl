@@ -57,7 +57,7 @@ public class AVLtree<T extends Comparable<? super T>> {
     
     //Retorna si el arbol binario tiene el nodo que contiene a x
     public   AVLNode<T>  contains(T x){
-        return  contains(x, root);
+        return  contains(x, this.root);
     }
     //Llama recursivamente para verifiicar si el nodo actual contiene a x
     //si no se va a la derecha o a la izquierda

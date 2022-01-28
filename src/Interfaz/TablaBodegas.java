@@ -32,7 +32,6 @@ public class TablaBodegas extends javax.swing.JPanel {
         this.principal = principal;
         initComponents();
         FillBodegasTable();
-
     }
 
     /**
@@ -296,7 +295,6 @@ public class TablaBodegas extends javax.swing.JPanel {
         int counter = 0;
         try {
             LinkedList<Bodega> PrintE = principal.getPuerto().GetBodegas();
-            //Puerto.colaEmbarcaciones.Enqueue(new Node(new Embarcacion(256806457,"Test","Yest",5,366445556,-753786924, false)));
             Object rowData[] = new Object[4];
             if (PrintE == null) {
                 JOptionPane.showMessageDialog(null, "No hay Bodegas registradas");

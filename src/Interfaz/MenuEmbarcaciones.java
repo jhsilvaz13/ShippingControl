@@ -4,6 +4,7 @@
  */
 package Interfaz;
 
+import Mundo.estructuras.listas.ArrayList;
 import Mundo.estructuras.listas.LinkedList;
 import Mundo.estructuras.listas.Node;
 import Mundo.shippingcontrol.Embarcacion;
@@ -521,9 +522,15 @@ public class MenuEmbarcaciones extends javax.swing.JPanel {
                     || x.contains("7") || x.contains("8") || x.contains("9") || x.contains("0")) {
                 JOptionPane.showMessageDialog(null, "Para filtrar por Tipo no se reciben números.");
             } else {
-                TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(((DefaultTableModel) jTable1.getModel()));
+                /*TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(((DefaultTableModel) jTable1.getModel()));
                 sorter.setRowFilter(RowFilter.regexFilter(jTextField1.getText(), 3));
-                jTable1.setRowSorter(sorter);
+                jTable1.setRowSorter(sorter);*/
+                DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+                model.setRowCount(0);
+                ArrayList<Object[]> rows=Embarcacion.filtrarTipo(jTextField1.getText(), principal.getPuerto());
+                for(int i=0; i<rows.length();i++){
+                    model.addRow(rows.get(i));
+                }
             }
         } else if (jCheckBox5.isSelected()) {
             try {

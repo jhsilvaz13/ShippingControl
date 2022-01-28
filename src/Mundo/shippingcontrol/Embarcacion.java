@@ -4,6 +4,9 @@
  */
 package Mundo.shippingcontrol;
 
+import Mundo.estructuras.hashing.HashTable;
+import Mundo.estructuras.hashing.HashMap;
+import Mundo.estructuras.hashing.HashNode;
 import Mundo.estructuras.listas.*;
 import Mundo.estructuras.trees.*;
 import java.io.*;
@@ -12,10 +15,9 @@ import java.io.*;
  *
  * @author jhonz
  */
-public class Embarcacion implements Comparable<Embarcacion>{
+public class Embarcacion implements Comparable<Embarcacion> {
 
     static final String PATH = "..\\ShippingControl\\data\\embarcaciones.csv";
-
     //PARAMETROS
     private int IMO;
     private String nombreEmbarcacion;
@@ -37,17 +39,15 @@ public class Embarcacion implements Comparable<Embarcacion>{
         this.disponibilidad = disponibilidad;
     }
 
-
-    
     public static void registrosCSVEmbarcaciones(Queue<Embarcacion> cola) {
         LinkedList<Embarcacion> listaEmbarcaciones = cola;
         Node<Embarcacion> iter = listaEmbarcaciones.getBeginNode();
-        try {   
-                new FileWriter(PATH, false).close();
-            } catch (Exception e) {
-                System.out.println(e.getMessage());
-            }
-        while (iter!= null) {
+        try {
+            new FileWriter(PATH, false).close();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        while (iter != null) {
             try {
                 FileWriter writeFile = new FileWriter(PATH, true);
                 PrintWriter registrar = new PrintWriter(writeFile);
@@ -96,22 +96,22 @@ public class Embarcacion implements Comparable<Embarcacion>{
 
     @Override
     public int compareTo(Embarcacion o) {
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-        if(this.IMO>o.IMO){
+        if (this.IMO > o.IMO) {
             return 1;
-        }else if(this.IMO<o.IMO){
+        } else if (this.IMO < o.IMO) {
             return -1;
         }
         return 0;
     }
 
-    public void  setActuales(int actual){
-       this.contenedoresAct=actual;
+    public void setActuales(int actual) {
+        this.contenedoresAct = actual;
     }
-    public void setDisponibilidad(boolean disp){
-        this.disponibilidad=disp;
+
+    public void setDisponibilidad(boolean disp) {
+        this.disponibilidad = disp;
     }
-    
+
     public static Object FiltrarIMO(int IMO, Puerto puerto) {
         AVLtree<Embarcacion> arbolIMO = new AVLtree<Embarcacion>();
         Object rowData[] = new Object[7];
@@ -124,26 +124,27 @@ public class Embarcacion implements Comparable<Embarcacion>{
                 while (Iterador != null) {
                     if (Iterador.data.getDisponibilidad() == 1) {
                         Embarcacion a = new Embarcacion(Iterador.data.getIMO(), Iterador.data.getNombreEmbarcacion(), Iterador.data.getBandera(),
-                                Iterador.data.getTipoDeEmbarcacion(), Iterador.data.getCapacidad(), Iterador.data.contenedoresAct,true);
+                                Iterador.data.getTipoDeEmbarcacion(), Iterador.data.getCapacidad(), Iterador.data.contenedoresAct, true);
                         arbolIMO.insert(a);
                         Iterador = Iterador.nextNode;
                     } else {
                         Embarcacion a = new Embarcacion(Iterador.data.getIMO(), Iterador.data.getNombreEmbarcacion(), Iterador.data.getBandera(),
-                                Iterador.data.getTipoDeEmbarcacion(), Iterador.data.getCapacidad(), Iterador.data.contenedoresAct,false);
+                                Iterador.data.getTipoDeEmbarcacion(), Iterador.data.getCapacidad(), Iterador.data.contenedoresAct, false);
                         arbolIMO.insert(a);
                         Iterador = Iterador.nextNode;
                     }
                 }
                 Embarcacion busqueda = new Embarcacion(IMO, "a", "a", 0, 0, 0, true);
-                
+
                 try {
-                    rowData[0] = arbolIMO.contains(busqueda).data.IMO;
-                    rowData[1] = arbolIMO.contains(busqueda).data.nombreEmbarcacion;
-                    rowData[2] = arbolIMO.contains(busqueda).data.bandera;
-                    rowData[3] = arbolIMO.contains(busqueda).data.tipoDeEmbarcacion;
-                    rowData[4] = arbolIMO.contains(busqueda).data.capacidad;
-                    rowData[5] = arbolIMO.contains(busqueda).data.contenedoresAct;
-                    if (arbolIMO.contains(busqueda).data.disponibilidad == true) {
+                    Embarcacion encontrada = arbolIMO.contains(busqueda).data;
+                    rowData[0] = encontrada.IMO;
+                    rowData[1] = encontrada.nombreEmbarcacion;
+                    rowData[2] = encontrada.bandera;
+                    rowData[3] = encontrada.tipoDeEmbarcacion;
+                    rowData[4] = encontrada.capacidad;
+                    rowData[5] = encontrada.contenedoresAct;
+                    if (encontrada.disponibilidad == true) {
                         rowData[6] = "Disponible";
                     } else {
                         rowData[6] = "No Disponible";
@@ -156,5 +157,48 @@ public class Embarcacion implements Comparable<Embarcacion>{
         } catch (Exception e) {
             return rowData;
         }
+    }
+
+    public static ArrayList<Object[]> filtrarTipo(String tipo, Puerto puerto) {
+        java.util.Map<String, Integer> buques = new java.util.HashMap<String, Integer>();
+        buques.put("Cargo general", 0);
+        buques.put("Portacontenedor", 1);
+        buques.put("Granelero", 2);
+        buques.put("Frigorifrico", 3);
+        buques.put("Ro-Ro", 4);
+        buques.put("Tanquero", 5);
+        buques.put("Industrial", 6);
+        String []arr={"Cargo general","Portacontenedor","Granelero","Frigorifrico","Ro-Ro","Tanquero","Industrial"};
+
+        ArrayList<Object[]> rows = new ArrayList<Object[]>();
+        Object rowData[] = new Object[7];
+        LinkedList<Embarcacion> PrintE = puerto.GetEmbarcaciones();
+        HashMap<Integer, Embarcacion> hash = new HashMap<Integer, Embarcacion>();
+        Node<Embarcacion> Iterador = PrintE.getBeginNode();
+        while (Iterador != null) {
+            hash.insert(Iterador.data.tipoDeEmbarcacion, Iterador.data);
+            Iterador = Iterador.nextNode;
+        }
+        //System.out.println(hash.hashFun(tipo));
+        LinkedList<HashNode<Integer,Embarcacion>> list = hash.linkedListRepeatsKeys(buques.get(tipo));
+        Node<HashNode<Integer,Embarcacion>>i=list.getBeginNode();
+        while (i != null) {
+            rowData[0] = i.data.getValue().IMO;
+            rowData[1] = i.data.getValue().nombreEmbarcacion;
+            rowData[2] = i.data.getValue().bandera;
+            System.out.println(i.data.getValue().tipoDeEmbarcacion);
+            rowData[3] = arr[i.data.getValue().tipoDeEmbarcacion];
+            rowData[4] =    i.data.getValue().capacidad;
+            rowData[5] = i.data.getValue().contenedoresAct;
+            if (i.data.getValue().disponibilidad == true) {
+                rowData[6] = "Disponible";
+            } else {
+                rowData[6] = "No Disponible";
+            }
+            rows.push(rowData);
+            rowData = new Object[7];
+            i = i.nextNode;
+        }
+        return rows;
     }
 }

@@ -20,4 +20,10 @@ public class Node<T> {
     public T getData(){
         return data;
     }
+     public Node nextNode(){
+        return nextNode;
+    }
+    public Node beforeNode(){
+        return beforeNode;
+    }
 }
