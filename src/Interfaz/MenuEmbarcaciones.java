@@ -115,7 +115,6 @@ public class MenuEmbarcaciones extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         jCheckBox7 = new javax.swing.JCheckBox();
         jButton5 = new javax.swing.JButton();
-        jLabelError = new javax.swing.JLabel();
         jButton6 = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         jLabelError1 = new javax.swing.JLabel();
@@ -225,7 +224,6 @@ public class MenuEmbarcaciones extends javax.swing.JPanel {
         });
         jTable1.setGridColor(new java.awt.Color(0, 0, 0));
         jTable1.setRowHeight(20);
-        jTable1.setShowGrid(true);
         jScrollPane1.setViewportView(jTable1);
 
         add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 170, 1180, 340));
@@ -335,12 +333,6 @@ public class MenuEmbarcaciones extends javax.swing.JPanel {
         });
         add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(890, 730, 300, 55));
 
-        jLabelError.setFont(new java.awt.Font("Trebuchet MS", 0, 16)); // NOI18N
-        jLabelError.setForeground(new java.awt.Color(0, 0, 0));
-        jLabelError.setText("Tras buscar por IMO, si desea buscar por otro campo, actualice la tabla.");
-        jLabelError.setVisible(false);
-        add(jLabelError, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 90, -1, 30));
-
         jButton6.setBackground(new java.awt.Color(160, 196, 242));
         jButton6.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
         jButton6.setForeground(new java.awt.Color(0, 0, 0));
@@ -373,7 +365,7 @@ public class MenuEmbarcaciones extends javax.swing.JPanel {
         jLabelError1.setForeground(new java.awt.Color(0, 0, 0));
         jLabelError1.setText("Recuerde que para buscar por IMO debe ingresar el número completo.");
         jLabelError1.setVisible(false);
-        add(jLabelError1, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 60, -1, 30));
+        add(jLabelError1, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 90, -1, 30));
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -522,14 +514,13 @@ public class MenuEmbarcaciones extends javax.swing.JPanel {
                     || x.contains("7") || x.contains("8") || x.contains("9") || x.contains("0")) {
                 JOptionPane.showMessageDialog(null, "Para filtrar por Tipo no se reciben números.");
             } else {
-                /*TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(((DefaultTableModel) jTable1.getModel()));
-                sorter.setRowFilter(RowFilter.regexFilter(jTextField1.getText(), 3));
-                jTable1.setRowSorter(sorter);*/
                 DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
                 model.setRowCount(0);
-                ArrayList<Object[]> rows=Embarcacion.filtrarTipo(jTextField1.getText(), principal.getPuerto());
-                for(int i=0; i<rows.length();i++){
-                    model.addRow(rows.get(i));
+                ArrayList<Object[]> rows = Embarcacion.filtrarTipo(jTextField1.getText(), principal.getPuerto());
+                if (rows != null) {
+                    for (int i = 0; i < rows.length(); i++) {
+                        model.addRow(rows.get(i));
+                    }
                 }
             }
         } else if (jCheckBox5.isSelected()) {
@@ -539,11 +530,14 @@ public class MenuEmbarcaciones extends javax.swing.JPanel {
                     sorter.setRowFilter(RowFilter.regexFilter(jTextField1.getText(), 4));
                     jTable1.setRowSorter(sorter);
                 } else {
-                    int x;
-                    x = Integer.parseInt(jTextField1.getText());
-                    TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(((DefaultTableModel) jTable1.getModel()));
-                    sorter.setRowFilter(RowFilter.regexFilter(jTextField1.getText(), 4));
-                    jTable1.setRowSorter(sorter);
+                    DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+                    model.setRowCount(0);
+                    ArrayList<Object[]> rows = Embarcacion.filtrarCapacidad(jTextField1.getText(), principal.getPuerto());
+                    if (rows != null) {
+                        for (int i = 0; i < rows.length(); i++) {
+                            model.addRow(rows.get(i));
+                        }
+                    }
                 }
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, "Para filtrar por Capacidad solo se reciben números.");
@@ -554,11 +548,12 @@ public class MenuEmbarcaciones extends javax.swing.JPanel {
                 sorter.setRowFilter(RowFilter.regexFilter(jTextField1.getText(), 5));
                 jTable1.setRowSorter(sorter);
             } else {
-                int x;
-                x = Integer.parseInt(jTextField1.getText());
-                TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(((DefaultTableModel) jTable1.getModel()));
-                sorter.setRowFilter(RowFilter.regexFilter(jTextField1.getText(), 5));
-                jTable1.setRowSorter(sorter);
+                DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+                model.setRowCount(0);
+                ArrayList<Object[]> rows = Embarcacion.filtrarContenedores(jTextField1.getText(), principal.getPuerto());
+                for (int i = 0; i < rows.length(); i++) {
+                    model.addRow(rows.get(i));
+                }
             }
         } else if (jCheckBox7.isSelected()) {
             String x;
@@ -567,9 +562,14 @@ public class MenuEmbarcaciones extends javax.swing.JPanel {
                     || x.contains("7") || x.contains("8") || x.contains("9") || x.contains("0")) {
                 JOptionPane.showMessageDialog(null, "Para filtrar por Disponibilidad no se reciben números.");
             } else {
-                TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(((DefaultTableModel) jTable1.getModel()));
-                sorter.setRowFilter(RowFilter.regexFilter(jTextField1.getText(), 6));
-                jTable1.setRowSorter(sorter);
+                DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+                model.setRowCount(0);
+                ArrayList<Object[]> rows = Embarcacion.filtrarDisp((jTextField1.getText().equals("Disponible")) ? true : false, principal.getPuerto());
+                if (rows != null) {
+                    for (int i = 0; i < rows.length(); i++) {
+                        model.addRow(rows.get(i));
+                    }
+                }
             }
         } else {
 
@@ -584,13 +584,11 @@ public class MenuEmbarcaciones extends javax.swing.JPanel {
 
     private void jButton6MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton6MouseEntered
         // TODO add your handling code here:
-        jLabelError.setVisible(true);
         jLabelError1.setVisible(true);
     }//GEN-LAST:event_jButton6MouseEntered
 
     private void jButton6MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton6MouseExited
         // TODO add your handling code here:
-        jLabelError.setVisible(false);
         jLabelError1.setVisible(false);
 
     }//GEN-LAST:event_jButton6MouseExited
@@ -640,7 +638,6 @@ public class MenuEmbarcaciones extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabelError;
     private javax.swing.JLabel jLabelError1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;

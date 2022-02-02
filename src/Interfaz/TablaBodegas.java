@@ -4,6 +4,7 @@
  */
 package Interfaz;
 
+import Mundo.estructuras.listas.ArrayList;
 import Mundo.estructuras.listas.LinkedList;
 import Mundo.estructuras.listas.Node;
 import Mundo.shippingcontrol.Bodega;
@@ -341,11 +342,14 @@ public class TablaBodegas extends javax.swing.JPanel {
             }
         } else if (jCheckBox3.isSelected()) {
             try {
-                int x;
-                x = Integer.parseInt(jTextField1.getText());
-                TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(((DefaultTableModel) jTable2.getModel()));
-                sorter.setRowFilter(RowFilter.regexFilter(jTextField1.getText(), 2));
-                jTable2.setRowSorter(sorter);
+                DefaultTableModel model = (DefaultTableModel) jTable2.getModel();
+                model.setRowCount(0);
+                ArrayList<Object[]> rows=Bodega.filtrarActuales(Integer.parseInt(jTextField1.getText()), principal.getPuerto());
+                if(rows!=null){    
+                    for(int i=0; i<rows.length();i++){
+                        model.addRow(rows.get(i));
+                    }
+                }
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, "Para filtrar por Contenedores Actuales solo se reciben números.");
             }
@@ -356,9 +360,14 @@ public class TablaBodegas extends javax.swing.JPanel {
                     || x.contains("7") || x.contains("8") || x.contains("9") || x.contains("0")) {
                 JOptionPane.showMessageDialog(null, "Para filtrar por Zona no se reciben números.");
             } else {
-                TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(((DefaultTableModel) jTable2.getModel()));
-                sorter.setRowFilter(RowFilter.regexFilter(jTextField1.getText(), 3));
-                jTable2.setRowSorter(sorter);
+                DefaultTableModel model = (DefaultTableModel) jTable2.getModel();
+                model.setRowCount(0);
+                ArrayList<Object[]> rows=Bodega.filtrarZona(jTextField1.getText(), principal.getPuerto());
+                if(rows!=null){    
+                    for(int i=0; i<rows.length();i++){
+                        model.addRow(rows.get(i));
+                    }
+                }
             }
         } else {
 

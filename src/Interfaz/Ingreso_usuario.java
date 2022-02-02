@@ -31,7 +31,6 @@ public abstract class Ingreso_usuario {
         password =contraseña;
         String linea;
         boolean find_user = false;
-        System.out.println(nombreUsuario+"/"+contraseña);
         try {
             BufferedReader br = new BufferedReader(new FileReader(PATH));
             while ((linea = br.readLine()) != null) {//cada linea del archivo csv

@@ -13,7 +13,7 @@ _Sí deseas ejecutar nuestro software deberas cumplir con los siguientes pre-req
 
 ```
 1. Instalación de Java Runtime Environment para poder correr el software.
-2. Debido a que el software se encuentra en la versión intermedia no se cuenta con archivo .jar, por lo tanto puede clonar este proyecto y ejecutarlo desde el IDE de su preferencia
+2. Para la ejecución de este programa le recomendamos instalar el IDE de su preferencia y clonar el repositorio.
 ```
 
 ## Autores ✒️

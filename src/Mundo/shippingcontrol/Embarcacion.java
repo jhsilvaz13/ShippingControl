@@ -28,8 +28,18 @@ public class Embarcacion implements Comparable<Embarcacion> {
     private boolean disponibilidad;
     private Stack<String> container;//pila de contenedores
 
+    private static HashMap<String, Integer> buques = new HashMap<String, Integer>();
+    private static String[] arr = {"Cargo general", "Portacontenedor", "Granelero", "Frigorifrico", "Ro-Ro", "Tanquero", "Industrial"};
+
     public Embarcacion(int IMO, String nombreEmbarcacion, String bandera,
             int tipoDeEmbarcacion, int capacidad, int contenedoresAct, boolean disponibilidad) {
+        buques.put("Cargo general", 0);
+        buques.put("Portacontenedor", 1);
+        buques.put("Granelero", 2);
+        buques.put("Frigorifrico", 3);
+        buques.put("Ro-Ro", 4);
+        buques.put("Tanquero", 5);
+        buques.put("Industrial", 6);
         this.IMO = IMO;
         this.nombreEmbarcacion = nombreEmbarcacion;
         this.bandera = bandera;
@@ -141,7 +151,7 @@ public class Embarcacion implements Comparable<Embarcacion> {
                     rowData[0] = encontrada.IMO;
                     rowData[1] = encontrada.nombreEmbarcacion;
                     rowData[2] = encontrada.bandera;
-                    rowData[3] = encontrada.tipoDeEmbarcacion;
+                    rowData[3] = arr[encontrada.tipoDeEmbarcacion];
                     rowData[4] = encontrada.capacidad;
                     rowData[5] = encontrada.contenedoresAct;
                     if (encontrada.disponibilidad == true) {
@@ -160,45 +170,143 @@ public class Embarcacion implements Comparable<Embarcacion> {
     }
 
     public static ArrayList<Object[]> filtrarTipo(String tipo, Puerto puerto) {
-        java.util.Map<String, Integer> buques = new java.util.HashMap<String, Integer>();
-        buques.put("Cargo general", 0);
-        buques.put("Portacontenedor", 1);
-        buques.put("Granelero", 2);
-        buques.put("Frigorifrico", 3);
-        buques.put("Ro-Ro", 4);
-        buques.put("Tanquero", 5);
-        buques.put("Industrial", 6);
-        String []arr={"Cargo general","Portacontenedor","Granelero","Frigorifrico","Ro-Ro","Tanquero","Industrial"};
-
-        ArrayList<Object[]> rows = new ArrayList<Object[]>();
-        Object rowData[] = new Object[7];
-        LinkedList<Embarcacion> PrintE = puerto.GetEmbarcaciones();
-        HashMap<Integer, Embarcacion> hash = new HashMap<Integer, Embarcacion>();
-        Node<Embarcacion> Iterador = PrintE.getBeginNode();
-        while (Iterador != null) {
-            hash.insert(Iterador.data.tipoDeEmbarcacion, Iterador.data);
-            Iterador = Iterador.nextNode;
-        }
-        //System.out.println(hash.hashFun(tipo));
-        LinkedList<HashNode<Integer,Embarcacion>> list = hash.linkedListRepeatsKeys(buques.get(tipo));
-        Node<HashNode<Integer,Embarcacion>>i=list.getBeginNode();
-        while (i != null) {
-            rowData[0] = i.data.getValue().IMO;
-            rowData[1] = i.data.getValue().nombreEmbarcacion;
-            rowData[2] = i.data.getValue().bandera;
-            System.out.println(i.data.getValue().tipoDeEmbarcacion);
-            rowData[3] = arr[i.data.getValue().tipoDeEmbarcacion];
-            rowData[4] =    i.data.getValue().capacidad;
-            rowData[5] = i.data.getValue().contenedoresAct;
-            if (i.data.getValue().disponibilidad == true) {
-                rowData[6] = "Disponible";
-            } else {
-                rowData[6] = "No Disponible";
+        try {
+            ArrayList<Object[]> rows = new ArrayList<Object[]>();
+            Object rowData[] = new Object[7];
+            LinkedList<Embarcacion> PrintE = puerto.GetEmbarcaciones();
+            HashMap<Integer, Embarcacion> hash = new HashMap<Integer, Embarcacion>();
+            Node<Embarcacion> Iterador = PrintE.getBeginNode();
+            while (Iterador != null) {
+                hash.insert(Iterador.data.tipoDeEmbarcacion, Iterador.data);
+                Iterador = Iterador.nextNode;
             }
-            rows.push(rowData);
-            rowData = new Object[7];
-            i = i.nextNode;
+            LinkedList<HashNode<Integer, Embarcacion>> list = hash.linkedListRepeatsKeys(buques.get(tipo));
+            Node<HashNode<Integer, Embarcacion>> i = list.getBeginNode();
+            while (i != null) {
+                rowData[0] = i.data.getValue().IMO;
+                rowData[1] = i.data.getValue().nombreEmbarcacion;
+                rowData[2] = i.data.getValue().bandera;
+                rowData[3] = arr[i.data.getValue().tipoDeEmbarcacion];
+                rowData[4] = i.data.getValue().capacidad;
+                rowData[5] = i.data.getValue().contenedoresAct;
+                if (i.data.getValue().disponibilidad == true) {
+                    rowData[6] = "Disponible";
+                } else {
+                    rowData[6] = "No Disponible";
+                }
+                rows.push(rowData);
+                rowData = new Object[7];
+                i = i.nextNode;
+            }
+            return rows;
+        } catch (Exception e) {
+            return null;
         }
-        return rows;
+    }
+
+    public static ArrayList<Object[]> filtrarCapacidad(String capacidad, Puerto puerto) {
+        try {
+            ArrayList<Object[]> rows = new ArrayList<Object[]>();
+            Object rowData[] = new Object[7];
+            LinkedList<Embarcacion> PrintE = puerto.GetEmbarcaciones();
+            HashMap<Integer, Embarcacion> hash = new HashMap<Integer, Embarcacion>();
+            Node<Embarcacion> Iterador = PrintE.getBeginNode();
+            while (Iterador != null) {
+                hash.insert(Iterador.data.capacidad, Iterador.data);
+                Iterador = Iterador.nextNode;
+            }
+            LinkedList<HashNode<Integer, Embarcacion>> list = hash.linkedListRepeatsKeys(Integer.valueOf(capacidad));
+            Node<HashNode<Integer, Embarcacion>> i = list.getBeginNode();
+            while (i != null) {
+                rowData[0] = i.data.getValue().IMO;
+                rowData[1] = i.data.getValue().nombreEmbarcacion;
+                rowData[2] = i.data.getValue().bandera;
+                rowData[3] = arr[i.data.getValue().tipoDeEmbarcacion];
+                rowData[4] = i.data.getValue().capacidad;
+                rowData[5] = i.data.getValue().contenedoresAct;
+                if (i.data.getValue().disponibilidad == true) {
+                    rowData[6] = "Disponible";
+                } else {
+                    rowData[6] = "No Disponible";
+                }
+                rows.push(rowData);
+                rowData = new Object[7];
+                i = i.nextNode;
+            }
+            return rows;
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+    public static ArrayList<Object[]> filtrarContenedores(String contenedores, Puerto puerto) {
+        try {
+            ArrayList<Object[]> rows = new ArrayList<Object[]>();
+            Object rowData[] = new Object[7];
+            LinkedList<Embarcacion> PrintE = puerto.GetEmbarcaciones();
+            HashMap<Integer, Embarcacion> hash = new HashMap<Integer, Embarcacion>();
+            Node<Embarcacion> Iterador = PrintE.getBeginNode();
+            while (Iterador != null) {
+                hash.insert(Iterador.data.contenedoresAct, Iterador.data);
+                Iterador = Iterador.nextNode;
+            }
+            LinkedList<HashNode<Integer, Embarcacion>> list = hash.linkedListRepeatsKeys(Integer.valueOf(contenedores));
+            Node<HashNode<Integer, Embarcacion>> i = list.getBeginNode();
+            while (i != null) {
+                rowData[0] = i.data.getValue().IMO;
+                rowData[1] = i.data.getValue().nombreEmbarcacion;
+                rowData[2] = i.data.getValue().bandera;
+                rowData[3] = arr[i.data.getValue().tipoDeEmbarcacion];
+                rowData[4] = i.data.getValue().capacidad;
+                rowData[5] = i.data.getValue().contenedoresAct;
+                if (i.data.getValue().disponibilidad == true) {
+                    rowData[6] = "Disponible";
+                } else {
+                    rowData[6] = "No Disponible";
+                }
+                rows.push(rowData);
+                rowData = new Object[7];
+                i = i.nextNode;
+            }
+            return rows;
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+    public static ArrayList<Object[]> filtrarDisp(Boolean disp, Puerto puerto) {
+        try {
+            ArrayList<Object[]> rows = new ArrayList<Object[]>();
+            Object rowData[] = new Object[7];
+            LinkedList<Embarcacion> PrintE = puerto.GetEmbarcaciones();
+            HashMap<Boolean, Embarcacion> hash = new HashMap<Boolean, Embarcacion>();
+            Node<Embarcacion> Iterador = PrintE.getBeginNode();
+            while (Iterador != null) {
+                hash.insert(Iterador.data.disponibilidad, Iterador.data);
+                Iterador = Iterador.nextNode;
+            }
+            LinkedList<HashNode<Boolean, Embarcacion>> list = hash.linkedListRepeatsKeys(disp);
+            Node<HashNode<Boolean, Embarcacion>> i = list.getBeginNode();
+            while (i != null) {
+                rowData[0] = i.data.getValue().IMO;
+                rowData[1] = i.data.getValue().nombreEmbarcacion;
+                rowData[2] = i.data.getValue().bandera;
+                rowData[3] = arr[i.data.getValue().tipoDeEmbarcacion];
+                rowData[4] = i.data.getValue().capacidad;
+                rowData[5] = i.data.getValue().contenedoresAct;
+                if (i.data.getValue().disponibilidad == true) {
+                    rowData[6] = "Disponible";
+                } else {
+                    rowData[6] = "No Disponible";
+                }
+                rows.push(rowData);
+                rowData = new Object[7];
+                i = i.nextNode;
+            }
+            return rows;
+
+        } catch (Exception e) {
+            return null;
+        }
     }
 }

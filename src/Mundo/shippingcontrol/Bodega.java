@@ -4,6 +4,9 @@
  */
 package Mundo.shippingcontrol;
 
+import Mundo.estructuras.hashing.HashMap;
+import Mundo.estructuras.hashing.HashNode;
+import Mundo.estructuras.listas.ArrayList;
 import Mundo.estructuras.listas.LinkedList;
 import Mundo.estructuras.listas.Node;
 import Mundo.estructuras.trees.AVLtree;
@@ -78,6 +81,65 @@ public class Bodega implements Comparable<Bodega> {
             }
         } catch (Exception e) {
             return rowData;
+        }
+    }
+
+    public static ArrayList<Object[]> filtrarActuales(Integer contendores, Puerto puerto) {
+        try {
+            java.util.Map<Integer, Integer> actuales = new java.util.HashMap<Integer, Integer>();
+            ArrayList<Object[]> rows = new ArrayList<Object[]>();
+            Object rowData[] = new Object[4];
+            LinkedList<Bodega> PrintE = puerto.GetBodegas();
+            HashMap<Integer, Bodega> hash = new HashMap<Integer, Bodega>();
+            Node<Bodega> Iterador = PrintE.getBeginNode();
+            while (Iterador != null) {
+                hash.insert(Iterador.data.actual, Iterador.data);
+                Iterador = Iterador.nextNode;
+            }
+            LinkedList<HashNode<Integer, Bodega>> list = hash.linkedListRepeatsKeys(contendores);
+            Node<HashNode<Integer, Bodega>> i = list.getBeginNode();
+            while (i != null) {
+                rowData[0] = i.data.getValue().ID;
+                rowData[1] = i.data.getValue().capacidad;
+                rowData[2] = i.data.getValue().actual;
+                rowData[3] = i.data.getValue().zona;
+                rows.push(rowData);
+                rowData = new Object[4];
+                i = i.nextNode;
+            }
+            return rows;
+
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+    public static ArrayList<Object[]> filtrarZona(String zona, Puerto puerto) {
+        try {
+            ArrayList<Object[]> rows = new ArrayList<Object[]>();
+            Object rowData[] = new Object[4];
+            LinkedList<Bodega> PrintE = puerto.GetBodegas();
+            HashMap<Character, Bodega> hash = new HashMap<Character, Bodega>();
+            Node<Bodega> Iterador = PrintE.getBeginNode();
+            while (Iterador != null) {
+                hash.insert(Iterador.data.zona, Iterador.data);
+                Iterador = Iterador.nextNode;
+            }
+            //System.out.println(hash.hashFun(tipo));
+            LinkedList<HashNode<Character, Bodega>> list = hash.linkedListRepeatsKeys(zona.charAt(0));
+            Node<HashNode<Character, Bodega>> i = list.getBeginNode();
+            while (i != null) {
+                rowData[0] = i.data.getValue().ID;
+                rowData[1] = i.data.getValue().capacidad;
+                rowData[2] = i.data.getValue().actual;
+                rowData[3] = i.data.getValue().zona;
+                rows.push(rowData);
+                rowData = new Object[4];
+                i = i.nextNode;
+            }
+            return rows;
+        } catch (Exception e) {
+            return null;
         }
     }
 
