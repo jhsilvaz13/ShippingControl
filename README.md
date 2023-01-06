@@ -20,6 +20,6 @@ _Sí deseas ejecutar nuestro software deberas cumplir con los siguientes pre-req
 
 
 * **Estebán Umbarila** - [EstebanUmba](https://github.com/EstebanUmba)
-* **John Silva** - [jhsilvaz13](https://github.com/jhsilvaz13)
+* **John Jairo Silva** - [jhsilvaz13](https://github.com/jhsilvaz13)
 * **Maria Perez** - [mperezpet](https://github.com/mperezpet)
 * **Sergio Siabatto** - [Ssiabatto](https://github.com/Ssiabatto)
